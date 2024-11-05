@@ -23,6 +23,6 @@ func button_pressed():
 func execute():
     used = true
     var target = endTile as Enemy
+    owner.attack(10, target)
     target.addStatus(Global.statusFactory.createStatus("Daze", 3))
-    target.attack_damage(10, owner)
     super()

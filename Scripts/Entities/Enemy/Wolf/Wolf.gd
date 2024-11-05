@@ -1,17 +1,13 @@
 class_name Wolf extends Enemy
 
-func get_actions() -> Array[Action]:
-    return actions
-
 func setup_turn():
-    turn_actions.clear()
-    turn_actions.append(actions[1])
+    action = turn_actions[2]
 
-func do_Turn():
-    var target = find_closest_player()
-    node.move_along_path(path)
-    Global.tileManager.move_entity(self, path.back())
-    target.attack_damage(30, self)
+func setup_enemy(init_name : String, start_health : int, start_location : Vector2i, start_node : EntitiyNode, mini_portrait_path : String) -> void:
+    super(init_name, start_health, start_location, start_node, mini_portrait_path)
+    turn_actions = [Rend.new(), Bite.new(), Howl.new()]
+    for x in turn_actions:
+        x.setup(self)
 
 func find_closest_player() -> Character:
     path = []

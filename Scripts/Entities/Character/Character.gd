@@ -14,6 +14,8 @@ func setup_character(init_name : String, starting_actions : Array[Action], start
 	setup_entity(start_health, start_location, init_name, start_node)
 	start_node.set_character(self)
 
+func roundStart():
+	energy = max_energy
 
 func _init() -> void:
 	pass

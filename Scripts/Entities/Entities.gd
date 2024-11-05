@@ -51,9 +51,14 @@ func removeStatus(status: Status):
 			break
 		index = index + 1
 
+func attack(incomming : int, target: Entities):
+	for x in statuses:
+		x.attackEffect(incomming, self, target)
+	target.attack_damage(incomming, self)
+
 func attack_damage(incoming : int, attacker: Entities):
 	for x in statuses:
-		x.attackEffect(incoming, attacker)
+		x.deffendEffect(incoming, self, attacker)
 	var damage = incoming - block
 	block = block - incoming
 	if block < 0:
@@ -62,7 +67,6 @@ func attack_damage(incoming : int, attacker: Entities):
 
 func roundStart():
 	block = 0
-	pass
 
 func roundEnd():
 	pass

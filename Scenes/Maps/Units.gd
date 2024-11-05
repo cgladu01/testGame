@@ -9,6 +9,10 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+func turnOne():
+	for enemy in Global.enemies:
+		enemy.setup_turn()
+
 func _onEndTurn():
 	for character in Global.characters:
 		character.roundEnd()
@@ -28,3 +32,6 @@ func _onEndTurn():
 
 	for enemy in Global.enemies:
 		enemy.setup_turn()
+	
+	for character in Global.characters:
+		character.roundStart()

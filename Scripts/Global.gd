@@ -1,5 +1,6 @@
 extends Node
 
+var rng : RandomNumberGenerator = null
 var selection : bool = false
 var currentAction : Action = null
 var impassableList = []

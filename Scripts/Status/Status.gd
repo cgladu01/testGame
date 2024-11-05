@@ -20,5 +20,8 @@ func decrementCount():
 func incrementCount():
 	count = count + 1
 
-func attackEffect(incoming: int, attacker: Entities):
+func deffendEffect(incoming: int, target : Entities, attacker: Entities):
+	pass
+
+func attackEffect(incoming: int, attacker: Entities, target: Entities):
 	pass

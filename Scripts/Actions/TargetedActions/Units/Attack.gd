@@ -24,5 +24,5 @@ func button_pressed():
 func execute():
     used = true
     var target = endTile as Enemy
-    target.attack_damage(30, owner)
+    owner.attack(30, target)
     super()
