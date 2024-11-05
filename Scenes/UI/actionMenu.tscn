@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c3fxgtfgclo04"]
+
+[ext_resource type="Script" path="res://Scenes/UI/action_menu.gd" id="1_8g4cv"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h3yn1"]
+
+[node name="ActionMenu" type="PanelContainer"]
+anchors_preset = 9
+anchor_bottom = 1.0
+offset_right = 1074.0
+offset_bottom = -552.0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_h3yn1")
+script = ExtResource("1_8g4cv")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+
+[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+layout_mode = 2
