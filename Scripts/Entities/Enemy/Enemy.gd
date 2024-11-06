@@ -15,11 +15,10 @@ func setup_enemy(init_name : String, start_health : int, start_location : Vector
 	turn_actions = []
 	miniPortaitPath = mini_portrait_path
 	setup_entity(start_health, start_location, init_name, start_node)
-	start_node.set_entity(self)
 
 func do_Turn():
 	action.execute()
-	performed_actions.append(action)
+	print(action.name)
 	pass
 
 
@@ -37,5 +36,13 @@ func find_closest_player() -> Character:
 	path.pop_back()
 	return rcharacter
 
+func move_on_path(distance: int):
+	if path.size() <= distance:
+		node.move_along_path(path)
+		Global.tileManager.move_entity(self, path.back())
+	else:
+		node.move_along_path(path.slice(0, distance))
+		Global.tileManager.move_entity(self, path[distance - 1])
+	
 func _init() -> void:
 	pass

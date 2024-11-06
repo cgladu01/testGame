@@ -2,7 +2,7 @@ class_name CharacterFactory
 
 var basic_actions : Array[String] = ["Attack", "Move", "Rest"]
 
-func createCharacter(name: String, location: Vector2i, start_node : PlayerUnit) -> Character:
+func createCharacter(name: String, location: Vector2i, start_node : CharacterNode) -> Character:
 	var character : Character = Character.new()
 	var actions : Array[Action] =  []
 	var mini_portrait : String = ""

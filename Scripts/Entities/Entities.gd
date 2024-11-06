@@ -6,7 +6,7 @@ var health : int = 40
 var statuses : Array[Status] = []
 var name : String = ""
 
-var node : Node2D = null
+var node : EntitiyNode = null
 var miniPortaitPath : String = ""
 var spritePath : String = ""
 var tot_health : int = 100
@@ -26,11 +26,12 @@ func change_health(difference : int):
 		health = 0
 	Global.update_health.emit()	
 	
-func setup_entity(start_health : int, start_location : Vector2i, name : String, start_node : UnitNode) -> void:
+func setup_entity(start_health : int, start_location : Vector2i, name : String, start_node : EntitiyNode) -> void:
 	tot_health = start_health
 	self.name = name
 	node = start_node
 	setup(start_location)
+	node.set_entity(self)
 
 func addStatus(status: Status):
 	var exists = false
@@ -53,14 +54,16 @@ func removeStatus(status: Status):
 
 func attack(incomming : int, target: Entities):
 	for x in statuses:
-		x.attackEffect(incomming, self, target)
+		incomming = x.attackEffect(incomming, self, target)
 	target.attack_damage(incomming, self)
 
 func attack_damage(incoming : int, attacker: Entities):
+	var damage = incoming
 	for x in statuses:
-		x.deffendEffect(incoming, self, attacker)
-	var damage = incoming - block
-	block = block - incoming
+		damage = x.deffendEffect(damage, self, attacker)
+	var placeholder = damage
+	damage = damage - block
+	block = block - placeholder
 	if block < 0:
 		block = 0
 	change_health(-damage)

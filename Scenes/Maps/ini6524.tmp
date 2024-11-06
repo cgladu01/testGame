@@ -51,7 +51,7 @@ script = ExtResource("4_hnyq6")
 
 [node name="EnemyUnits" type="Node2D" parent="Units"]
 
-[node name="Enemy" parent="Units/EnemyUnits" instance=ExtResource("6_1lobx")]
+[node name="Entity" parent="Units/EnemyUnits" instance=ExtResource("6_1lobx")]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

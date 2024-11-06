@@ -1,6 +1,4 @@
-class_name UnitNode extends Node2D
-
-
+extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"../CanvasLayer/Control/PanelContainer/EndTurn".EndTurnPlayerTurn.connect(_onEndTurn)
@@ -18,7 +16,7 @@ func _onEndTurn():
 		character.roundEnd()
 
 	for x in $PlayerUnits.get_children():
-		if x is PlayerUnit:
+		if x is CharacterNode:
 			x.refresh_Actions()
 	
 	for enemy in Global.enemies:

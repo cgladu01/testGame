@@ -1,4 +1,4 @@
-class_name EntitiyNode extends UnitNode
+class_name EntitiyNode extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var terrain: TileMapLayer = $"../../../Layerholder/terrain"
 
