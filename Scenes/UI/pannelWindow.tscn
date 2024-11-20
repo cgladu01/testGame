@@ -9,14 +9,15 @@
 [sub_resource type="Theme" id="Theme_jiyu5"]
 
 [node name="Window" type="PanelContainer"]
+visibility_layer = 512
 anchors_preset = 1
 anchor_left = 1.0
 anchor_right = 1.0
-offset_left = -280.0
-offset_top = 24.0
-offset_right = -24.0
-offset_bottom = 108.0
-grow_vertical = 0
+offset_left = -296.0
+offset_top = 16.0
+offset_right = -18.0
+offset_bottom = 147.0
+grow_horizontal = 0
 theme = SubResource("Theme_r1pme")
 script = ExtResource("1_e5d64")
 
@@ -27,15 +28,19 @@ layout_mode = 2
 layout_mode = 2
 
 [node name="MiniPortrait" type="TextureRect" parent="VBoxContainer/TitleLine"]
+custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
 
 [node name="Title" type="Label" parent="VBoxContainer/TitleLine"]
+custom_minimum_size = Vector2(150, 0)
 layout_mode = 2
 size_flags_horizontal = 3
+size_flags_vertical = 0
 
 [node name="CloseBox" type="Button" parent="VBoxContainer/TitleLine"]
 layout_mode = 2
 size_flags_horizontal = 8
+size_flags_vertical = 0
 text = "Close"
 
 [node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
@@ -63,7 +68,7 @@ texture_under = ExtResource("2_bnkgs")
 texture_progress = ExtResource("3_enec1")
 
 [node name="StatusLine" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
-custom_minimum_size = Vector2(15, 15)
+custom_minimum_size = Vector2(30, 30)
 layout_mode = 2
 size_flags_vertical = 0
 

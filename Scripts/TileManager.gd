@@ -28,20 +28,24 @@ func setup(input_layers : Array[TileMapLayer], width: int, height : int, depth :
 			tiles[x][y] = []
 			tiles[x][y].resize(depth)    # Z-dimension
 			for z in depth:
-				var newTile = Tile.new()
+				var newTile = null
+				if layers[z] != null and layers[z].get_cell_atlas_coords(Vector2i(x, y) + Global.tileShift) == Vector2i(7,1):
+					newTile = Obstacle.new()
+				else:
+					newTile = Tile.new()
 				newTile.setup(Vector2i(x, y))
 				tiles[x][y][z] = newTile
 			
 
 func change_tile(new_tile : Tile, location : Vector3i):
-	if location.x + shift_x >= width or location.x + shift_x < 0:
+	if location.x >= width or location.x < 0:
 		return
-	elif location.y + shift_y >= height or location.y + shift_y < 0:
+	elif location.y >= height or location.y < 0:
 		return
 	elif location.z >= depth or location.z < 0:
 		return
 
-	tiles[location.x + shift_x][location.y + shift_y][location.z] = new_tile
+	tiles[location.x][location.y][location.z] = new_tile
 	
 	
 func change_tile_entity(new_tile : Tile, location : Vector2i):
@@ -57,14 +61,14 @@ func change_tile_entity(new_tile : Tile, location : Vector2i):
 			astar2Grid.set_point_solid(location, true)
 
 func get_tile(location : Vector3i) -> Tile:
-	if location.x + shift_x >= width or location.x + shift_x < 0:
+	if location.x >= width or location.x < 0:
 		return
-	elif location.y + shift_y >= height or location.y + shift_y < 0:
+	elif location.y >= height or location.y < 0:
 		return
 	elif location.z >= depth or location.z < 0:
 		return
 	
-	return tiles[location.x + shift_x][location.y + shift_y][location.z]
+	return tiles[location.x][location.y][location.z]
 
 func get_tile_entity(location : Vector2i) -> Tile:
 	if location.x >= width or location.x < 0:

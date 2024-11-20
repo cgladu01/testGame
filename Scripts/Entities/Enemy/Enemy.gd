@@ -8,6 +8,8 @@ func get_actions() -> Array[EnemyActions]:
 	return turn_actions
 
 func setup_turn():
+	if node.actionLine != null:
+		node.dispActionline()
 	pass
 
 func setup_enemy(init_name : String, start_health : int, start_location : Vector2i, start_node : EntitiyNode, mini_portrait_path : String) -> void:
@@ -18,7 +20,6 @@ func setup_enemy(init_name : String, start_health : int, start_location : Vector
 
 func do_Turn():
 	action.execute()
-	print(action.name)
 	pass
 
 

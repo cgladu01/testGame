@@ -1,6 +1,8 @@
 class_name Rend extends EnemyActions
 
 func setup(owner: Enemy):
+    imageIndicator.append("res://icons/789_Lorc_RPG_icons/Icon.1_29.png")
+    imageIndicator.append("res://icons/789_Lorc_RPG_icons/Icon.1_19.png")
     name = "Rend"
     super(owner)
 

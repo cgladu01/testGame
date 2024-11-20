@@ -2,8 +2,10 @@ class_name EntitiyNode extends Node2D
 @onready var sprite_2d: Sprite2D = $Sprite2D
 @onready var terrain: TileMapLayer = $"../../../Layerholder/terrain"
 
+var scene = preload("res://Scenes/UI/actionline.tscn")
 var is_moving = false
 var entities: Entities
+var actionLine = null
 signal moved
 
 # Called when the node enters the scene tree for the first time.
@@ -28,3 +30,16 @@ func move_along_path(path: Array[Vector2i]):
 func set_entity(entity : Entities):
 	self.entities = entity
 	self.position = terrain.map_to_local(entities.location + Global.tileShift)
+
+func dispActionline():
+	if entities is Enemy:
+		if actionLine == null:
+			actionLine = scene.instantiate()
+			actionLine.set_enemy(entities as Enemy)
+			self.add_child(actionLine)
+			actionLine.position = actionLine.position - Vector2(15, 25)
+		actionLine.update_actions()
+
+func clearActionLine():
+	if actionLine != null:
+		actionLine.queue_free()

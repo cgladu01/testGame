@@ -18,8 +18,9 @@ func setMap(tileManager: TileManager):
 	
 	for x in tileManager.width:
 		for y in tileManager.height:
-			var tile = tileManager.get_tile(Vector3i(x, y, 0))
-			if tile is Obstacle:
+			var terrain = tileManager.get_tile(Vector3i(x, y, 0))
+			var entity = tileManager.get_tile(Vector3i(x, y, 1))
+			if entity is Obstacle:
 				astargrid.set_point_solid(Vector2i(x, y), true)
 				
 

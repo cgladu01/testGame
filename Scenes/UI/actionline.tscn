@@ -1,0 +1,6 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvaxbubujuyex"]
+
+[ext_resource type="Script" path="res://Scenes/UI/Action_Line.gd" id="1_k5imp"]
+
+[node name="ActionLine" type="HBoxContainer"]
+script = ExtResource("1_k5imp")

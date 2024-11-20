@@ -35,6 +35,7 @@ func on_action_update(actionsList: Array[Action], energy: int, max_energy: int):
 		new_button.custom_minimum_size = Vector2i(20, 42)
 		new_button.disabled = action.used
 		new_button.pressed.connect(action.button_pressed())
+		action.button = new_button
 		grid_container.add_child(new_button)
 	
 	if actionsList.size() != 0:

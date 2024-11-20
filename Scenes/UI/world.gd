@@ -1,11 +1,10 @@
 extends Node2D
-@onready var playerNode: EntitiyNode = $Units/PlayerUnits/Player
+
 @onready var world: Node2D = $"."
 @onready var astar_2_grid: Node2D = $Astar2Grid
 @onready var terrain: TileMapLayer = $Layerholder/terrain
 @onready var selection: TileMapLayer = $Layerholder/selection
 @onready var entities: TileMapLayer = $Layerholder/entities
-@onready var enemyNode: EntitiyNode = $Units/EnemyUnits/Enemy
 @onready var units: Node2D = $Units
 var tileManager : TileManager = Global.tileManager
 
@@ -13,12 +12,14 @@ var tileManager : TileManager = Global.tileManager
 func _ready() -> void:
 	Global.selectionTile = selection
 	Global.rng = RandomNumberGenerator.new()
+	Global.unitsNode = units
 	Global.rng.set_seed(0)
 	Global.tileManager.setup([terrain, entities, selection] as Array[TileMapLayer], 70, 39, 3)
+
 	astar_2_grid.setMap(tileManager)
-	var player = Global.characterFactory.createCharacter("DudeMan", Vector2i(0,0), playerNode)
-	Global.enemyFactory.createEnemy("Wolf", Vector2i(10,10), enemyNode)
-	player.addStatus(Global.statusFactory.createStatus("Bleed", 1))
+	var player = Global.characterFactory.createCharacter("DudeMan", Vector2i(0,0))
+	Global.enemyFactory.createEnemy("Wolf", Vector2i(10,10))
+	Global.enemyFactory.createEnemy("Wolf", Vector2i(5,5))
 	units.turnOne()
 
 

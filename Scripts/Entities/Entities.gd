@@ -11,6 +11,7 @@ var miniPortaitPath : String = ""
 var spritePath : String = ""
 var tot_health : int = 100
 var block : int = 0
+signal entityUpdate
 
 func get_health() -> int:
 	return health
@@ -24,8 +25,8 @@ func change_health(difference : int):
 		health = tot_health
 	elif health < 0:
 		health = 0
-	Global.update_health.emit()	
-	
+	entityUpdate.emit()
+
 func setup_entity(start_health : int, start_location : Vector2i, name : String, start_node : EntitiyNode) -> void:
 	tot_health = start_health
 	self.name = name
@@ -42,7 +43,7 @@ func addStatus(status: Status):
 	if not exists:
 		statuses.append(status)
 
-	Global.update_status.emit()
+	entityUpdate.emit()
 
 func removeStatus(status: Status):
 	var index = 0

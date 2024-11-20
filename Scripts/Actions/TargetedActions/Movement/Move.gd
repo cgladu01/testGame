@@ -12,9 +12,15 @@ func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bo
 		return false
 	startTile = starttile
 	endTile = endtile
-	path = tileManager.astar2Grid.get_id_path(startTile.location, endTile.location)
+	var potPath = tileManager.astar2Grid.get_id_path(startTile.location, endTile.location)
+	
+	if potPath.size() <= 5:
+		path = potPath
+		Global.selectionTile.markTiles(owner.location, 0, 5)
+		Global.selectionTile.highlightpath(path)
+
 	self.tileManager = tileManager
-	return path.size() != 0 and path.size() <= 5
+	return potPath.size() != 0 and potPath.size() <= 5
 
 
 func button_pressed():

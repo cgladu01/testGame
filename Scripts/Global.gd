@@ -13,12 +13,12 @@ var statusFactory : StatusFactory = StatusFactory.new()
 var characterFactory : CharacterFactory = CharacterFactory.new()
 var actionFactory: ActionFactory = ActionFactory.new()
 var enemyFactory : EnemyFactory = EnemyFactory.new()
+var unitsNode = null 
 
 var characters : Array[Character] = []
 var enemies : Array[Enemy] = []
-signal update_health
 signal update_energy
-signal update_status
+
 
 var selectionTile : TileMapLayer
 

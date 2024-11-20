@@ -1,6 +1,10 @@
 class_name EnemyFactory
 
-func createEnemy(name: String, location: Vector2i, start_node: EntitiyNode) -> Enemy:
+var enemyNode = preload("res://Scenes/Maps/EntityNode.tscn")
+
+func createEnemy(name: String, location: Vector2i) -> Enemy:
+	var start_node = enemyNode.instantiate()
+	Global.unitsNode.enemyUnits.add_child(start_node)
 	var enemy : Enemy = null
 	var actions : Array[Action] =  []
 	var mini_portrait : String = ""

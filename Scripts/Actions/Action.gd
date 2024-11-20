@@ -4,6 +4,8 @@ var name : String = "Unknown"
 var owner : Entities
 var used : bool = false
 var cost : int = 1
+var button: Button = null
+signal executed
 
 func setup(owner : Entities):
 	self.owner = owner
@@ -22,3 +24,4 @@ func execute():
 		var character = owner as Character
 		character.energy = character.energy - cost
 		Global.update_energy.emit(character.energy, character.max_energy)
+	button.disabled = true

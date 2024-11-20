@@ -1,8 +1,12 @@
 class_name CharacterFactory
 
 var basic_actions : Array[String] = ["Attack", "Move", "Rest"]
+var characterNode = preload("res://Scenes/Maps/CharacterNode.tscn")
 
-func createCharacter(name: String, location: Vector2i, start_node : CharacterNode) -> Character:
+func createCharacter(name: String, location: Vector2i) -> Character:
+	var start_node = characterNode.instantiate()
+	Global.unitsNode.playerUnits.add_child(start_node)
+
 	var character : Character = Character.new()
 	var actions : Array[Action] =  []
 	var mini_portrait : String = ""
