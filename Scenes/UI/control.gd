@@ -9,7 +9,7 @@ extends Control
 
 var confirmscene = preload("res://Scenes/UI/Confirmation.tscn")
 var scene = preload("res://Scenes/UI/pannelWindow.tscn")
-var pausescene = preload("res://Scenes/UI/PauseScreen.tscn")
+var pausescene = preload("res://Scenes/Menu/PauseScreen.tscn")
 var window = null
 var confirmWindow = null
 var pauseScreenWindow = null
