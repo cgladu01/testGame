@@ -36,12 +36,14 @@ func setup_entity(start_health : int, start_location : Vector2i, name : String, 
 
 func addStatus(status: Status):
 	var exists = false
-	for x in statuses:
-		if status.name == x.name:
-			x.count += status.count
-			exists = true
-	if not exists:
-		statuses.append(status)
+	if status is not UnStackableStatus:
+		for x in statuses:
+			if status.name == x.name:
+				x.count += status.count
+				exists = true
+				break
+		if not exists:
+			statuses.append(status)
 
 	entityUpdate.emit()
 
