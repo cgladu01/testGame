@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=4 uid="uid://bdlukl6b1kr58"]
+[gd_scene load_steps=12 format=4 uid="uid://bdlukl6b1kr58"]
 
 [ext_resource type="Script" path="res://Scenes/UI/world.gd" id="1_vkwxu"]
 [ext_resource type="TileSet" uid="uid://bws6a6w1ivdry" path="res://tiles.tres" id="2_10fdo"]
@@ -8,6 +8,7 @@
 [ext_resource type="Script" path="res://Scenes/UI/button.gd" id="4_j5xhu"]
 [ext_resource type="PackedScene" uid="uid://c3fxgtfgclo04" path="res://Scenes/UI/actionMenu.tscn" id="5_ymabw"]
 [ext_resource type="PackedScene" uid="uid://dujclmvvguvt6" path="res://Astar2Grid.tscn" id="8_hqvw0"]
+[ext_resource type="PackedScene" uid="uid://m7vfqn5u4rwb" path="res://Scenes/UI/LogContainer.tscn" id="9_yj4n1"]
 
 [sub_resource type="Theme" id="Theme_vd5pf"]
 
@@ -100,6 +101,8 @@ tooltip_text = "YOOOH"
 keep_pressed_outside = true
 text = "End Turn"
 script = ExtResource("4_j5xhu")
+
+[node name="Control2" parent="CanvasLayer" instance=ExtResource("9_yj4n1")]
 
 [connection signal="button_down" from="CanvasLayer/Control/PanelContainer/HBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_down"]
 [connection signal="button_up" from="CanvasLayer/Control/PanelContainer/HBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_up"]
