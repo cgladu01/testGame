@@ -1,13 +1,22 @@
-class_name  log_container extends Control
+class_name  Log_Container extends Control
 @onready var vbox : VBoxContainer = $VBoxContainer
 @onready var button: Button = $VBoxContainer/TitleLine/Expand
 
 var drag_position = null
 var expanded : bool = false
 var SIZECHANGE : int = 400
+var hapScene = preload("res://Scenes/UI/HapsLogEntry.tscn")
 
 func gainHap(hap : Hap):
-	pass
+	var hapLogEntry : HapContainer = hapScene.instantiate()
+	vbox.add_child(hapLogEntry)
+	hapLogEntry.set_hap(hap)
+
+
+func clearHap():
+	for child in vbox.get_children():
+		if child is HapContainer:
+			child.queue_free()
 	
 
 # Called when the node enters the scene tree for the first time.

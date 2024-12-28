@@ -6,7 +6,10 @@ extends Node2D
 @onready var selection: TileMapLayer = $Layerholder/selection
 @onready var entities: TileMapLayer = $Layerholder/entities
 @onready var units: Node2D = $Units
+@onready var canvas: CanvasLayer = $CanvasLayer
+@onready var log_container = $CanvasLayer/LogContainer
 var tileManager : TileManager = Global.tileManager
+
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,6 +18,7 @@ func _ready() -> void:
 	Global.unitsNode = units
 	Global.rng.set_seed(0)
 	Global.tileManager.setup([terrain, entities, selection] as Array[TileMapLayer], 70, 39, 3)
+	Global.log_container = log_container
 
 	astar_2_grid.setMap(tileManager)
 	var player = Global.characterFactory.createCharacter("DudeMan", Vector2i(0,0))

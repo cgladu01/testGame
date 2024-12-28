@@ -60,6 +60,10 @@ func attack(incomming : int, target: Entities):
 		incomming = x.attackEffect(incomming, self, target)
 	target.attack_damage(incomming, self)
 
+	var attackhap: AttackHap = AttackHap.new()
+	attackhap.setup_AttackHap(incomming, target, self)
+	Global.log_container.gainHap(attackhap)
+
 func attack_damage(incoming : int, attacker: Entities):
 	var damage = incoming
 	for x in statuses:

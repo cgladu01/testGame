@@ -8,4 +8,4 @@ func setup_AttackHap(damage : int, recipient: Entities, sender: Entities):
 	self.damage = damage
 	self.recipient = recipient
 	self.sender = sender
-	self.description = str(recipient.name, " attacks for ", damage, " damage to ", sender.name)
+	self.description = str(sender.name, " attacks for ", damage, " damage to ", recipient.name)

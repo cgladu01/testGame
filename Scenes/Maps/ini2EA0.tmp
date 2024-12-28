@@ -102,7 +102,7 @@ keep_pressed_outside = true
 text = "End Turn"
 script = ExtResource("4_j5xhu")
 
-[node name="LogContainer" parent="CanvasLayer" instance=ExtResource("9_yj4n1")]
+[node name="PanelContainer" parent="CanvasLayer" instance=ExtResource("9_yj4n1")]
 
 [connection signal="button_down" from="CanvasLayer/Control/PanelContainer/HBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_down"]
 [connection signal="button_up" from="CanvasLayer/Control/PanelContainer/HBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_up"]

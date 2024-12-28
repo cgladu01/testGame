@@ -7,5 +7,6 @@ offset_right = 262.0
 offset_bottom = 40.0
 script = ExtResource("1_c50x5")
 
-[node name="RichTextLabel" type="RichTextLabel" parent="."]
+[node name="RichTextLabel" type="Label" parent="."]
 layout_mode = 2
+text = "Hello"

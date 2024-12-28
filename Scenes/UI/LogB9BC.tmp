@@ -1,7 +1,7 @@
 [gd_scene load_steps=2 format=3 uid="uid://m7vfqn5u4rwb"]
 
 [sub_resource type="GDScript" id="GDScript_k8s7a"]
-script/source = "class_name LogContainer extends Control
+script/source = "class_name Log_Container extends Control
 @onready var vbox : VBoxContainer = $VBoxContainer
 @onready var button: Button = $VBoxContainer/TitleLine/Expand
 
@@ -12,9 +12,8 @@ var haplog = preload(\"res://Scenes/UI/HapsLogEntry.tscn\")
 
 func gainHap(hap: Hap):
 	var hapscene : HapContainer = haplog.instantiate()
+	hapscene.gainHap(hap)
 	vbox.add_child(hapscene)
-	hapscene.set_hap(hap)
-
 	
 func clearHaps():
 	for child in vbox.get_children():
@@ -53,7 +52,7 @@ func _on_title_gui_input(event:InputEvent) -> void:
 		self.position = get_global_mouse_position() - drag_position
 "
 
-[node name="LogContainer" type="PanelContainer"]
+[node name="PanelContainer" type="PanelContainer"]
 anchors_preset = 3
 anchor_left = 1.0
 anchor_top = 1.0

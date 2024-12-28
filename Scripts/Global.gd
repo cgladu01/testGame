@@ -21,8 +21,9 @@ signal update_energy
 
 
 var selectionTile : TileMapLayer
+var log_container
 
 func actionSelection(selected_action: Action):
-    selectionTile.clear()
-    selection = !selection
-    currentAction = selected_action
+	selectionTile.clear()
+	selection = !selection
+	currentAction = selected_action
