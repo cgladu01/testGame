@@ -20,6 +20,9 @@ func set_health(health : int):
 	health = health
 
 func change_health(difference : int):
+	if difference > 0:
+		Global.hapFactory.createLoseHealthHap(-difference, self)
+
 	health += difference
 	if health > tot_health:
 		health = tot_health
@@ -34,7 +37,8 @@ func setup_entity(start_health : int, start_location : Vector2i, name : String, 
 	setup(start_location)
 	node.set_entity(self)
 
-func addStatus(status: Status):
+func addStatus(status: Status, sender: Entities):
+	Global.hapFactory.createGiveStatusHap(status, self, sender)
 	var exists = false
 	if status is not UnStackableStatus:
 		for x in statuses:
@@ -51,6 +55,7 @@ func removeStatus(status: Status):
 	var index = 0
 	for x in statuses:
 		if x.image_path == status.image_path:
+			Global.hapFactory.createExpireStatusHap(status, self)
 			statuses.remove_at(index)
 			break
 		index = index + 1
@@ -59,10 +64,7 @@ func attack(incomming : int, target: Entities):
 	for x in statuses:
 		incomming = x.attackEffect(incomming, self, target)
 	target.attack_damage(incomming, self)
-
-	var attackhap: AttackHap = AttackHap.new()
-	attackhap.setup_AttackHap(incomming, target, self)
-	Global.log_container.gainHap(attackhap)
+	Global.hapFactory.createAttackHap(incomming, target, self)
 
 func attack_damage(incoming : int, attacker: Entities):
 	var damage = incoming
@@ -71,9 +73,23 @@ func attack_damage(incoming : int, attacker: Entities):
 	var placeholder = damage
 	damage = damage - block
 	block = block - placeholder
+
 	if block < 0:
+		Global.hapFactory.createLoseBlockHap(block, self)
 		block = 0
+	else:
+		Global.hapFactory.createLoseBlockHap(placeholder, self)
 	change_health(-damage)
+
+func move_on_path(distance: int, path: Array[Vector2i]):
+	if path.size() <= distance:
+		node.move_along_path(path)
+		Global.hapFactory.createMovementHap(self.location, path.back(), self)
+		Global.tileManager.move_entity(self, path.back())
+	else:
+		node.move_along_path(path.slice(0, distance))
+		Global.hapFactory.createMovementHap(self.location, path[distance - 1], self)
+		Global.tileManager.move_entity(self, path[distance - 1])	
 
 func roundStart():
 	block = 0

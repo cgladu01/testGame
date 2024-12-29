@@ -26,6 +26,7 @@ var statusFactory : StatusFactory = StatusFactory.new()
 var characterFactory : CharacterFactory = CharacterFactory.new()
 var actionFactory: ActionFactory = ActionFactory.new()
 var enemyFactory : EnemyFactory = EnemyFactory.new()
+var hapFactory : HapFactory = HapFactory.new()
 
 # Node that holds all other units
 var unitsNode = null 

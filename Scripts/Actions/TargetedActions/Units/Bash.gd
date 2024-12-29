@@ -24,5 +24,5 @@ func execute():
     used = true
     var target = endTile as Enemy
     owner.attack(10, target)
-    target.addStatus(Global.statusFactory.createStatus("Daze", 3))
+    target.addStatus(Global.statusFactory.createStatus("Daze", 3), owner)
     super()

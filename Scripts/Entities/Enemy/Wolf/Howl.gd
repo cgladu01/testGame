@@ -11,5 +11,5 @@ func execute():
 	owner.block += 20
 	var buff = Strength.new()
 	buff.setup_Status(1)
-	owner.addStatus(buff)
+	owner.addStatus(buff, owner)
 	

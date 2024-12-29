@@ -35,12 +35,12 @@ func _on_expand_pressed() -> void:
 		expanded = false
 		button.text = \"Expand\"
 		self.size = self.size + Vector2(0, -SIZECHANGE)
-		self.position = self.position + Vector2(0, SIZECHANGE)
+		self.position = Vector2(self.position.x, 900) if (self.position + Vector2(0, SIZECHANGE)).y > 900 else self.position + Vector2(0, SIZECHANGE)
 	else:
 		expanded = true
 		button.text = \"Minimize\"
 		self.size = self.size  + Vector2(0, SIZECHANGE)
-		self.position = self.position - Vector2(0, SIZECHANGE)
+		self.position = Vector2(self.position.x, 10) if (self.position - Vector2(0, SIZECHANGE)).y < 10 else self.position - Vector2(0, SIZECHANGE)
 
 
 func _on_title_gui_input(event:InputEvent) -> void:

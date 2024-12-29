@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 	pass
 
 func turnOne():
+	Global.hapFactory.createStartOfRoundHap(1)
 	for enemy in Global.enemies:
 		enemy.setup_turn()
 

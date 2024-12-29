@@ -36,14 +36,6 @@ func find_closest_player() -> Character:
 	
 	path.pop_back()
 	return rcharacter
-
-func move_on_path(distance: int):
-	if path.size() <= distance:
-		node.move_along_path(path)
-		Global.tileManager.move_entity(self, path.back())
-	else:
-		node.move_along_path(path.slice(0, distance))
-		Global.tileManager.move_entity(self, path[distance - 1])
 	
 func _init() -> void:
 	pass
