@@ -11,7 +11,6 @@ func actionSelection(selected_action: Action):
 	selection = !selection
 	currentAction = selected_action
 
-
 # Impassable Objects on the board. Not used rn.
 var impassableList = []
 

@@ -17,6 +17,7 @@ func _ready() -> void:
 	Global.rng = RandomNumberGenerator.new()
 	Global.unitsNode = units
 	Global.rng.set_seed(0)
+	seed(0)
 	Global.tileManager.setup([terrain, entities, selection] as Array[TileMapLayer], 70, 39, 3)
 	Global.log_container = log_container
 
