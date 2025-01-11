@@ -21,7 +21,7 @@ var prevSelection : Vector2i = Vector2i(3, 12)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$PanelContainer/HBoxContainer/EndTurn.EndTurnPlayerTurn.connect(_onEndTurn)
+	$PanelContainer/HBoxContainer/VBoxContainer/EndTurn.EndTurnPlayerTurn.connect(_onEndTurn)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

@@ -9,4 +9,6 @@ var action : Action = null
 
 func setAction(action : Action):
 	self.action = action 
-
+	# self.cardImage = 
+	self.cardName.text = action.name
+	self.cardDescription.text = action.description

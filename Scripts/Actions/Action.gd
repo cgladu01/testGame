@@ -5,6 +5,9 @@ var owner : Entities
 var used : bool = false
 var cost : int = 1
 var button: Button = null
+var description : String = "Undefined"
+var image_path : String = ""
+
 signal executed
 
 func setup(owner : Entities):

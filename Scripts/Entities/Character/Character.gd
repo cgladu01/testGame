@@ -3,6 +3,11 @@ extends Entities
 var actions : Array[Action] = []
 var energy : int = 3
 var max_energy : int = 3
+var deck: Deck = null
+var combatDeck : CombatDeck = null
+var discardDeck : CombatDeck = null
+var exhaustDeck : CombatDeck = null
+
 
 func get_actions() -> Array[Action]:
 	return actions

@@ -20,5 +20,5 @@ layout_mode = 2
 layout_mode = 2
 size_flags_horizontal = 0
 
-[node name="GridContainer" type="GridContainer" parent="HBoxContainer"]
+[node name="Cards" type="HBoxContainer" parent="HBoxContainer"]
 layout_mode = 2
