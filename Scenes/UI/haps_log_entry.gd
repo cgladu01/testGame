@@ -8,7 +8,7 @@ func _ready() -> void:
 
 func set_hap(new_hap: Hap):
 	hap = new_hap
-	rich_text_label.text= hap.description
+	rich_text_label.text = hap.description
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
