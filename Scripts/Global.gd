@@ -37,6 +37,9 @@ var enemies : Array[Enemy] = []
 # Updates the energy shown in the bottom left
 signal update_energy
 
+# Brings up confirmation window
+signal confirmationWindow
+
 # Is the log container in the bottom right of screen
 var log_container
 

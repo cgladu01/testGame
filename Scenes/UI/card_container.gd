@@ -21,4 +21,5 @@ func _on_gui_input(event:InputEvent) -> void:
 			action.button_pressed()
 
 func onPlay():
+	action.owner.hand.removeAction(action)
 	queue_free()

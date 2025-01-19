@@ -4,6 +4,7 @@ var path : PackedVector2Array
 var tileManager: TileManager = null
 
 func setup(owner: Entities):
+	cost = 0
 	name = "Move"
 	super(owner)
 
@@ -31,5 +32,6 @@ func execute():
 	used = true
 	tileManager.move_entity(startTile, endTile.location)
 	owner.node.move_along_path(path)
+	owner.moved = true
 	super()
 	

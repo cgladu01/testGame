@@ -8,7 +8,13 @@ func setupDeck(actions : Array[Action]):
 func addAction(newAction : Action):
 	actions.append(newAction)
 
-func removeAction(number : int):
+func removeAction(action : Action):
+	var number: int = 0
+	for x in actions:
+		if x == action:
+			break
+		number += 1
+
 	actions.remove_at(number)
 
 func generateCombatDeck() -> CombatDeck:

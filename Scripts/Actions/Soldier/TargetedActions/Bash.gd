@@ -1,4 +1,4 @@
-class_name Bash extends "res://Scripts/Actions/TargetedActions/TargetedAction.gd"
+class_name Bash extends TargetedAction
 var tileManager: TileManager = null
 
 func setup(owner: Entities):

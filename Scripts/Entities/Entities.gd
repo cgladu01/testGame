@@ -91,6 +91,9 @@ func move_on_path(distance: int, path: Array[Vector2i]):
 		Global.hapFactory.createMovementHap(self.location, path[distance - 1], self)
 		Global.tileManager.move_entity(self, path[distance - 1])	
 
+func gainBlock(differnce : int):
+	block += differnce 
+
 func roundStart():
 	block = 0
 

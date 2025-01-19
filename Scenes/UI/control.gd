@@ -22,6 +22,7 @@ var prevSelection : Vector2i = Vector2i(3, 12)
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$PanelContainer/HBoxContainer/VBoxContainer/EndTurn.EndTurnPlayerTurn.connect(_onEndTurn)
+	Global.confirmationWindow.connect(_makeConfirmationWindow)
 	pass
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -74,10 +75,8 @@ func _unhandled_input(event: InputEvent) -> void:
 		if Global.currentAction is TargetedAction:
 			var targettedAction = Global.currentAction as TargetedAction
 			if targettedAction.validTarget(character, tileManager.get_tile(Vector3i(tile_mouse_pos.x - 1, tile_mouse_pos.y - 1, 1)), tileManager):
-				if confirmWindow == null:
-					confirmWindow = confirmscene.instantiate()
-					canvas_layer.add_child(confirmWindow)
 				prevSelection = Vector2i(2,7)
+				Global.confirmationWindow.emit()
 	
 	elif event.is_action_pressed("Pause"):
 		if pauseScreenWindow == null:
@@ -94,3 +93,10 @@ func _unhandled_input(event: InputEvent) -> void:
 
 func _onEndTurn():
 	action_menu_control.on_action_update(CombatDeck.new(), 0, 0)
+
+func _makeConfirmationWindow():
+	if confirmWindow == null:
+		confirmWindow = confirmscene.instantiate()
+		canvas_layer.add_child(confirmWindow)
+
+
