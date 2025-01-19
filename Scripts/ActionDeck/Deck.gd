@@ -2,6 +2,9 @@ class_name Deck extends Node
 
 var actions: Array[Action] = []
 
+func setupDeck(actions : Array[Action]):
+	self.actions = actions.duplicate()
+
 func addAction(newAction : Action):
 	actions.append(newAction)
 
@@ -27,9 +30,18 @@ func insertRandomly(action: Action):
 
 func draw(count: int) -> Array[Action]:
 	var returner: Array[Action]
-	for x in range(0, count + 1):
+	for x in range(0, count):
 		returner.append(actions.pop_front())
 	return returner
 		
 func removeAtPos(pos: int):
 	actions.remove_at(pos)
+
+func addActions(newactions : Array[Action]):
+	actions.append_array(newactions)
+
+func empty() -> Array[Action]:
+	var returner : Array[Action] = []
+	while not actions.is_empty():
+		returner.append(actions.pop_front())
+	return returner

@@ -66,13 +66,13 @@ script = ExtResource("3_xrpyk")
 metadata/_edit_use_anchors_ = true
 
 [node name="PanelContainer" type="PanelContainer" parent="CanvasLayer/Control"]
-custom_minimum_size = Vector2(0, 200)
+custom_minimum_size = Vector2(0, 325)
 layout_mode = 1
 anchors_preset = 12
 anchor_top = 1.0
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_top = -96.0
+offset_top = -95.0
 grow_horizontal = 2
 grow_vertical = 0
 theme = SubResource("Theme_vd5pf")
@@ -84,7 +84,7 @@ alignment = 2
 
 [node name="ActionMenu" parent="CanvasLayer/Control/PanelContainer/HBoxContainer" instance=ExtResource("5_ymabw")]
 layout_mode = 2
-size_flags_horizontal = 2
+size_flags_horizontal = 3
 metadata/_edit_use_anchors_ = true
 
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/HBoxContainer"]
@@ -107,10 +107,10 @@ text = "End Turn"
 script = ExtResource("4_j5xhu")
 
 [node name="LogContainer" parent="CanvasLayer" instance=ExtResource("9_yj4n1")]
-offset_left = -406.0
-offset_top = -357.0
-offset_right = -6.0
-offset_bottom = -232.0
+offset_left = -421.0
+offset_top = -487.0
+offset_right = -21.0
+offset_bottom = -362.0
 
 [connection signal="button_down" from="CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_down"]
 [connection signal="button_up" from="CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_up"]

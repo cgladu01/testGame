@@ -15,10 +15,8 @@ func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bo
 
 
 func button_pressed():
-    var function = func _button_pressed():
-        Global.actionSelection(self)
-        Global.selectionTile.markTiles(owner.location, 0, 1)
-    return function
+    Global.actionSelection(self)
+    Global.selectionTile.markTiles(owner.location, 0, 1)
 
 func execute():
     used = true

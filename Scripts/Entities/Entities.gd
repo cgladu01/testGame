@@ -94,6 +94,9 @@ func move_on_path(distance: int, path: Array[Vector2i]):
 func roundStart():
 	block = 0
 
+func combatStart():
+	pass
+
 func roundEnd():
 	pass
 

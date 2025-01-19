@@ -55,7 +55,8 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			if tile is Character:
 				character = tile as Character
-				action_menu_control.on_action_update(character.actions as Array[Action], character.energy, character.max_energy)
+				action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
+				character.clicked()
 
 			if window == null:
 				window = scene.instantiate()
@@ -69,7 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			window.set_entityDisplay(tile as Entities)
 
 		elif Global.selection == false:
-			action_menu_control.on_action_update([] as Array[Action], 0, 0)
+			action_menu_control.on_action_update(CombatDeck.new(), 0, 0)
 		if Global.currentAction is TargetedAction:
 			var targettedAction = Global.currentAction as TargetedAction
 			if targettedAction.validTarget(character, tileManager.get_tile(Vector3i(tile_mouse_pos.x - 1, tile_mouse_pos.y - 1, 1)), tileManager):
@@ -92,4 +93,4 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_2d.position += direction * 10
 
 func _onEndTurn():
-	action_menu_control.on_action_update([] as Array[Action], 0, 0)
+	action_menu_control.on_action_update(CombatDeck.new(), 0, 0)

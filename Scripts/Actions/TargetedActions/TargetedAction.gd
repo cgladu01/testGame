@@ -8,4 +8,4 @@ func validTarget(starttiel : Tile, endtile: Tile, tileManager : TileManager) -> 
 
 
 func button_pressed():
-	return func(): print("Do nothing")
+	pass

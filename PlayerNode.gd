@@ -14,5 +14,4 @@ func set_character(character: Character):
 	self.character = character
 
 func refresh_Actions():
-	for x in character.get_actions():
-		x.used = false
+	pass

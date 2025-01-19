@@ -4,9 +4,9 @@ var name : String = "Unknown"
 var owner : Entities
 var used : bool = false
 var cost : int = 1
-var button: Button = null
 var description : String = "Undefined"
 var image_path : String = ""
+var container : CardContainer = null
 
 signal executed
 
@@ -19,7 +19,7 @@ func setup_placeholder(init_name: String, owner : Entities):
 
 
 func button_pressed():
-	return func(): print("Do nothing")
+	print("Do nothing")
 
 func execute():
 	Global.selectionTile.clear()
@@ -27,4 +27,6 @@ func execute():
 		var character = owner as Character
 		character.energy = character.energy - cost
 		Global.update_energy.emit(character.energy, character.max_energy)
-	button.disabled = true
+	
+	if container:
+		container.onPlay()

@@ -2,11 +2,10 @@ extends Control
 @onready var grid_container: HBoxContainer = $HBoxContainer/Cards
 @onready var label: Label = $HBoxContainer/Label
 var card_container_scene = preload("res://Scenes/UI/card_container.tscn")
-var card_size : int = 125
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	on_action_update([], 0, 0)
+	on_action_update(CombatDeck.new(), 0, 0)
 	Global.update_energy.connect(_update_energy)
 
 
@@ -24,10 +23,10 @@ func action_menu_clear(button_name: String):
 			if button.text == button_name:
 				button.disabled = true
 
-func on_action_update(actionsList: Array[Action], energy: int, max_energy: int):
+func on_action_update(actionsList: CombatDeck, energy: int, max_energy: int):
 	clear_action_grid()
 
-	for action in actionsList:
+	for action in actionsList.actions:
 		# Old Button System
 		# var new_button = Button.new()
 		# new_button.text = action.name
@@ -38,17 +37,10 @@ func on_action_update(actionsList: Array[Action], energy: int, max_energy: int):
 		# grid_container.add_child(new_button)
 
 		var card_container = card_container_scene.instantiate()
-		var margin : MarginContainer = MarginContainer.new()
-		margin.add_theme_c
-		margin.add_child(card_container)
-		grid_container.add_child(margin)
+		grid_container.add_child(card_container)
 		card_container.setAction(action)
-
-
-
-		
 	
-	if actionsList.size() != 0:
+	if actionsList.actions.size() != 0:
 		label.text = str(energy) + "/" + str(max_energy)
 	else:
 		label.text = ""
