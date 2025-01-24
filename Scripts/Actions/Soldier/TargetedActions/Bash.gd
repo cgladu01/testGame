@@ -19,8 +19,9 @@ func button_pressed():
     Global.selectionTile.markTiles(owner.location, 0, 1)
 
 func execute():
-    used = true
-    var target = endTile as Enemy
-    owner.attack(10, target)
-    target.addStatus(Global.statusFactory.createStatus("Daze", 3), owner)
-    super()
+    if canPlay():
+        used = true
+        var target = endTile as Enemy
+        owner.attack(10, target)
+        target.addStatus(Global.statusFactory.createStatus("Daze", 3), owner)
+        super()

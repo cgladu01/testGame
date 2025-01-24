@@ -23,7 +23,7 @@ var prevSelection : Vector2i = Vector2i(3, 12)
 func _ready() -> void:
 	$PanelContainer/HBoxContainer/VBoxContainer/EndTurn.EndTurnPlayerTurn.connect(_onEndTurn)
 	Global.confirmationWindow.connect(_makeConfirmationWindow)
-	pass
+	Global.roundStart.connect(_onRoundStart)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -42,7 +42,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var tile_mouse_pos = terrain.local_to_map(mouse_pos)
 		if tile_mouse_pos != prevSpot and prevSelection != Vector2i(2,7):
 			selection.set_cell(prevSpot, 11, prevSelection)
-		if tile_mouse_pos == prevSpot and confirmWindow != null:
+		if tile_mouse_pos == prevSpot and is_instance_valid(confirmWindow):
 			confirmWindow._on_confirm_pressed()
 
 		prevSpot = tile_mouse_pos
@@ -92,11 +92,14 @@ func _unhandled_input(event: InputEvent) -> void:
 		camera_2d.position += direction * 10
 
 func _onEndTurn():
-	action_menu_control.on_action_update(CombatDeck.new(), 0, 0)
+	if is_instance_valid(confirmWindow):
+		confirmWindow.queue_free()
+
+func _onRoundStart():
+	if character:
+		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
 
 func _makeConfirmationWindow():
 	if confirmWindow == null:
 		confirmWindow = confirmscene.instantiate()
 		canvas_layer.add_child(confirmWindow)
-
-

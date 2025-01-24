@@ -21,12 +21,21 @@ func setup_placeholder(init_name: String, owner : Entities):
 func button_pressed():
 	print("Do nothing")
 
-func execute():
-	Global.selectionTile.clear()
+func canPlay():
 	if owner is Character:
 		var character = owner as Character
-		character.energy = character.energy - cost
-		Global.update_energy.emit(character.energy, character.max_energy)
-	
-	if container:
-		container.onPlay()
+		if character.energy - cost < 0:
+			return false
+		return true
+
+func execute():
+	Global.selectionTile.clear()
+	if canPlay():
+		if owner is Character:
+			var character = owner as Character
+			character.energy = character.energy - cost
+
+			Global.update_energy.emit(character.energy, character.max_energy)
+		
+		if container:
+			container.onPlay()

@@ -8,6 +8,8 @@ func setup(owner: Entities):
 
 func button_pressed():
 	Global.actionSelection(self)
-	Global.selectionTile.clear()
-	owner.gainBlock(5)
+
+func execute():
+	if canPlay():
+		owner.gainBlock(5)
 	super()

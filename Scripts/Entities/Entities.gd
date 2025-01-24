@@ -28,6 +28,11 @@ func change_health(difference : int):
 		health = tot_health
 	elif health < 0:
 		health = 0
+		if self is Character:
+			Global.characterDeath
+		else:
+			Global.entityDeath.emit()
+		
 	entityUpdate.emit()
 
 func setup_entity(start_health : int, start_location : Vector2i, name : String, start_node : EntitiyNode) -> void:

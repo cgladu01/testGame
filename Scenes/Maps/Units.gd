@@ -6,6 +6,9 @@ extends Node2D
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	$"../CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EndTurn".EndTurnPlayerTurn.connect(_onEndTurn)
+	Global.entityDeath.connect(_on_entity_death)
+	Global.characterDeath.connect(_on_character_death)
+
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -13,6 +16,7 @@ func _process(delta: float) -> void:
 
 func turnOne():
 	Global.hapFactory.createStartOfRoundHap(1)
+	Global.combatStart.emit()
 	for character in Global.characters:
 		character.combatStart()
 
@@ -21,6 +25,7 @@ func turnOne():
 
 	for character in Global.characters:
 		character.roundStart()
+	Global.roundStart.emit()
 
 	for enemy in Global.enemies:
 		enemy.roundStart()
@@ -50,6 +55,7 @@ func _onEndTurn():
 	
 	for character in Global.characters:
 		character.roundStart()
+	Global.roundStart.emit()
 
 func clearActionLine():
 	for x in enemyUnits.get_children():
@@ -66,3 +72,15 @@ func _on_enemy_foresight_button_down() -> void:
 
 func _on_enemy_foresight_button_up() -> void:
 	clearActionLine()
+
+func _on_entity_death():
+	for i in Global.enemies.size():
+		var enemy : Entities = Global.enemies[i]
+		if enemy.get_health() == 0:
+			enemy.node.queue_free()
+			Global.enemies.remove_at(i)
+			break
+
+# Plan to make lose on any character death so will have to make a lose screen
+func _on_character_death():
+	pass

@@ -7,6 +7,7 @@ var rng : RandomNumberGenerator = null
 var selection : bool = false
 var currentAction : Action = null
 func actionSelection(selected_action: Action):
+	confirmationWindow.emit()
 	selectionTile.clear()
 	selection = !selection
 	currentAction = selected_action
@@ -39,6 +40,18 @@ signal update_energy
 
 # Brings up confirmation window
 signal confirmationWindow
+
+#Signals for combat effects
+signal combatStart
+signal combatEnd
+signal roundStart
+signal roundEnd
+
+#Signal For an entities death
+signal entityDeath
+
+#Signal for characterdeath
+signal characterDeath
 
 # Is the log container in the bottom right of screen
 var log_container
