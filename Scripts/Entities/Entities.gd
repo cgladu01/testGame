@@ -20,7 +20,7 @@ func set_health(health : int):
 	health = health
 
 func change_health(difference : int):
-	if difference > 0:
+	if difference < 0:
 		Global.hapFactory.createLoseHealthHap(-difference, self)
 
 	health += difference
@@ -68,8 +68,8 @@ func removeStatus(status: Status):
 func attack(incomming : int, target: Entities):
 	for x in statuses:
 		incomming = x.attackEffect(incomming, self, target)
-	target.attack_damage(incomming, self)
 	Global.hapFactory.createAttackHap(incomming, target, self)
+	target.attack_damage(incomming, self)
 
 func attack_damage(incoming : int, attacker: Entities):
 	var damage = incoming
@@ -80,7 +80,7 @@ func attack_damage(incoming : int, attacker: Entities):
 	block = block - placeholder
 
 	if block < 0:
-		Global.hapFactory.createLoseBlockHap(block, self)
+		Global.hapFactory.createLoseBlockHap(block + placeholder, self)
 		block = 0
 	else:
 		Global.hapFactory.createLoseBlockHap(placeholder, self)
