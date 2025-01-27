@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bhwcp2d8b7ofe"
-path="res://.godot/imported/ldtk-world.svg-449344a8817900b0222a1f91bfbdff40.ctex"
+uid="uid://bn8846b01v84"
+path="res://.godot/imported/ldtk-level.svg-7c4c13bcdc12c18fc0e3338deb18be11.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ldtk-importer/src/components/ldtk-world.svg"
-dest_files=["res://.godot/imported/ldtk-world.svg-449344a8817900b0222a1f91bfbdff40.ctex"]
+source_file="res://addons/ldtk-importer/src/components/ldtk-level.svg"
+dest_files=["res://.godot/imported/ldtk-level.svg-7c4c13bcdc12c18fc0e3338deb18be11.ctex"]
 
 [params]
 

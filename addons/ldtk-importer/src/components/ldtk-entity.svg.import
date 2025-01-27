@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://cjhytibfjjb2y"
-path="res://.godot/imported/ldtk-entity-layer.svg-275a569483deb8cfe6a991e05217053a.ctex"
+uid="uid://c8jokgcqymy8i"
+path="res://.godot/imported/ldtk-entity.svg-0e9e158ef8dc55d8602ffe476bdddfa3.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://ldtk-importer/src/components/ldtk-entity-layer.svg"
-dest_files=["res://.godot/imported/ldtk-entity-layer.svg-275a569483deb8cfe6a991e05217053a.ctex"]
+source_file="res://addons/ldtk-importer/src/components/ldtk-entity.svg"
+dest_files=["res://.godot/imported/ldtk-entity.svg-0e9e158ef8dc55d8602ffe476bdddfa3.ctex"]
 
 [params]
 

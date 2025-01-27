@@ -70,8 +70,6 @@ func _unhandled_input(event: InputEvent) -> void:
 
 			window.set_entityDisplay(tile as Entities)
 
-		elif Global.selection == false:
-			action_menu_control.on_action_update(CombatDeck.new(), 0, 0)
 		if Global.currentAction is TargetedAction:
 			var targettedAction = Global.currentAction as TargetedAction
 			if targettedAction.validTarget(character, tileManager.get_tile(Vector3i(tile_mouse_pos.x - 1, tile_mouse_pos.y - 1, 1)), tileManager):

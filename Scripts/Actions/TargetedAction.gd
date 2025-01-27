@@ -9,3 +9,10 @@ func validTarget(starttiel : Tile, endtile: Tile, tileManager : TileManager) -> 
 
 func button_pressed():
 	pass
+
+func canPlay():
+	if super():
+		if endTile != null:
+			return false
+		return true
+	return false 
