@@ -1,5 +1,6 @@
 extends Control
-@onready var terrain: TileMapLayer = $"../../Layerholder/terrain"
+var terrain: TileMapLayer = null
+@onready var layerholder = $"../../Layerholder"
 @onready var selection: TileMapLayer = $"../../Layerholder/selection"
 @onready var camera_2d: Camera2D = $"../../Camera2D"
 @onready var action_menu_control: Control = $PanelContainer/HBoxContainer/ActionMenu
@@ -34,6 +35,8 @@ func _gui_input(event: InputEvent) -> void:
 		accept_event()
 
 func _unhandled_input(event: InputEvent) -> void:
+	if terrain == null:
+		terrain = Global.tile_map_layer
 	if event.is_action_pressed("MouseClick"):
 		if tileManager == null:
 			tileManager = world.return_tileManager()

@@ -4,10 +4,10 @@ extends Node2D
 @onready var astar_2_grid: Node2D = $Astar2Grid
 @onready var terrain: TileMapLayer = $Layerholder/terrain
 @onready var selection: TileMapLayer = $Layerholder/selection
-@onready var entities: TileMapLayer = $Layerholder/entities
 @onready var units: Node2D = $Units
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var log_container = $CanvasLayer/LogContainer
+@onready var layerholder = $Layerholder
 var tileManager : TileManager = Global.tileManager
 
 
@@ -18,8 +18,10 @@ func _ready() -> void:
 	Global.unitsNode = units
 	Global.rng.set_seed(0)
 	seed(0)
-	Global.tileManager.setup([terrain, entities, selection] as Array[TileMapLayer], 70, 39, 3)
+	Global.tileManager.setup([Global.tile_map_layer, selection] as Array[TileMapLayer], 70, 39, 2)
 	Global.log_container = log_container
+
+	layerholder.generate_level(0)
 
 	astar_2_grid.setMap(tileManager)
 	var player = Global.characterFactory.createCharacter("DudeMan", Vector2i(0,0))

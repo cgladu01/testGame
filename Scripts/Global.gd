@@ -20,6 +20,7 @@ var tileshift : Vector2 = Vector2(1,1)
 var tileShift : Vector2i = Vector2i(1, 1)
 var tileManager: TileManager = TileManager.new()
 var selectionTile : TileMapLayer
+var tile_map_layer: TileMapLayer
 
 # Factories that make elements to be used in gameplay
 var statusFactory : StatusFactory = StatusFactory.new()

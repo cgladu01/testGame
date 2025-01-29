@@ -11,7 +11,7 @@
 	"iid": "471ee2d0-c210-11ef-8858-5fafd0506e9b",
 	"jsonVersion": "1.5.3",
 	"appBuildId": 473703,
-	"nextUid": 27,
+	"nextUid": 28,
 	"identifierStyle": "Capitalize",
 	"toc": [],
 	"worldLayout": "Free",
@@ -527,7 +527,45 @@
 			"limitBehavior": "PreventAdding",
 			"pivotX": 0,
 			"pivotY": 0,
-			"fieldDefs": []
+			"fieldDefs": [
+				{
+					"identifier": "CharacterNum",
+					"doc": null,
+					"__type": "Int",
+					"uid": 27,
+					"type": "F_Int",
+					"isArray": false,
+					"canBeNull": false,
+					"arrayMinLength": null,
+					"arrayMaxLength": null,
+					"editorDisplayMode": "Hidden",
+					"editorDisplayScale": 1,
+					"editorDisplayPos": "Above",
+					"editorLinkStyle": "StraightArrow",
+					"editorDisplayColor": null,
+					"editorAlwaysShow": false,
+					"editorShowInWorld": true,
+					"editorCutLongValues": true,
+					"editorTextSuffix": null,
+					"editorTextPrefix": null,
+					"useForSmartColor": false,
+					"exportToToc": false,
+					"searchable": false,
+					"min": null,
+					"max": null,
+					"regex": null,
+					"acceptFileTypes": null,
+					"defaultOverride": { "id": "V_Int", "params": [1] },
+					"textLanguageMode": null,
+					"symmetricalRef": false,
+					"autoChainRef": true,
+					"allowOutOfLevelRef": true,
+					"allowedRefs": "OnlySame",
+					"allowedRefsEntityUid": null,
+					"allowedRefTags": [],
+					"tilesetUid": null
+				}
+			]
 		}
 	], "tilesets": [
 		{
@@ -642,7 +680,56 @@
 					"seed": 5463868,
 					"overrideTilesetUid": null,
 					"gridTiles": [],
-					"entityInstances": []
+					"entityInstances": [
+						{
+							"__identifier": "CharacterStart",
+							"__grid": [3,3],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 1, "x": 320, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#BE4A2F",
+							"iid": "fb9d2290-c210-11ef-9de2-c57be2f7970e",
+							"width": 16,
+							"height": 16,
+							"defUid": 26,
+							"px": [48,48],
+							"fieldInstances": [{ "__identifier": "CharacterNum", "__type": "Int", "__value": 1, "__tile": null, "defUid": 27, "realEditorValues": [] }],
+							"__worldX": 48,
+							"__worldY": 48
+						},
+						{
+							"__identifier": "CharacterStart",
+							"__grid": [1,1],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 1, "x": 320, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#BE4A2F",
+							"iid": "13b950b0-c210-11ef-9de2-654263e93f39",
+							"width": 16,
+							"height": 16,
+							"defUid": 26,
+							"px": [16,31],
+							"fieldInstances": [{ "__identifier": "CharacterNum", "__type": "Int", "__value": 3, "__tile": null, "defUid": 27, "realEditorValues": [{ "id": "V_Int", "params": [3] }] }],
+							"__worldX": 16,
+							"__worldY": 31
+						},
+						{
+							"__identifier": "CharacterStart",
+							"__grid": [2,1],
+							"__pivot": [0,0],
+							"__tags": [],
+							"__tile": { "tilesetUid": 1, "x": 320, "y": 0, "w": 16, "h": 16 },
+							"__smartColor": "#BE4A2F",
+							"iid": "1539d630-c210-11ef-9de2-039b30f6ffa3",
+							"width": 16,
+							"height": 16,
+							"defUid": 26,
+							"px": [32,16],
+							"fieldInstances": [{ "__identifier": "CharacterNum", "__type": "Int", "__value": 2, "__tile": null, "defUid": 27, "realEditorValues": [{ "id": "V_Int", "params": [2] }] }],
+							"__worldX": 32,
+							"__worldY": 16
+						}
+					]
 				},
 				{
 					"__identifier": "Tiles",
