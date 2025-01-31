@@ -1,4 +1,4 @@
-class_name AttackHap extends "res://Scripts/Hap/Hap.gd"
+class_name AttackHap extends Hap
 
 var recipient : Entities = null
 var sender : Entities = null
