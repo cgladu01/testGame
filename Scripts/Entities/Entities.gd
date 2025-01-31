@@ -8,7 +8,7 @@ var name : String = ""
 
 var node : EntitiyNode = null
 var miniPortaitPath : String = ""
-var spritePath : String = ""
+var spritePath : String = "res://icon.svg"
 var tot_health : int = 100
 var block : int = 0
 signal entityUpdate
@@ -38,9 +38,10 @@ func change_health(difference : int):
 func setup_entity(start_health : int, start_location : Vector2i, name : String, start_node : EntitiyNode) -> void:
 	tot_health = start_health
 	self.name = name
-	node = start_node
-	setup(start_location)
-	node.set_entity(self)
+	if start_node != null:
+		node = start_node
+		setup(start_location)
+		node.set_entity(self)
 
 func addStatus(status: Status, sender: Entities):
 	Global.hapFactory.createGiveStatusHap(status, self, sender)
@@ -101,6 +102,13 @@ func gainBlock(differnce : int):
 
 func roundStart():
 	block = 0
+
+func changeNode(new_node: EntitiyNode):
+	node = new_node
+	if node != null:
+		setup(Global.tile_map_layer.local_to_map(new_node.position) - Global.tileShift)
+		node.set_entity(self)
+
 
 func combatStart():
 	pass

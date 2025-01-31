@@ -3,8 +3,7 @@ class_name CharacterFactory
 var basic_actions : Array[String] = ["Attack", "Defend"]
 var characterNode = preload("res://Scenes/Maps/CharacterNode.tscn")
 
-func createCharacter(name: String, location: Vector2i) -> Character:
-	var start_node = characterNode.instantiate()
+func createCharacter(name: String, start_node: CharacterNode) -> Character:
 	Global.unitsNode.playerUnits.add_child(start_node)
 
 	var character : Character = Character.new()
@@ -24,7 +23,7 @@ func createCharacter(name: String, location: Vector2i) -> Character:
 		_:
 			start_health = 10
 
-	character.setup_character(name, starter_deck, start_health, location, start_node, mini_portrait)
+	character.setup_character(name, starter_deck, start_health, Global.tile_map_layer.local_to_map(start_node.position), start_node, mini_portrait)
 	Global.tileManager.change_tile_entity(character, character.location)
 	Global.characters.append(character)
 	return character

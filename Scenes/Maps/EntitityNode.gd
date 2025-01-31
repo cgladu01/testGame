@@ -29,6 +29,13 @@ func move_along_path(path: Array[Vector2i]):
 func set_entity(entity : Entities):
 	self.entities = entity
 	self.position = Global.tile_map_layer.map_to_local(entities.location + Global.tileShift)
+	var sprite = Sprite2D.new()
+	var image = Image.new()
+	image.load(entity.spritePath)
+	image.resize(16, 16)
+	sprite.set_texture(ImageTexture.create_from_image(image))
+	add_child(sprite)
+
 
 func dispActionline():
 	if entities is Enemy:

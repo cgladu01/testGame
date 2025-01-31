@@ -24,9 +24,6 @@ func _ready() -> void:
 	layerholder.generate_level(0)
 
 	astar_2_grid.setMap(tileManager)
-	var player = Global.characterFactory.createCharacter("DudeMan", Vector2i(0,0))
-	Global.enemyFactory.createEnemy("Wolf", Vector2i(10,10))
-	Global.enemyFactory.createEnemy("Wolf", Vector2i(5,5))
 	units.turnOne()
 
 

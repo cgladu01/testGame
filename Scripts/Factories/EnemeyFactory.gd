@@ -2,8 +2,7 @@ class_name EnemyFactory
 
 var enemyNode = preload("res://Scenes/Maps/EntityNode.tscn")
 
-func createEnemy(name: String, location: Vector2i) -> Enemy:
-	var start_node = enemyNode.instantiate()
+func createEnemy(name: String, start_node: EntitiyNode) -> Enemy:
 	Global.unitsNode.enemyUnits.add_child(start_node)
 	var enemy : Enemy = null
 	var actions : Array[Action] =  []
@@ -18,8 +17,8 @@ func createEnemy(name: String, location: Vector2i) -> Enemy:
 		_:
 			start_health = 10
 			enemy = Enemy.new()
-
-	enemy.setup_enemy(name, start_health, location, start_node, mini_portrait)
+	
+	enemy.setup_enemy(name, start_health, Global.tile_map_layer.local_to_map(start_node.position) - Global.tileShift, start_node, mini_portrait)
 	Global.tileManager.change_tile_entity(enemy, enemy.location)
 	Global.enemies.append(enemy)
 	return enemy

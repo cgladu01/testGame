@@ -15,4 +15,20 @@ func generate_level(level_number: int):
 	self.add_child(currentlevel)
 	self.move_child(currentlevel, 0)
 	Global.tile_map_layer = currentlevel.get_child(0)
-	pass
+	var entities: LDTKEntityLayer = null
+	for child in currentlevel.get_children():
+		if str(child.name) == "Entities":
+			entities = child
+			break
+		
+	for entity in entities.get_children():
+		entities.remove_child(entity)
+		
+		if entity is CharacterNode:
+			var characterNode: CharacterNode = entity as CharacterNode
+			if Global.characters.is_empty() and Global.characterNames[characterNode.characterNum] != "":
+				Global.characterFactory.createCharacter(Global.characterNames[characterNode.characterNum], characterNode)
+		else:
+			Global.enemyFactory.createEnemy("Wolf", entity as EntitiyNode)
+	
+	entities.queue_free()

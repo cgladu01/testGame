@@ -8,7 +8,7 @@ func get_actions() -> Array[EnemyActions]:
 	return turn_actions
 
 func setup_turn():
-	if node.actionLine != null:
+	if node != null and node.actionLine != null:
 		node.dispActionline()
 	pass
 
