@@ -3,6 +3,7 @@ var tileManager: TileManager = null
 
 func setup(owner: Entities):
     name = "Bash"
+    description = "Attack 4. Inflict 3 Daze"
     super(owner)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
@@ -22,6 +23,6 @@ func execute():
     if canPlay():
         used = true
         var target = endTile as Enemy
-        owner.attack(10, target)
+        owner.attack(4, target)
         target.addStatus(Global.statusFactory.createStatus("Daze", 3), owner)
         super()

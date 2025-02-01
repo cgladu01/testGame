@@ -4,6 +4,7 @@ var tileManager: TileManager = null
 
 func setup(owner: Entities):
 	name = "Attack"
+	description = "Attack 6"
 	super(owner)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
@@ -23,5 +24,5 @@ func execute():
 	if canPlay():
 		used = true
 		var target = endTile as Enemy
-		owner.attack(30, target)
+		owner.attack(6, target)
 		super()

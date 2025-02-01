@@ -23,7 +23,7 @@ func createCharacter(name: String, start_node: CharacterNode) -> Character:
 		_:
 			start_health = 10
 
-	character.setup_character(name, starter_deck, start_health, Global.tile_map_layer.local_to_map(start_node.position), start_node, mini_portrait)
+	character.setup_character(name, starter_deck, start_health, Global.tile_map_layer.local_to_map(start_node.position) - Global.tileShift, start_node, mini_portrait)
 	Global.tileManager.change_tile_entity(character, character.location)
 	Global.characters.append(character)
 	return character

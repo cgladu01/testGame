@@ -24,9 +24,7 @@ func button_pressed():
 func canPlay():
 	if owner is Character:
 		var character = owner as Character
-		if character.energy - cost < 0:
-			return false
-		return true
+		return character.energy >= cost
 
 func execute():
 	Global.selectionTile.clear()
@@ -35,7 +33,6 @@ func execute():
 			var character = owner as Character
 			character.energy = character.energy - cost
 
-			Global.update_energy.emit(character.energy, character.max_energy)
-		
+			Global.update_energy.emit(character.energy, character.max_energy)		
 		if container:
 			container.onPlay()

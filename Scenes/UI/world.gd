@@ -18,7 +18,7 @@ func _ready() -> void:
 	Global.unitsNode = units
 	Global.rng.set_seed(0)
 	seed(0)
-	Global.tileManager.setup([Global.tile_map_layer, selection] as Array[TileMapLayer], 70, 39, 2)
+	Global.tileManager.setup([Global.tile_map_layer, selection] as Array[TileMapLayer], 21, 16, 2)
 	Global.log_container = log_container
 
 	layerholder.generate_level(0)

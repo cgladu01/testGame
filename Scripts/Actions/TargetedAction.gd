@@ -12,7 +12,5 @@ func button_pressed():
 
 func canPlay():
 	if super():
-		if endTile != null:
-			return false
-		return true
+		return endTile != null
 	return false 
