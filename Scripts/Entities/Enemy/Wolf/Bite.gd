@@ -8,6 +8,6 @@ func setup(owner: Enemy):
 
 func execute():
     var target = owner.find_closest_player()
-    owner.move_on_path(4, owner.path)
+    owner.do_enemy_move(4)
     if Global.tileManager.distance(owner.location, target.location) <= 1:
         owner.attack(20, target)

@@ -15,7 +15,7 @@ var astar2Grid: AStarGrid2D = null
 const TERRAIN_LAYER: int = 0
 const ENTITIY_LAYER: int = 1
 
-func setup(input_layers : Array[TileMapLayer], width: int, height : int, depth : int):
+func setup(input_layers : Array[TileMapLayer], width: int, height : int, depth : int = 2):
 	layers = input_layers
 	self.width = width
 	self.height = height
@@ -32,7 +32,7 @@ func setup(input_layers : Array[TileMapLayer], width: int, height : int, depth :
 				if layers[z] != null and layers[z].get_cell_atlas_coords(Vector2i(x, y) + Global.tileShift) == Vector2i(7,1):
 					newTile = Obstacle.new()
 				else:
-					newTile = Tile.new()
+					newTile = EmptyTile.new()
 				newTile.setup(Vector2i(x, y))
 				tiles[x][y][z] = newTile
 			
@@ -88,6 +88,59 @@ func move_entity(startTile: Entities, location: Vector2i):
 func distance(tile_one: Vector2i, tile_two: Vector2i):
 	var diff = (tile_one - tile_two).abs()
 	return diff.x + diff.y
+
+func find_closet_open_tile(tile_start: Vector2i, tile_two: Vector2i, max : int = 1, endtile : bool = true) -> Vector2i:
 	
+	if endtile and get_tile_entity(tile_two) is EmptyTile:
+		return tile_two
+	else:
+		var tile: Vector2i = Vector2i(-1,-1)
+
+		if max == 1:
+			for x in range(1, max + 1):
+				for y in range(1, max + 1):
+					if x == max and  y == max:
+						break
+					
+					tile = do_distance_comparison(x, y, tile_two, tile_start)
+					if tile != Vector2i(-1,-1):
+						return tile
+		else:
+			for x in range(1, max + 1):
+				for y in range(1, max + 1):
+					if x + y == max:
+						break
+					tile = do_distance_comparison(x, y, tile_two, tile_start)
+					if tile != Vector2i(-1,-1):
+						return tile
+
+
+		return Vector2i(0,0)
+
+func do_distance_comparison(x: int, y: int, tile_two: Vector2i, tile_start: Vector2i) -> Vector2i:
+	var destination = Vector2i(-1,-1)
+	var dist = -1
+
+	var array = [
+		distance(tile_two + Vector2i(x, y), tile_start) if get_tile_entity(tile_two + Vector2i(x, y)) is EmptyTile else -1,
+		distance(tile_two - Vector2i(x, y), tile_start) if get_tile_entity(tile_two - Vector2i(x, y)) is EmptyTile else -1,
+		distance(tile_two + Vector2i(-x, y), tile_start) if get_tile_entity(tile_two + Vector2i(-x, y)) is EmptyTile else -1,
+		distance(tile_two + Vector2i(x, -y), tile_start) if get_tile_entity(tile_two + Vector2i(x, -y)) is EmptyTile else -1,
+		]
+
+	var partnerArray = [
+		tile_two + Vector2i(x, y),
+		tile_two - Vector2i(x, y),
+		tile_two + Vector2i(-x, y),
+		tile_two + Vector2i(x, -y)
+	]
+
+	for i in range(0, 4):
+		if dist > array[i] or (dist == -1 and array[i] != -1):
+			dist = array[i]
+			destination = partnerArray[i]
+
+	return destination
+
 func _init():
 	pass

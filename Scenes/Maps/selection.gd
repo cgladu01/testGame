@@ -14,6 +14,7 @@ func _process(delta: float) -> void:
 func clearSelection() -> void:
 	self.clear()
 
+# 
 func markTiles(startTile : Vector2i, begin : int, end: int):
 	if end == 1:
 		for x in range(begin, end + 1):
