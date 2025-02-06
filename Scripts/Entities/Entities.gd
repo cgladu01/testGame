@@ -29,7 +29,8 @@ func change_health(difference : int):
 	elif health < 0:
 		health = 0
 		if self is Character:
-			Global.characterDeath
+			health = tot_health
+			Global.characterDeath.emit()
 		else:
 			Global.entityDeath.emit()
 		

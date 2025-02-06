@@ -27,8 +27,11 @@ func find_closest_player() -> Character:
 	path = []
 	var rcharacter = null
 	for character in Global.characters:
-		var endTile = Global.tileManager.find_closet_open_tile(location, character.location, 2, false)
-		var newPath = Global.tileManager.astar2Grid.getPath(location, endTile, 1)
+		if Global.tileManager.distance(character.location,location) == 1:
+			rcharacter = character
+			break
+		var endTile = Global.tileManager.find_closet_open_tile(location, character.location, 1, false)
+		var newPath = Global.tileManager.getPath(location, endTile, 1)
 		if path.size() > newPath.size() or path.size() == 0:
 			path = newPath
 			rcharacter = character
@@ -36,9 +39,8 @@ func find_closest_player() -> Character:
 	return rcharacter
 
 func do_enemy_move(dist : int):
-	for x in range(path.size() - 1, 0, -1):
-		if x <= dist and Global.tileManager.get_tile_entity(path[x]) is EmptyTile:
-			move_on_path(x, path)
+	if path.size() != 0 and Global.tileManager.get_tile_entity(path[min(dist - 1, path.size() - 1)]) is EmptyTile:
+		move_on_path(dist, path)
 
 
 

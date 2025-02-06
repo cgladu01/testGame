@@ -25,7 +25,7 @@ func setMap(tileManager: TileManager):
 			if entity is Obstacle:
 				astar2Grid.set_point_solid(Vector2i(x, y), true)
 
-	astar2Grid.astar2Grid = astar2Grid	
+	tileManager.astar2Grid = astar2Grid	
 
 func updateMap(position: Vector2i, solid: int):
 	astar2Grid.set_point_solid(position, solid)
@@ -33,22 +33,3 @@ func updateMap(position: Vector2i, solid: int):
 func updateWeight(position: Vector2i, weight: float):
 	astar2Grid.set_point_weight_scale(position, weight)
 
-func getPath(start: Vector2i, end: Vector2i, mod : int = 0):
-	var path = null
-	
-	# Doing movement for enemies
-	if mod == 1:
-		for characters in Global.characters:
-			astar2Grid.set_point_solid(characters.location, true)
-		path = astar2Grid.get_id_path(start, end, true)
-		for characters in Global.characters:
-			astar2Grid.set_point_solid(characters.location, false)
-	# Doing movement for characters
-	else:
-		for enemy in Global.enemies:
-			astar2Grid.set_point_solid(enemy.location, true)
-		path = astar2Grid.get_id_path(start, end, true)
-		for enemy in Global.enemies:
-			astar2Grid.set_point_solid(enemy.location, false)
-		
-	return path

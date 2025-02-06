@@ -10,7 +10,7 @@ var width = -1
 var height = -1
 var depth = -1
 
-var astar2Grid: AStarGrid2D = null
+var astar2Grid = null
 
 const TERRAIN_LAYER: int = 0
 const ENTITIY_LAYER: int = 1
@@ -89,8 +89,7 @@ func distance(tile_one: Vector2i, tile_two: Vector2i):
 	var diff = (tile_one - tile_two).abs()
 	return diff.x + diff.y
 
-func find_closet_open_tile(tile_start: Vector2i, tile_two: Vector2i, max : int = 1, endtile : bool = true) -> Vector2i:
-	
+func find_closet_open_tile(tile_start: Vector2i, tile_two: Vector2i, max : int = 1, endtile : bool = false) -> Vector2i:
 	if endtile and get_tile_entity(tile_two) is EmptyTile:
 		return tile_two
 	else:
@@ -98,8 +97,8 @@ func find_closet_open_tile(tile_start: Vector2i, tile_two: Vector2i, max : int =
 
 		if max == 1:
 			for x in range(1, max + 1):
-				for y in range(1, max + 1):
-					if x == max and  y == max:
+				for y in range(0, max + 1):
+					if x == max and y == max:
 						break
 					
 					tile = do_distance_comparison(x, y, tile_two, tile_start)
@@ -107,22 +106,22 @@ func find_closet_open_tile(tile_start: Vector2i, tile_two: Vector2i, max : int =
 						return tile
 		else:
 			for x in range(1, max + 1):
-				for y in range(1, max + 1):
+				for y in range(0, max + 1):
 					if x + y == max:
 						break
 					tile = do_distance_comparison(x, y, tile_two, tile_start)
 					if tile != Vector2i(-1,-1):
 						return tile
 
-
-		return Vector2i(0,0)
+		print("Hello")
+		return tile_start
 
 func do_distance_comparison(x: int, y: int, tile_two: Vector2i, tile_start: Vector2i) -> Vector2i:
 	var destination = Vector2i(-1,-1)
-	var dist = -1
+	var dist = 999
 
 	var array = [
-		distance(tile_two + Vector2i(x, y), tile_start) if get_tile_entity(tile_two + Vector2i(x, y)) is EmptyTile else -1,
+		distance(tile_two + Vector2i(x, y), tile_start) if get_tile_entity(tile_two + Vector2i(x, y)) is EmptyTile  else -1,
 		distance(tile_two - Vector2i(x, y), tile_start) if get_tile_entity(tile_two - Vector2i(x, y)) is EmptyTile else -1,
 		distance(tile_two + Vector2i(-x, y), tile_start) if get_tile_entity(tile_two + Vector2i(-x, y)) is EmptyTile else -1,
 		distance(tile_two + Vector2i(x, -y), tile_start) if get_tile_entity(tile_two + Vector2i(x, -y)) is EmptyTile else -1,
@@ -136,11 +135,31 @@ func do_distance_comparison(x: int, y: int, tile_two: Vector2i, tile_start: Vect
 	]
 
 	for i in range(0, 4):
-		if dist > array[i] or (dist == -1 and array[i] != -1):
+		if dist < array[i] or (dist == 999 and array[i] != -1):
 			dist = array[i]
 			destination = partnerArray[i]
 
 	return destination
+
+func getPath(start: Vector2i, end: Vector2i, mod : int = 0):
+	var path = null
+	
+	# Doing movement for enemies
+	if mod == 1:
+		for characters in Global.characters:
+			astar2Grid.set_point_solid(characters.location, true)
+		path = astar2Grid.get_id_path(start, end, true)
+		for characters in Global.characters:
+			astar2Grid.set_point_solid(characters.location, false)
+	# Doing movement for characters
+	else:
+		for enemy in Global.enemies:
+			astar2Grid.set_point_solid(enemy.location, true)
+		path = astar2Grid.get_id_path(start, end, true)
+		for enemy in Global.enemies:
+			astar2Grid.set_point_solid(enemy.location, false)
+		
+	return path
 
 func _init():
 	pass
