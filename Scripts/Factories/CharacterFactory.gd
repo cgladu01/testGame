@@ -4,7 +4,8 @@ var basic_actions : Array[String] = ["Attack", "Defend"]
 var characterNode = preload("res://Scenes/Maps/CharacterNode.tscn")
 
 func createCharacter(name: String, start_node: CharacterNode) -> Character:
-	Global.unitsNode.playerUnits.add_child(start_node)
+	if Global.unitsNode:
+		Global.unitsNode.playerUnits.add_child(start_node)
 
 	var character : Character = Character.new()
 	var starter_deck : Array[Action] =  []

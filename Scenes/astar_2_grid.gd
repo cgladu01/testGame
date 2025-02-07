@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 	pass
 
 func setMap(tileManager: TileManager):
-	astar2Grid.size = Vector2i(tileManager.width, tileManager.height)
+	astar2Grid.region = Rect2i(Vector2i(0,0), Vector2i(tileManager.width, tileManager.height))
 	astar2Grid.cell_size = Vector2(1, 1)
 	astar2Grid.update()
 	

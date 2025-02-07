@@ -1,3 +1,3 @@
-class_name Hap extends Node
+class_name Hap
 
 var description : String = "Unknown Hap"

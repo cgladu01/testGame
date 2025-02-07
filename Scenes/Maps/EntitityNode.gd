@@ -1,5 +1,4 @@
 class_name EntitiyNode extends Node2D
-@onready var sprite_2d: Sprite2D = $Sprite2D
 
 var scene = preload("res://Scenes/UI/actionline.tscn")
 var is_moving = false

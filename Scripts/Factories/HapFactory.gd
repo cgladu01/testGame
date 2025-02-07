@@ -1,4 +1,4 @@
-class_name HapFactory extends Node
+class_name HapFactory
 
 func createAttackHap(damage : int, recipient: Entities, sender: Entities):
 	var newHap : AttackHap = AttackHap.new()

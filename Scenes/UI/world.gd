@@ -2,7 +2,6 @@ extends Node2D
 
 @onready var world: Node2D = $"."
 @onready var astar_2_grid: Node2D = $Astar2Grid
-@onready var terrain: TileMapLayer = $Layerholder/terrain
 @onready var selection: TileMapLayer = $Layerholder/selection
 @onready var units: Node2D = $Units
 @onready var canvas: CanvasLayer = $CanvasLayer
@@ -25,6 +24,7 @@ func _ready() -> void:
 
 	astar_2_grid.setMap(tileManager)
 	units.turnOne()
+
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

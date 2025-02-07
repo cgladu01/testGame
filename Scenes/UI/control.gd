@@ -38,6 +38,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	if terrain == null:
 		terrain = Global.tile_map_layer
 	if event.is_action_pressed("MouseClick"):
+		print_orphan_nodes()
 		if tileManager == null:
 			tileManager = world.return_tileManager()
 			

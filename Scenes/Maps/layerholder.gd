@@ -28,7 +28,9 @@ func generate_level(level_number: int):
 			var characterNode: CharacterNode = entity as CharacterNode
 			if Global.characters.is_empty() and Global.characterNames[characterNode.characterNum] != "":
 				Global.characterFactory.createCharacter(Global.characterNames[characterNode.characterNum], characterNode)
+			else:
+				characterNode.queue_free()
 		else:
 			Global.enemyFactory.createEnemy("Wolf", entity as EntitiyNode)
-	
+		
 	entities.queue_free()

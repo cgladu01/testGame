@@ -1,4 +1,4 @@
-class_name Deck extends Node
+class_name Deck
 
 var actions: Array[Action] = []
 
