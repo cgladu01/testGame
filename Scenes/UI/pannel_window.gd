@@ -25,7 +25,8 @@ func set_entityDisplay(insert_entity : Entities):
 
 	health_text.text = str(entity.get_health()) + "/" + str(entity.tot_health)
 	health_bar.value = (entity.get_health() as float) / (entity.tot_health) * 100
-	entity.entityUpdate.connect(set_entityDisplay.bind(entity))
+	if not entity.entityUpdate.is_connected(set_entityDisplay.bind(entity)):
+		entity.entityUpdate.connect(set_entityDisplay.bind(entity))
 
 func _update_health():
 	health_text.text = str(entity.get_health()) + "/" + str(entity.tot_health)
