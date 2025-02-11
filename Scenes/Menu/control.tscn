@@ -19,6 +19,21 @@ size_flags_vertical = 4
 layout_mode = 2
 text = "Start Game"
 
+[node name="HBoxContainer" type="HBoxContainer" parent="GridContainer"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="GridContainer/HBoxContainer"]
+layout_mode = 2
+text = "Level Number"
+fit_content = true
+autowrap_mode = 0
+
+[node name="LineEdit" type="LineEdit" parent="GridContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 4
+text = "0"
+placeholder_text = "0"
+
 [node name="Spacer" type="Panel" parent="GridContainer"]
 visible = false
 custom_minimum_size = Vector2(0, 10)

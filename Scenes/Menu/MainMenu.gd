@@ -1,6 +1,7 @@
 extends PanelContainer
 
 var mapOne = "res://Scenes/Maps/initial.tscn"
+@onready var text_edit : LineEdit = $"GridContainer/HBoxContainer/LineEdit"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -13,6 +14,7 @@ func _process(delta: float) -> void:
 
 
 func _on_start_game_pressed() -> void:
+	Global.level_number = int(text_edit.text)
 	get_tree().change_scene_to_file(mapOne)
 
 

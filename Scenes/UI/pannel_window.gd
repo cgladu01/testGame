@@ -16,10 +16,8 @@ func _ready() -> void:
 func set_entityDisplay(insert_entity : Entities):
 	entity = insert_entity
 	title.text = entity.name
-	var image = Image.new()
-	image.load(entity.miniPortaitPath)
-	image.resize(70, 70)
-	mini_portrait.texture = ImageTexture.create_from_image(image)
+	mini_portrait.texture = load(entity.miniPortaitPath)
+	mini_portrait.size = Vector2i(70,70)
 
 	fill_status_line()
 

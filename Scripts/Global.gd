@@ -58,3 +58,6 @@ signal characterDeath
 # Is the log container in the bottom right of screen
 var log_container
 
+# Current Level Number
+var level_number : int = 0
+

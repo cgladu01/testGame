@@ -30,6 +30,7 @@ layout_mode = 2
 [node name="MiniPortrait" type="TextureRect" parent="VBoxContainer/TitleLine"]
 custom_minimum_size = Vector2(70, 70)
 layout_mode = 2
+expand_mode = 1
 
 [node name="Title" type="Label" parent="VBoxContainer/TitleLine"]
 custom_minimum_size = Vector2(150, 0)

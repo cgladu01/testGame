@@ -20,11 +20,15 @@ func _ready() -> void:
 	Global.tileManager.setup([Global.tile_map_layer, selection] as Array[TileMapLayer], 21, 16, 2)
 	Global.log_container = log_container
 
-	layerholder.generate_level(0)
+	generateLevel(Global.level_number)
+
+
+
+func generateLevel(level_number: int):
+	layerholder.generate_level(level_number)
 
 	astar_2_grid.setMap(tileManager)
 	units.turnOne()
-
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

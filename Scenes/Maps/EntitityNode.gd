@@ -29,10 +29,8 @@ func set_entity(entity : Entities):
 	self.entities = entity
 	self.position = Global.tile_map_layer.map_to_local(entities.location + Global.tileShift)
 	var sprite = Sprite2D.new()
-	var image = Image.new()
-	image.load(entity.spritePath)
-	image.resize(16, 16)
-	sprite.set_texture(ImageTexture.create_from_image(image))
+	sprite.scale = Vector2(0.125, 0.125)
+	sprite.set_texture(load(entity.spritePath))
 	add_child(sprite)
 
 
