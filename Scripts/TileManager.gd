@@ -27,14 +27,17 @@ func setup(input_layers : Array[TileMapLayer], width: int, height : int, depth :
 		for y in height:
 			tiles[x][y] = []
 			tiles[x][y].resize(depth)    # Z-dimension
-			for z in depth:
-				var newTile = null
-				if layers[z] != null and layers[z].get_cell_atlas_coords(Vector2i(x, y) + Global.tileShift) == Vector2i(7,1):
-					newTile = Obstacle.new()
-				else:
-					newTile = EmptyTile.new()
-				newTile.setup(Vector2i(x, y))
-				tiles[x][y][z] = newTile
+
+			var floor_tile = get_tile_type_from_atlas(layers[0].get_cell_source_id(Vector2i(x,y)), layers[0].get_cell_atlas_coords(Vector2i(x,y)))
+			if floor_tile:
+				floor_tile.update_location((Vector2i(x, y)))
+			tiles[x][y][0] = floor_tile
+
+			var entity_tile = EmptyTile.new()
+			entity_tile.update_location(Vector2i(x, y))
+			tiles[x][y][1] = entity_tile
+
+
 			
 
 func change_tile(new_tile : Tile, location : Vector3i):
@@ -89,32 +92,24 @@ func distance(tile_one: Vector2i, tile_two: Vector2i):
 	var diff = (tile_one - tile_two).abs()
 	return diff.x + diff.y
 
-func find_closet_open_tile(tile_start: Vector2i, tile_two: Vector2i, max : int = 1, endtile : bool = false) -> Vector2i:
+func find_closet_open_tile(tile_start: Vector2i, tile_two: Vector2i, max : int = 2, endtile : bool = false) -> Vector2i:
 	if endtile and get_tile_entity(tile_two) is EmptyTile:
 		return tile_two
 	else:
 		var tile: Vector2i = Vector2i(-1,-1)
 
-		if max == 1:
-			for x in range(1, max + 1):
-				for y in range(0, max + 1):
-					if x == max and y == max:
-						break
+		for dist in range(1, max + 1):
+			for x in range(0, dist + 1):
+				for y in range(0, dist + 1):
+					if (x == 0 and y == 0) or (x == dist and y == dist):
+						continue
 					
-					tile = do_distance_comparison(x, y, tile_two, tile_start)
-					if tile != Vector2i(-1,-1):
-						return tile
-		else:
-			for x in range(1, max + 1):
-				for y in range(0, max + 1):
-					if x + y == max:
-						break
-					tile = do_distance_comparison(x, y, tile_two, tile_start)
-					if tile != Vector2i(-1,-1):
-						return tile
-
-		print("Hello")
-		return tile_start
+					var pot_tile = do_distance_comparison(x, y, tile_two, tile_start)
+					tile = pot_tile if distance(pot_tile, tile_start) < distance(tile, tile_start) or tile == Vector2i(-1,-1) else tile
+			if tile != Vector2i(-1, -1):
+				return tile
+	
+	return Vector2i(-1,-1)
 
 func do_distance_comparison(x: int, y: int, tile_two: Vector2i, tile_start: Vector2i) -> Vector2i:
 	var destination = Vector2i(-1,-1)
@@ -126,6 +121,7 @@ func do_distance_comparison(x: int, y: int, tile_two: Vector2i, tile_start: Vect
 		distance(tile_two + Vector2i(-x, y), tile_start) if get_tile_entity(tile_two + Vector2i(-x, y)) is EmptyTile else -1,
 		distance(tile_two + Vector2i(x, -y), tile_start) if get_tile_entity(tile_two + Vector2i(x, -y)) is EmptyTile else -1,
 		]
+	
 
 	var partnerArray = [
 		tile_two + Vector2i(x, y),
@@ -135,7 +131,7 @@ func do_distance_comparison(x: int, y: int, tile_two: Vector2i, tile_start: Vect
 	]
 
 	for i in range(0, 4):
-		if dist < array[i] or (dist == 999 and array[i] != -1):
+		if (array[i] < dist and array[i] != -1) or (dist == 999 and array[i] != -1):
 			dist = array[i]
 			destination = partnerArray[i]
 
@@ -160,6 +156,17 @@ func getPath(start: Vector2i, end: Vector2i, mod : int = 0):
 			astar2Grid.set_point_solid(enemy.location, false)
 		
 	return path
+
+func get_tile_type_from_atlas(source_id: int, atlas_cord: Vector2i) -> Tile:
+	var newTile = null
+
+	if true == false:
+		newTile = Obstacle.new()
+	elif source_id != -1:
+		newTile = EmptyTile.new()
+	return newTile
+
+
 
 func _init():
 	pass

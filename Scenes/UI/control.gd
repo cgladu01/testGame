@@ -53,6 +53,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		prevSelection = selection.get_cell_atlas_coords(prevSpot)
 		selection.set_cell(tile_mouse_pos, 11, Vector2i(3,7))
 		
+
 		var tile = tileManager.get_tile(Vector3i(tile_mouse_pos.x - 1, tile_mouse_pos.y - 1, 1))
 
 		

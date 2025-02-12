@@ -21,6 +21,8 @@ func generate_level(level_number: int):
 			entities = child
 			break
 		
+	Global.tileManager.setup([Global.tile_map_layer, Global.selectionTile] as Array[TileMapLayer], 21, 16, 2)
+	
 	for entity in entities.get_children():
 		entities.remove_child(entity)
 		
@@ -32,5 +34,7 @@ func generate_level(level_number: int):
 				characterNode.queue_free()
 		else:
 			Global.enemyFactory.createEnemy("Wolf", entity as EntitiyNode)
+	
+	
 		
 	entities.queue_free()
