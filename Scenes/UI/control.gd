@@ -54,9 +54,10 @@ func _unhandled_input(event: InputEvent) -> void:
 		selection.set_cell(tile_mouse_pos, 11, Vector2i(3,7))
 		
 
-		var tile = tileManager.get_tile(Vector3i(tile_mouse_pos.x - 1, tile_mouse_pos.y - 1, 1))
+		var tile = tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1))
+		print(tile == null)
+		print(tile.location)
 
-		
 		if tile is Entities:
 			
 			if tile is Character:
@@ -77,7 +78,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		if Global.currentAction is TargetedAction:
 			var targettedAction = Global.currentAction as TargetedAction
-			if targettedAction.validTarget(character, tileManager.get_tile(Vector3i(tile_mouse_pos.x - 1, tile_mouse_pos.y - 1, 1)), tileManager):
+			if targettedAction.validTarget(character, tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1)), tileManager):
 				prevSelection = Vector2i(2,7)
 				Global.confirmationWindow.emit()
 	

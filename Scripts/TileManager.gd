@@ -30,14 +30,12 @@ func setup(input_layers : Array[TileMapLayer], width: int, height : int, depth :
 
 			var floor_tile = get_tile_type_from_atlas(layers[0].get_cell_source_id(Vector2i(x,y)), layers[0].get_cell_atlas_coords(Vector2i(x,y)))
 			if floor_tile:
-				floor_tile.update_location((Vector2i(x, y)))
+				floor_tile.update_location(Vector2i(x, y))
+				var entity_tile = EmptyTile.new()
+				entity_tile.update_location(Vector2i(x, y))
+				tiles[x][y][1] = entity_tile
+
 			tiles[x][y][0] = floor_tile
-
-			var entity_tile = EmptyTile.new()
-			entity_tile.update_location(Vector2i(x, y))
-			tiles[x][y][1] = entity_tile
-
-
 			
 
 func change_tile(new_tile : Tile, location : Vector3i):
@@ -160,12 +158,11 @@ func getPath(start: Vector2i, end: Vector2i, mod : int = 0):
 func get_tile_type_from_atlas(source_id: int, atlas_cord: Vector2i) -> Tile:
 	var newTile = null
 
-	if true == false:
+	if source_id == 4 and atlas_cord == Vector2i(6,2):
 		newTile = Obstacle.new()
-	elif source_id != -1:
+	elif (source_id == 4 and atlas_cord == Vector2i(5,3)) or (source_id == 4 and atlas_cord == Vector2i(0,6)):
 		newTile = EmptyTile.new()
 	return newTile
-
 
 
 func _init():

@@ -21,13 +21,13 @@ func move(direction: Vector2):
 
 func move_along_path(path: Array[Vector2i]):
 	for x in path:
-		move(x + Global.tileShift)
+		move(x)
 		await moved
 	pass
 
 func set_entity(entity : Entities):
 	self.entities = entity
-	self.position = Global.tile_map_layer.map_to_local(entities.location + Global.tileShift)
+	self.position = Global.tile_map_layer.map_to_local(entities.location)
 	var sprite = Sprite2D.new()
 	sprite.scale = Vector2(0.125, 0.125)
 	sprite.set_texture(load(entity.spritePath))

@@ -22,7 +22,8 @@ func setMap(tileManager: TileManager):
 		for y in tileManager.height:
 			var terrain = tileManager.get_tile(Vector3i(x, y, 0))
 			var entity = tileManager.get_tile(Vector3i(x, y, 1))
-			if entity is Obstacle:
+			if terrain is Obstacle:
+				print(str(x, " ", y))
 				astar2Grid.set_point_solid(Vector2i(x, y), true)
 
 	tileManager.astar2Grid = astar2Grid	

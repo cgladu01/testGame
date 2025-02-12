@@ -18,7 +18,7 @@ func createEnemy(name: String, start_node: EntitiyNode) -> Enemy:
 			start_health = 10
 			enemy = Enemy.new()
 	
-	enemy.setup_enemy(name, start_health, Global.tile_map_layer.local_to_map(start_node.position) - Global.tileShift, start_node, mini_portrait)
+	enemy.setup_enemy(name, start_health, Global.tile_map_layer.local_to_map(start_node.position), start_node, mini_portrait)
 	Global.tileManager.change_tile_entity(enemy, enemy.location)
 	Global.enemies.append(enemy)
 	return enemy

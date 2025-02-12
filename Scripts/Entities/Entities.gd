@@ -107,7 +107,7 @@ func roundStart():
 func changeNode(new_node: EntitiyNode):
 	node = new_node
 	if node != null:
-		setup(Global.tile_map_layer.local_to_map(new_node.position) - Global.tileShift)
+		setup(Global.tile_map_layer.local_to_map(new_node.position))
 		node.set_entity(self)
 
 
