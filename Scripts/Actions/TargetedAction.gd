@@ -11,6 +11,6 @@ func button_pressed():
 	pass
 
 func canPlay():
-	if super():
+	if super() and validTarget(startTile, endTile, Global.tileManager):
 		return endTile != null
 	return false 

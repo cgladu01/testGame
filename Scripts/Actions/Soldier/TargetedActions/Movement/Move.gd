@@ -12,15 +12,16 @@ func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bo
 	if not starttile or not endtile:
 		return false
 	startTile = starttile
+	self.tileManager = tileManager
 	endTile = endtile
-	var potPath = tileManager.astar2Grid.get_id_path(startTile.location, endTile.location)
+	var potPath = tileManager.getPath(startTile.location, endTile.location)
 	
 	if potPath.size() <= 5:
 		path = potPath
 		Global.selectionTile.markTiles(owner.location, 0, 5)
 		Global.selectionTile.highlightpath(path)
 
-	self.tileManager = tileManager
+	print(potPath)
 	return potPath.size() != 0 and potPath.size() <= 5
 
 
@@ -29,9 +30,9 @@ func button_pressed():
 	Global.selectionTile.markTiles(owner.location, 0, 5)
 
 func execute():
-	used = true
-	tileManager.move_entity(startTile, endTile.location)
-	owner.node.move_along_path(path)
-	owner.moved = true
-	super()
+	if canPlay():
+		used = true
+		owner.move_on_path(5, path)
+		owner.moved = true
+		super()
 	
