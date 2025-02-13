@@ -11,9 +11,11 @@ var terrain: TileMapLayer = null
 var confirmscene = preload("res://Scenes/UI/Confirmation.tscn")
 var scene = preload("res://Scenes/UI/pannelWindow.tscn")
 var pausescene = preload("res://Scenes/Menu/PauseScreen.tscn")
+var decksceneload = preload("res://Scenes/UI/DisplayDeck.tscn")
 var window = null
 var confirmWindow = null
 var pauseScreenWindow = null
+var deckscene = null
 
 var prevSpot : Vector2i = Vector2i(0, 0)
 var tileManager : TileManager = null
@@ -90,6 +92,15 @@ func _unhandled_input(event: InputEvent) -> void:
 			pauseScreenWindow.queue_free()
 			pauseScreenWindow = null
 
+	elif  event.is_action_pressed("View Deck"):
+		if deckscene == null and character != null:
+			deckscene = decksceneload.instantiate()
+			canvas_layer.add_child(deckscene)
+			deckscene.dispDeck(character.deck)
+		elif deckscene != null:
+			deckscene.queue_free()
+			deckscene = null
+		pass
 
 	elif event is InputEventKey:
 		var direction: Vector2 = Input.get_vector("CameraLeft", "CameraRight", "CameraUp", "CameraDown")
