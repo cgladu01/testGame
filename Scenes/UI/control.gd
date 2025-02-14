@@ -101,6 +101,11 @@ func _unhandled_input(event: InputEvent) -> void:
 			deckscene.queue_free()
 			deckscene = null
 		pass
+	
+	elif event.is_action_pressed("Pitch"):
+		Global.select_mode = PitchMode.new()
+		_makeConfirmationWindow()
+
 
 	elif event is InputEventKey:
 		var direction: Vector2 = Input.get_vector("CameraLeft", "CameraRight", "CameraUp", "CameraDown")

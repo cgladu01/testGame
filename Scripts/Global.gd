@@ -43,6 +43,9 @@ signal update_energy
 # Brings up confirmation window
 signal confirmationWindow
 
+# Modes for controls
+var select_mode : SelectionMode = null
+
 #Signals for combat effects
 signal combatStart
 signal combatEnd

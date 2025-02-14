@@ -10,6 +10,7 @@ var hand : CombatDeck = null
 var round_start_draw : int = 5
 var movement = Global.actionFactory.createAction("Move", self)
 var moved = false
+var pitched = false
 
 func setup_character(init_name : String, starting_actions : Array[Action], start_health : int, start_location : Vector2i, start_node : CharacterNode, mini_portrait_path : String) -> void:
 	name = init_name
@@ -21,6 +22,7 @@ func setup_character(init_name : String, starting_actions : Array[Action], start
 
 func roundStart():
 	moved = false
+	pitched = false
 	energy = max_energy
 	handleDraw(round_start_draw)
 
