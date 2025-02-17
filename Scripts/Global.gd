@@ -40,6 +40,9 @@ var characterNames : Array[String] = ["DudeMan", "", ""]
 # Updates the energy shown in the bottom left
 signal update_energy
 
+# Updates hand when something changes it
+signal update_hand
+
 # Brings up confirmation window
 signal confirmationWindow
 

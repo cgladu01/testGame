@@ -27,6 +27,7 @@ func _ready() -> void:
 	$PanelContainer/HBoxContainer/VBoxContainer/EndTurn.EndTurnPlayerTurn.connect(_onEndTurn)
 	Global.confirmationWindow.connect(_makeConfirmationWindow)
 	Global.roundStart.connect(_onRoundStart)
+	Global.update_hand.connect(_onUpdateHand)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -40,7 +41,6 @@ func _unhandled_input(event: InputEvent) -> void:
 	if terrain == null:
 		terrain = Global.tile_map_layer
 	if event.is_action_pressed("MouseClick"):
-		print_orphan_nodes()
 		if tileManager == null:
 			tileManager = world.return_tileManager()
 			
@@ -96,7 +96,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if deckscene == null and character != null:
 			deckscene = decksceneload.instantiate()
 			canvas_layer.add_child(deckscene)
-			deckscene.dispDeck(character.deck)
+			deckscene.dispDeck(character.combatDeck)
 		elif deckscene != null:
 			deckscene.queue_free()
 			deckscene = null
@@ -104,6 +104,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	elif event.is_action_pressed("Pitch"):
 		Global.select_mode = PitchMode.new()
+		Global.select_mode.setup(character)
 		_makeConfirmationWindow()
 
 
@@ -116,6 +117,10 @@ func _onEndTurn():
 		confirmWindow.queue_free()
 
 func _onRoundStart():
+	if character:
+		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
+
+func _onUpdateHand():
 	if character:
 		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
 

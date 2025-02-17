@@ -35,7 +35,7 @@ func onSelect():
 		Global.select_mode.end.connect(func():  if is_instance_valid(selectionNumber): selectionNumber.queue_free())
 		Global.select_mode.updateOrder.connect(func(): if is_instance_valid(selectionNumber): selectionNumber.text = str(Global.select_mode.getIndex(action)))
 
-	elif Global.select_mode.getIndex(action) != -1:
+	elif Global.select_mode.getIndex(action) != 0:
 		selectionNumber.text = str(Global.select_mode.getIndex(action))
 	else:
 		selectionNumber.queue_free()
