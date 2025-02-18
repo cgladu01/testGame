@@ -7,6 +7,8 @@ var path : Array[Vector2i]
 func get_actions() -> Array[EnemyActions]:
 	return turn_actions
 
+# Pick turn from set of actions
+# Must implement the actual picking in subclasses
 func setup_turn():
 	if node != null and node.actionLine != null:
 		node.dispActionline()
@@ -22,7 +24,7 @@ func do_Turn():
 	action.execute()
 	pass
 
-
+# Find closets player
 func find_closest_player() -> Character:
 	path = []
 	var rcharacter = null

@@ -1,5 +1,7 @@
 class_name Character
 extends Entities
+
+# Character class
 var energy : int = 3
 var max_energy : int = 3
 var deck: Deck = Deck.new()
@@ -26,6 +28,7 @@ func roundStart():
 	energy = max_energy
 	handleDraw(round_start_draw)
 
+# If you draw more cards then in deck, shiffle in discard after doing draw.
 func handleDraw(drawCount: int):
 	if combatDeck.actions.size() < drawCount:
 		var amount : int = combatDeck.actions.size()

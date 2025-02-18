@@ -1,4 +1,6 @@
 extends Control
+# Responsible for displaying actions.
+
 @onready var grid_container: HBoxContainer = $HBoxContainer/Cards
 @onready var label: Label = $HBoxContainer/Label
 var card_container_scene = preload("res://Scenes/UI/CardsUI/CardContainer/card_container.tscn")
@@ -23,6 +25,8 @@ func action_menu_clear(button_name: String):
 			if button.text == button_name:
 				button.disabled = true
 
+# Takes in actions and displays them on the grid 
+# Called from Control Node
 func on_action_update(actionsList: CombatDeck, energy: int, max_energy: int):
 	clear_action_grid()
 

@@ -16,7 +16,7 @@ func setAction(action : Action):
 	self.cardDescription.text = action.description
 	action.container = self
 
-
+# Activate card on left click and inspect card on right click
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Global.select_mode == null:
@@ -25,11 +25,14 @@ func _on_gui_input(event:InputEvent) -> void:
 			onSelect()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and not isCardInpsection:
 			print("Right Click")
-			
+
+# Handles the Select Mode interactions			
 func onSelect():
 	Global.select_mode.selectedAction(action)
 
 	if selectionNumber == null:
+
+		# Makes the number that exists above it when selected. Also provides lambda functions to update and delete them when they are not needed
 		selectionNumber = Label.new()
 		get_tree().get_root().add_child(selectionNumber)
 		selectionNumber.global_position = self.global_position + Vector2(self.size.x/2, -50)

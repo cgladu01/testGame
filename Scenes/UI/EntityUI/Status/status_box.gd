@@ -1,6 +1,7 @@
 extends TextureRect
 var disp_status : Status = null
 @onready var count: Label = $Label
+# Displays statuses in a small box
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

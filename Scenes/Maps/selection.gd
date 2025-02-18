@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 func clearSelection() -> void:
 	self.clear()
 
-# 
+# Marks tiles in an outward pattern. Deosn't care for obstacles or what not.
 func markTiles(startTile : Vector2i, begin : int, end: int):
 	if end == 1:
 		for x in range(begin, end + 1):

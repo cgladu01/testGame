@@ -1,5 +1,6 @@
 extends HBoxContainer
 var enemy:Enemy = null
+# Dipslays enemy intents
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

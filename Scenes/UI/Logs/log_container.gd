@@ -1,4 +1,6 @@
 class_name LogContainer extends Control
+# Holds all logs and has a scrollable bar to look through the logs
+
 @onready var vbox : VBoxContainer = $VBoxContainer2/VBoxContainer/VBoxContainer
 @onready var button: Button = $VBoxContainer2/TitleLine/Expand
 @onready var vscroll: ScrollContainer = $VBoxContainer2/VBoxContainer

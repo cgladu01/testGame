@@ -1,3 +1,4 @@
+# This class is responsible for setting up the levels and creating the corresponding entities/characters for it.
 extends Node2D
 var currentlevel = null
 
@@ -10,6 +11,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
+# This is called from world and makes the level depening on the number provided.
 func generate_level(level_number: int):
 	print(str("res://Scenes/Maps/LDTK/levels/Level_", level_number, ".scn"))
 	currentlevel = load(str("res://Scenes/Maps/LDTK/levels/Level_", level_number, ".scn")).instantiate()
@@ -36,6 +38,4 @@ func generate_level(level_number: int):
 		else:
 			Global.enemyFactory.createEnemy("Wolf", entity as EntitiyNode)
 	
-	
-		
 	entities.queue_free()

@@ -1,5 +1,5 @@
 class_name Deck
-
+# Simulates a deck with Godot Arrays
 var actions: Array[Action] = []
 
 func setupDeck(actions : Array[Action]):

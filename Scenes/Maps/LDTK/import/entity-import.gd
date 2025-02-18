@@ -8,6 +8,7 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 
 	# print("EntityLayer: ", entity_layer.name, " | Count: ", entities.size())
 
+	# Go through every entity and match them to a tile because LDTK doesn't force things to be on the grid
 	for entity in entities:
 		if entity.identifier == "CharacterStart":
 			var characterNode = CharacterNode.new()

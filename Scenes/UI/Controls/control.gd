@@ -1,5 +1,9 @@
 extends Control
 var terrain: TileMapLayer = null
+# responsible for handling all player input
+# Might be disolved into smaller pieces IDK
+
+
 @onready var layerholder = $"../../Layerholder"
 @onready var selection: TileMapLayer = $"../../Layerholder/selection"
 @onready var camera_2d: Camera2D = $"../../Camera2D"
@@ -58,6 +62,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		var tile = tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1))
 
+		# If tile is entity display enemy actions or if character display hand
 		if tile is Entities:
 			
 			if tile is Character:

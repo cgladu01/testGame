@@ -1,5 +1,6 @@
 extends PanelContainer
 
+# Main menu
 var mapOne = "res://Scenes/Maps/initial.tscn"
 @onready var text_edit : LineEdit = $"GridContainer/HBoxContainer/LineEdit"
 

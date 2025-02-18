@@ -6,6 +6,7 @@ var card_container_scene = preload("res://Scenes/UI/CardsUI/CardContainer/card_c
 func _ready() -> void:
 	pass # Replace with function body.
 
+# Display deck in 5xX grid
 func dispDeck(deck: Deck):
 	for action in deck.actions:
 		var padding = MarginContainer.new()
@@ -19,6 +20,7 @@ func dispDeck(deck: Deck):
 		self.add_child(cardcontainer)
 		cardcontainer.setAction(action)
 
+# Combat deck has special rules to not display cards in order so it needs to new which cards are "known"
 func dispCombatDeck(random_actions: Array[Action], ordered_actions : Array[Action]):
 	for action in random_actions:
 		var padding = MarginContainer.new()

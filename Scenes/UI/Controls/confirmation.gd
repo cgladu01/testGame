@@ -1,5 +1,5 @@
 extends HBoxContainer
-
+# Confirmation window that appears when clicking cards or enters a select mode
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

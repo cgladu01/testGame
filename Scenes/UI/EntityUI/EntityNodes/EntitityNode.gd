@@ -1,4 +1,5 @@
 class_name EntitiyNode extends Node2D
+# Parent class for all entities to be displayed on the grid.
 
 var scene = preload("res://Scenes/UI/EntityUI/actionline.tscn")
 var is_moving = false
@@ -19,6 +20,7 @@ func move(direction: Vector2):
 	tween.tween_property(self, "position", Global.tile_map_layer.map_to_local(direction), 0.2)
 	tween.tween_callback(func(): emit_signal("moved"))
 
+# This is purely visual and has no checks to see if it makes sense
 func move_along_path(path: Array[Vector2i]):
 	for x in path:
 		move(x)

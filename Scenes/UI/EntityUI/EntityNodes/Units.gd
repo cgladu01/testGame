@@ -1,7 +1,7 @@
 extends Node2D
 @onready var playerUnits : Node2D = $"PlayerUnits"
 @onready var enemyUnits : Node2D = $"EnemyUnits"
-
+# Holds other entities and handles whose turn it is and roundstart/roundend shenanigans
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

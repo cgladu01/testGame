@@ -1,5 +1,6 @@
 class_name HapContainer extends PanelContainer
 @onready var rich_text_label: Label = $RichTextLabel
+# Individual Log entry
 
 var hap : Hap = null
 
