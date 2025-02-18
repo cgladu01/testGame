@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cd7v5tbkmp15o"]
 
-[ext_resource type="Script" path="res://Scenes/UI/End_Turn.gd" id="1_isvx7"]
+[ext_resource type="Script" path="res://Scenes/UI/Controls/End_Turn.gd" id="1_isvx7"]
 
 [node name="Control" type="PanelContainer"]
 anchors_preset = 15

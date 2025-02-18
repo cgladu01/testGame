@@ -11,6 +11,7 @@ func _process(delta: float) -> void:
 	pass
 
 func generate_level(level_number: int):
+	print(str("res://Scenes/Maps/LDTK/levels/Level_", level_number, ".scn"))
 	currentlevel = load(str("res://Scenes/Maps/LDTK/levels/Level_", level_number, ".scn")).instantiate()
 	self.add_child(currentlevel)
 	self.move_child(currentlevel, 0)

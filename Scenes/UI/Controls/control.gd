@@ -8,10 +8,10 @@ var terrain: TileMapLayer = null
 @onready var canvas_layer: CanvasLayer = $".."
 @onready var units : Node2D = $"../../Units"
 
-var confirmscene = preload("res://Scenes/UI/Confirmation.tscn")
-var scene = preload("res://Scenes/UI/pannelWindow.tscn")
+var confirmscene = preload("res://Scenes/UI/Controls/Confirmation.tscn")
+var scene = preload("res://Scenes/UI/EntityUI/pannelWindow.tscn")
 var pausescene = preload("res://Scenes/Menu/PauseScreen.tscn")
-var decksceneload = preload("res://Scenes/UI/DisplayDeck.tscn")
+var decksceneload = preload("res://Scenes/UI/CardsUI/DisplayDeck.tscn")
 var window = null
 var confirmWindow = null
 var pauseScreenWindow = null

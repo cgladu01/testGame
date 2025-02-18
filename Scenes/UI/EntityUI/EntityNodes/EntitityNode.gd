@@ -1,6 +1,6 @@
 class_name EntitiyNode extends Node2D
 
-var scene = preload("res://Scenes/UI/actionline.tscn")
+var scene = preload("res://Scenes/UI/EntityUI/actionline.tscn")
 var is_moving = false
 var entities: Entities
 var actionLine = null

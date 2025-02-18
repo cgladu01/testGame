@@ -6,7 +6,7 @@ class_name LogContainer extends Control
 var drag_position = null
 var expanded : bool = false
 var SIZECHANGE : int = 400
-var haplog = preload("res://Scenes/UI/HapsLogEntry.tscn")
+var haplog = preload("res://Scenes/UI/Logs/HapsLogEntry.tscn")
 
 func gainHap(hap: Hap):
 	var hapscene : HapContainer = haplog.instantiate()

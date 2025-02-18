@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://m7vfqn5u4rwb"]
 
-[ext_resource type="Script" path="res://Scenes/UI/log_container.gd" id="GDScript_k8s7a"]
+[ext_resource type="Script" path="res://Scenes/UI/Logs/log_container.gd" id="GDScript_k8s7a"]
 
 [node name="LogContainer" type="PanelContainer"]
 anchors_preset = 3

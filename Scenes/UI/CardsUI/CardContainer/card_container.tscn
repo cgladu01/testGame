@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cnc5wjy3jh1f5"]
 
-[ext_resource type="Script" path="res://Scenes/UI/card_container.gd" id="1_qaeou"]
+[ext_resource type="Script" path="res://Scenes/UI/CardsUI/CardContainer/card_container.gd" id="1_qaeou"]
 
 [node name="CardContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 320)

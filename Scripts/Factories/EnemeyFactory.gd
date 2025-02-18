@@ -1,6 +1,6 @@
 class_name EnemyFactory
 
-var enemyNode = preload("res://Scenes/Maps/EntityNode.tscn")
+var enemyNode = preload("res://Scenes/UI/EntityUI/EntityNodes/EntitityNode.gd")
 
 func createEnemy(name: String, start_node: EntitiyNode) -> Enemy:
 	Global.unitsNode.enemyUnits.add_child(start_node)

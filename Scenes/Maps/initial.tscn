@@ -4,12 +4,12 @@
 [ext_resource type="TileSet" uid="uid://bws6a6w1ivdry" path="res://tiles.tres" id="2_10fdo"]
 [ext_resource type="Script" path="res://Scenes/Maps/layerholder.gd" id="2_vqw1s"]
 [ext_resource type="Script" path="res://Scenes/Maps/selection.gd" id="3_5resf"]
-[ext_resource type="Script" path="res://Scenes/UI/control.gd" id="3_xrpyk"]
-[ext_resource type="Script" path="res://Scenes/Maps/Units.gd" id="4_hnyq6"]
-[ext_resource type="Script" path="res://Scenes/UI/button.gd" id="4_j5xhu"]
-[ext_resource type="PackedScene" uid="uid://c3fxgtfgclo04" path="res://Scenes/UI/actionMenu.tscn" id="5_ymabw"]
+[ext_resource type="Script" path="res://Scenes/UI/Controls/control.gd" id="3_xrpyk"]
+[ext_resource type="Script" path="res://Scenes/UI/EntityUI/EntityNodes/Units.gd" id="4_hnyq6"]
+[ext_resource type="Script" path="res://Scenes/UI/Controls/button.gd" id="4_j5xhu"]
+[ext_resource type="PackedScene" uid="uid://c3fxgtfgclo04" path="res://Scenes/UI/ActionMenu/actionMenu.tscn" id="5_ymabw"]
 [ext_resource type="PackedScene" uid="uid://dujclmvvguvt6" path="res://Astar2Grid.tscn" id="8_hqvw0"]
-[ext_resource type="PackedScene" uid="uid://m7vfqn5u4rwb" path="res://Scenes/UI/LogContainer.tscn" id="9_yj4n1"]
+[ext_resource type="PackedScene" uid="uid://m7vfqn5u4rwb" path="res://Scenes/UI/Logs/LogContainer.tscn" id="9_yj4n1"]
 
 [sub_resource type="Theme" id="Theme_vd5pf"]
 

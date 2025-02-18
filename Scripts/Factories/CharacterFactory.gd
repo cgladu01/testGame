@@ -1,7 +1,7 @@
 class_name CharacterFactory
 
 var basic_actions : Array[String] = ["Attack", "Defend"]
-var characterNode = preload("res://Scenes/Maps/CharacterNode.tscn")
+var characterNode = preload("res://Scenes/UI/EntityUI/EntityNodes/CharacterNode.tscn")
 
 func createCharacter(name: String, start_node: CharacterNode) -> Character:
 	if Global.unitsNode:

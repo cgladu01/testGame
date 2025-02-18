@@ -1,6 +1,6 @@
 extends GridContainer
 
-var card_container_scene = preload("res://Scenes/UI/card_container.tscn")
+var card_container_scene = preload("res://Scenes/UI/CardsUI/CardContainer/card_container.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

@@ -1,7 +1,7 @@
 extends Control
 @onready var grid_container: HBoxContainer = $HBoxContainer/Cards
 @onready var label: Label = $HBoxContainer/Label
-var card_container_scene = preload("res://Scenes/UI/card_container.tscn")
+var card_container_scene = preload("res://Scenes/UI/CardsUI/CardContainer/card_container.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
