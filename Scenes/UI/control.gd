@@ -92,16 +92,24 @@ func _unhandled_input(event: InputEvent) -> void:
 			pauseScreenWindow.queue_free()
 			pauseScreenWindow = null
 
-	elif  event.is_action_pressed("View Deck"):
+	elif event.is_action_pressed("View Combat Deck"):
 		if deckscene == null and character != null:
 			deckscene = decksceneload.instantiate()
 			canvas_layer.add_child(deckscene)
-			deckscene.dispDeck(character.combatDeck)
+			deckscene.dispCombatDeck(character.combatDeck.random_actions(character.deck), character.combatDeck.non_random_actions())
 		elif deckscene != null:
 			deckscene.queue_free()
 			deckscene = null
-		pass
 	
+	elif event.is_action_pressed("View Deck"):
+		if deckscene == null and character != null:
+			deckscene = decksceneload.instantiate()
+			canvas_layer.add_child(deckscene)
+			deckscene.dispDeck(character.deck)
+		elif deckscene != null:
+			deckscene.queue_free()
+			deckscene = null
+			
 	elif event.is_action_pressed("Pitch"):
 		Global.select_mode = PitchMode.new()
 		Global.select_mode.setup(character)

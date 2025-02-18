@@ -18,9 +18,9 @@ func removeAction(action : Action):
 	actions.remove_at(number)
 
 func generateCombatDeck() -> CombatDeck:
-	var combadeck: CombatDeck = CombatDeck.new()
-	combadeck.setup(actions)
-	return combadeck
+	var combatdeck: CombatDeck = CombatDeck.new()
+	combatdeck.setup(actions)
+	return combatdeck
 
 func insertAtPos(action: Action, pos: int):
 	actions.insert(pos, action)
@@ -42,6 +42,14 @@ func draw(count: int) -> Array[Action]:
 		
 func removeAtPos(pos: int):
 	actions.remove_at(pos)
+
+func intersect(compared_actions: Array[Action]) -> Array[Action]:
+	var resulting_actions : Array[Action] = []
+	for action in actions:
+		if action in compared_actions:
+			resulting_actions.append(action)
+	
+	return resulting_actions
 
 func addActions(newactions : Array[Action]):
 	actions.append_array(newactions)
