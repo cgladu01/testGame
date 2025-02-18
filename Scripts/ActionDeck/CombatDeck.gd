@@ -35,6 +35,5 @@ func non_random_actions() -> Array[Action]:
 	for x in range(actions.size() - pitched_cards, actions.size()):
 		returner.append(actions[x])
 	
-	print(returner)
 	return returner
 		 

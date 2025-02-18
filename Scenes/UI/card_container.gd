@@ -6,6 +6,7 @@ class_name CardContainer extends PanelContainer
 
 var action : Action = null
 var selectionNumber: Label = null
+var isCardInpsection = false
 
 func setAction(action : Action):
 	
@@ -18,10 +19,12 @@ func setAction(action : Action):
 
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.pressed and Global.select_mode == null:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Global.select_mode == null:
 			action.button_pressed()
-		elif event.pressed:
+		elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			onSelect()
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and not isCardInpsection:
+			print("Right Click")
 			
 func onSelect():
 	Global.select_mode.selectedAction(action)
