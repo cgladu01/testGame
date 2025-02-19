@@ -6,7 +6,8 @@ class_name CardContainer extends PanelContainer
 
 var action : Action = null
 var selectionNumber: Label = null
-var isCardInpsection = false
+var inspect_resource = preload("res://Scenes/UI/CardsUI/CardInspect.tscn")
+var inspect_scene = null
 
 func setAction(action : Action):
 	
@@ -23,8 +24,16 @@ func _on_gui_input(event:InputEvent) -> void:
 			action.button_pressed()
 		elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
 			onSelect()
-		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed and not isCardInpsection:
-			print("Right Click")
+		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
+			if inspect_scene == null:
+				inspect_scene = inspect_resource.instantiate()
+				for child in get_tree().get_root().get_child(1).get_children():
+					if child is CanvasLayer:
+						child.add_child(inspect_scene)
+						child.move_child(inspect_scene, -1)
+
+				inspect_scene.setAction(action)
+
 
 # Handles the Select Mode interactions			
 func onSelect():
