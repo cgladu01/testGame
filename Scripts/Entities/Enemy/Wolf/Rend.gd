@@ -11,4 +11,4 @@ func execute():
     owner.do_enemy_move(4)
     if Global.tileManager.distance(owner.location, target.location) <= 1:
         owner.attack(10, target)
-        target.addStatus(Bleed.new().setup_Status(1), owner)
+        target.addStatus(Bleed.new().setup_Status(1, target), owner)

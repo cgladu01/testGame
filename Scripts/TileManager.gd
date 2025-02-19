@@ -164,6 +164,35 @@ func get_tile_type_from_atlas(source_id: int, atlas_cord: Vector2i) -> Tile:
 		newTile = EmptyTile.new()
 	return newTile
 
+func get_entities_within(location: Vector2i, max_dist : int, enemy: int = 1) -> Array[Entities]:
+	var returner : Array[Entities] = []
+	for x in range(0, max_dist + 1):
+		for y in range(0, max_dist + 1 - x):
+			if (x == 0 and y == 0):
+				continue
+
+			var array = []
+			if x == 0 or y == 0:
+				array.append_array([
+					location + Vector2i(x, y),
+					location - Vector2i(x, y),
+				])
+			else:
+				array.append_array([
+					location + Vector2i(x, y),
+					location - Vector2i(x, y),
+					location + Vector2i(-x, y),
+					location + Vector2i(x, -y)
+				])
+
+			print(array)
+
+			for pot in array:
+				if get_tile_entity(pot) is Enemy and enemy == 1:
+					returner.append(get_tile_entity(pot))
+
+	return returner
+
 
 func _init():
 	pass

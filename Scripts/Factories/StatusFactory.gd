@@ -11,5 +11,4 @@ func createStatus(name: String, count: int) -> Status:
 		_:
 			status = Status.new()
 			
-	status.setup_Status(count)
 	return status

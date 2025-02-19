@@ -7,6 +7,8 @@ var cost : int = 1
 var description : String = "Undefined"
 var image_path : String = ""
 var container : CardContainer = null
+var type : int = 0
+var upgraded : int = 0
 
 signal executed
 

@@ -10,6 +10,6 @@ func setup(owner: Enemy):
 func execute():
 	owner.gainBlock(7)
 	var buff = Strength.new()
-	buff.setup_Status(1)
+	buff.setup_Status(1, owner)
 	owner.addStatus(buff, owner)
 	
