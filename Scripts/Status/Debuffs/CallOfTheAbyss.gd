@@ -8,7 +8,7 @@ func setup_Status(start_count : int, new_owner: Entities) -> Status:
 func roundStart():
     decrementCount()
 
-func decrementCount():
-    super()
-    if count == 0:
+func decrementCount(times : int = 1):
+    super(times)
+    if count <= 0:
         owner.change_health(-50)

@@ -17,11 +17,11 @@ func roundStart():
 func roundEnd():
 	pass
 
-func decrementCount():
-	count = count - 1
+func decrementCount(times: int =1):
+	count = count - times
 
-func incrementCount():
-	count = count + 1
+func incrementCount(times : int = 1):
+	count = count + times
 
 func deffendEffect(incoming: int, target : Entities, attacker: Entities) -> int:
 	return incoming

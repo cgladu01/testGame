@@ -71,6 +71,16 @@ func get_tile(location : Vector3i) -> Tile:
 	
 	return tiles[location.x][location.y][location.z]
 
+func get_floor_tile(location : Vector3i) -> Tile:
+	if location.x >= width or location.x < 0:
+		return
+	elif location.y >= height or location.y < 0:
+		return
+	elif location.z >= depth or location.z < 0:
+		return
+	
+	return tiles[location.x][location.y][location.z]
+
 func get_tile_entity(location : Vector2i) -> Tile:
 	if location.x >= width or location.x < 0:
 		return
@@ -185,7 +195,6 @@ func get_entities_within(location: Vector2i, max_dist : int, enemy: int = 1) -> 
 					location + Vector2i(x, -y)
 				])
 
-			print(array)
 
 			for pot in array:
 				if get_tile_entity(pot) is Enemy and enemy == 1:

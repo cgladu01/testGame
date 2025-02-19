@@ -8,8 +8,17 @@ func setup(owner: Entities):
 
 func button_pressed():
     Global.actionSelection(self)
+    Global.selectionTile.markTiles(owner.location, 0, 4)
 
 func execute():
     if canPlay():
-        print(Global.tileManager.get_entities_within(owner.location, 3))
+        for enemy in Global.tileManager.get_entities_within(owner.location, 3):
+            enemy.addStatus(CallOfTheAbyss.new().setup_Status(4, enemy), owner)
+        
+        if owner.hasStatus("Call of the Abyss") == null:
+            owner.addStatus(CallOfTheAbyss.new().setup_Status(5, owner), owner)
+        else:
+            owner.hasStatus("Call of the Abyss").incrementCount(2)
+
+
     super()

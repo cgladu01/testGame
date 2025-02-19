@@ -55,6 +55,8 @@ func addStatus(status: Status, sender: Entities):
 				break
 		if not exists:
 			statuses.append(status)
+	else:
+		statuses.append(status)
 
 	entityUpdate.emit()
 
@@ -103,6 +105,8 @@ func gainBlock(differnce : int):
 
 func roundStart():
 	block = 0
+	for status in statuses:
+		status.roundStart()
 
 func changeNode(new_node: EntitiyNode):
 	node = new_node
@@ -110,6 +114,12 @@ func changeNode(new_node: EntitiyNode):
 		setup(Global.tile_map_layer.local_to_map(new_node.position))
 		node.set_entity(self)
 
+func hasStatus(status_name: String) -> Status:
+	for status in statuses:
+		if status.name == status_name:
+			return status
+	
+	return null
 
 func combatStart():
 	pass
