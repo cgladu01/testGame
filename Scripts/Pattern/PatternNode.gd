@@ -33,50 +33,50 @@ func proccess_event(starting_tile : Tile, rotation : int = 0):
     match rotation:
         0:
             if up != null:
-                up.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, 1)))
+                up.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, 1)), rotation)
 
             if right != null:
-                right.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(1, 0)))
+                right.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(1, 0)), rotation)
 
             if down != null:
-                down.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)))
+                down.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)), rotation)
 
             if left != null:
-                left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(-1, 0)))
+                left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(-1, 0)), rotation)
         1:
             if up != null:
-                up.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(1, 0)))
+                up.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(1, 0)), rotation)
 
             if right != null:
-                right.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)))
+                right.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)), rotation)
 
             if down != null:
-                down.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(-1, 0)))
+                down.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(-1, 0)), rotation)
 
             if left != null:
-                left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, 1)))
+                left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, 1)), rotation)
         2:
             if up != null:
-                up.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)))
+                up.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)), rotation)
 
             if right != null:
-                right.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(-1, 0)))
+                right.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(-1, 0)), rotation)
 
             if down != null:
-                down.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, 1)))
+                down.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, 1)), rotation)
 
             if left != null:
-                left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(1, 0)))
+                left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(1, 0)), rotation)
         3:
             if up != null:
-                up.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)))
+                up.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)), rotation)
 
             if right != null:
-                right.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, 1)))
+                right.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, 1)), rotation)
 
             if down != null:
-                down.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(-1, 0)))
+                down.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(-1, 0)), rotation)
 
             if left != null:
-                left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)))
+                left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)), rotation)
         
