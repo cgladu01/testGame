@@ -21,6 +21,9 @@ func createAction(name : String, owner : Entities) -> Action:
 		"Bear Witness":
 			action = BearWitness.new()
 			action.setup(owner)
+		"Thorn Barrage":
+			action = ThornBarrage.new()
+			action.setup(owner)
 		_:
 			action= Action.new()
 			action.setup_placeholder(name, owner)

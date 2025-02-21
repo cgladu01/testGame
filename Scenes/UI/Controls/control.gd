@@ -41,16 +41,22 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	var mouse_pos = get_viewport().get_mouse_position()
 	var tile = selection.local_to_map(mouse_pos)
-	selection.set_cell(lastHover, 11, lastHoverSelection)
-	
-	if prevSpot != tile:
-		lastHover = tile
-		lastHoverSelection = selection.get_cell_atlas_coords(tile)
-		selection.set_cell(tile, 11, Vector2i(3,7))
-	elif selection.get_cell_atlas_coords(tile) != Vector2i(3, 0):
-		prevSelection = lastHoverSelection
-		lastHoverSelection = Vector2i(3,0)
-		selection.set_cell(tile, 11, Vector2i(3,0))
+
+	if Global.currentAction is SplashAction:
+		var splashAction = Global.currentAction as SplashAction
+		splashAction.hover_event(lastHover, 0, true)
+		splashAction.hover_event(tile, 0, false)
+	else:
+		selection.set_cell(lastHover, 11, lastHoverSelection)
+		
+		if prevSpot != tile:
+			lastHover = tile
+			lastHoverSelection = selection.get_cell_atlas_coords(tile)
+			selection.set_cell(tile, 11, Vector2i(3,7))
+		elif selection.get_cell_atlas_coords(tile) != Vector2i(3, 0):
+			prevSelection = lastHoverSelection
+			lastHoverSelection = Vector2i(3,0)
+			selection.set_cell(tile, 11, Vector2i(3,0))
 
 
 func _gui_input(event: InputEvent) -> void:

@@ -1,4 +1,4 @@
-class_name ThornBarrage extends TargetedAction
+class_name ThornBarrage extends SplashAction
 
 func setup(owner: Entities):
     name = "Thorn Barrage"
@@ -14,6 +14,8 @@ func setup(owner: Entities):
     var initial_pattern = PatternNode.new()
     initial_pattern.setup(behavior)
 
+    patternNode = initial_pattern
+
     var right_pattern = PatternNode.new()
     right_pattern.setup(behavior, null, null, null, initial_pattern)
 
@@ -28,7 +30,7 @@ func button_pressed():
 
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
-    if not startTile or not endTile:
+    if not starttile or not tileManager:
         return false
-    
+
     return true

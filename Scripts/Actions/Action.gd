@@ -19,6 +19,8 @@ func setup_placeholder(init_name: String, owner : Entities):
 	name = init_name
 	setup(owner)
 
+func hover_action(current_tile: Vector2i):
+	pass
 
 func button_pressed():
 	print("Do nothing")
