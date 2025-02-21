@@ -20,6 +20,9 @@ func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bo
 		path = potPath
 		Global.selectionTile.markTiles(owner.location, 0, 5)
 		Global.selectionTile.highlightpath(path)
+	else:
+		Global.selectionTile.clear()
+		Global.selectionTile.markTiles(owner.location, 0, 5)
 
 	return potPath.size() != 0 and potPath.size() <= 5
 

@@ -21,6 +21,10 @@ var confirmWindow = null
 var pauseScreenWindow = null
 var deckscene = null
 
+# Hover related stuff
+var lastHover : Vector2i = Vector2i(0,0)
+var lastHoverSelection : Vector2i = Vector2i(3, 12)
+
 var prevSpot : Vector2i = Vector2i(0, 0)
 var tileManager : TileManager = null
 var character : Character = null
@@ -35,7 +39,19 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	pass
+	var mouse_pos = get_viewport().get_mouse_position()
+	var tile = selection.local_to_map(mouse_pos)
+	selection.set_cell(lastHover, 11, lastHoverSelection)
+	
+	if prevSpot != tile:
+		lastHover = tile
+		lastHoverSelection = selection.get_cell_atlas_coords(tile)
+		selection.set_cell(tile, 11, Vector2i(3,7))
+	elif selection.get_cell_atlas_coords(tile) != Vector2i(3, 0):
+		prevSelection = lastHoverSelection
+		lastHoverSelection = Vector2i(3,0)
+		selection.set_cell(tile, 11, Vector2i(3,0))
+
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:
@@ -54,11 +70,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			selection.set_cell(prevSpot, 11, prevSelection)
 		if tile_mouse_pos == prevSpot and is_instance_valid(confirmWindow):
 			confirmWindow._on_confirm_pressed()
-
 		prevSpot = tile_mouse_pos
-		prevSelection = selection.get_cell_atlas_coords(prevSpot)
-		selection.set_cell(tile_mouse_pos, 11, Vector2i(3,7))
-		
 
 		var tile = tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1))
 
