@@ -46,16 +46,16 @@ func _process(delta: float) -> void:
 	if Global.currentAction is SplashAction:
 		var splashAction = Global.currentAction as SplashAction
 		if not click:
-			splashAction.hover_event(lastHover, 0, true)
+			splashAction.hover_event(lastHover, true)
 
 		if prevSpot != tile:
 			click = false
 			lastHover = tile
-			splashAction.hover_event(tile, 0, false)
+			splashAction.hover_event(tile, false)
 		elif selection.get_cell_atlas_coords(tile) != Vector2i(3, 0):
 			click = true
 			prevSelection = Vector2i(-1,-1)
-			splashAction.click_event(tile, 0, false)
+			splashAction.click_event(tile, false)
 
 	else:
 		if not click:
@@ -89,7 +89,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			if Global.currentAction is SplashAction:
 				var splashAction = Global.currentAction as SplashAction
-				splashAction.click_event(prevSpot, 0, true)
+				splashAction.click_event(prevSpot, true)
 			else:
 				selection.set_cell(prevSpot, 11, prevSelection)
 

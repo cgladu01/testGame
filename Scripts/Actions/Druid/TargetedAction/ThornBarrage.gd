@@ -3,7 +3,7 @@ class_name ThornBarrage extends SplashAction
 func setup(owner: Entities):
     name = "Thorn Barrage"
     description = "Attack 6, Inflict 2 Bleed twice in a wall pattern within range 3."
-
+    cost = 2
     var behavior = func (endTile : Tile) : 
         if endTile is Enemy:
             var target = endTile as Enemy
@@ -26,7 +26,7 @@ func setup(owner: Entities):
 
 func button_pressed():
     Global.actionSelection(self)
-    Global.selectionTile.markTiles(owner.location, 0, 4)
+    Global.selectionTile.markTilesInLine(owner.location, 0, 4)
 
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
@@ -41,6 +41,6 @@ func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bo
     return super(starttile, endtile, tileManager)
 
 func execute():
-    super()
-    super()
-
+    if canPlay():
+        patternNode.proccess_event(self.endTile, find_rotation(self.endTile.location))
+        patternNode.proccess_event(self.endTile, find_rotation(self.endTile.location))

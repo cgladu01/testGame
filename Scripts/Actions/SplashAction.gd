@@ -2,17 +2,32 @@ class_name SplashAction extends TargetedAction
 
 var patternNode : PatternNode = null
 
-func hover_event(starting_tile : Vector2i, rotation : int = 0, unhover: bool = false):
-	patternNode.hover_event(starting_tile, rotation, unhover)
+func hover_event(starting_tile : Vector2i, unhover: bool = false):
+	patternNode.hover_event(starting_tile, find_rotation(starting_tile), unhover)
 
-
-func click_event(starting_tile : Vector2i, rotation : int = 0, unhover: bool = false):
-	patternNode.click_event(starting_tile, rotation, unhover)
+func click_event(starting_tile : Vector2i, unhover: bool = false):
+	patternNode.click_event(starting_tile, find_rotation(starting_tile), unhover)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
-	return patternNode.verify_event(endtile.location, 0)
+	return patternNode.verify_event(endtile.location, find_rotation(endTile.location))
 
 func execute():
-	if canPlay() and validTarget(startTile, endTile, Global.tileManager):
-		patternNode.proccess_event(endTile, 0)
+	super()
 
+func canPlay():
+	return super() and validTarget(startTile, endTile, Global.tileManager)
+
+func find_rotation(start_tile: Vector2i) -> int:
+	# Same x or y
+	if start_tile.x == owner.location.x:
+		# Up or down
+		if start_tile.y >= owner.location.y:
+			return 0
+		else:
+			return 2
+	else:
+		#Right or left
+		if start_tile.x >= owner.location.x:
+			return 1
+		else:
+			return 3
