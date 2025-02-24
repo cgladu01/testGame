@@ -13,7 +13,7 @@ func post_import(entity_layer: LDTKEntityLayer) -> LDTKEntityLayer:
 		if entity.identifier == "CharacterStart":
 			var characterNode = CharacterNode.new()
 			characterNode.name = str("Character ", entity.fields["CharacterNum"])
-			characterNode.characterNum = entity.fields["CharacterNum"]
+			characterNode.set_meta("number", entity.fields["CharacterNum"])
 			characterNode.position = match_to_local(entity.position, tiles)
 			entity_layer.add_child(characterNode)
 		elif entity.identifier == "Enemy":

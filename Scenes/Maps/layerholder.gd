@@ -30,8 +30,8 @@ func generate_level(level_number: int):
 		
 		if entity is CharacterNode:
 			var characterNode: CharacterNode = entity as CharacterNode
-			if Global.characters.is_empty() and Global.characterNames[characterNode.characterNum] != "":
-				Global.characterFactory.createCharacter(Global.characterNames[characterNode.characterNum], characterNode)
+			if Global.characterNames[characterNode.get_meta("number") - 1] != "" and Global.characters.size() < 2:
+				Global.characterFactory.createCharacter(Global.characterNames[characterNode.get_meta("number") - 1], characterNode)
 			else:
 				characterNode.queue_free()
 		else:

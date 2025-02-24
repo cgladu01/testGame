@@ -35,7 +35,7 @@ var unitsNode = null
 # Arrays of characters and enemies
 var characters : Array[Character] = []
 var enemies : Array[Enemy] = []
-var characterNames : Array[String] = ["DudeMan", "", ""]
+var characterNames : Array[String] = ["DudeMan", "Druid", ""]
 
 # Updates the energy shown in the bottom left
 signal update_energy

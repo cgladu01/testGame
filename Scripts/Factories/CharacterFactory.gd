@@ -21,6 +21,10 @@ func createCharacter(name: String, start_node: CharacterNode) -> Character:
 			start_health = 100
 			mini_portrait = "res://icons/789_Lorc_RPG_icons/Icons8_32.png"
 			starter_deck.append(Global.actionFactory.createAction("Bash", character))
+		"Druid":
+			start_health = 100
+			mini_portrait = "res://icons/789_Lorc_RPG_icons/Icons8_32.png"
+			starter_deck.append(Global.actionFactory.createAction("Bash", character))
 			starter_deck.append(Global.actionFactory.createAction("Thorn Barrage", character))
 		_:
 			start_health = 10

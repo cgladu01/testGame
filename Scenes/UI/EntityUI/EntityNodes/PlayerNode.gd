@@ -12,6 +12,7 @@ func _process(delta: float) -> void:
 	pass
 
 func set_character(character: Character):
+	set_entity(character)
 	self.character = character
 
 func refresh_Actions():
