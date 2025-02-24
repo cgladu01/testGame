@@ -7,6 +7,7 @@ var down : PatternNode = null
 var behavior : Callable = func (): print("uhhh")
 var select : bool = true
 var previous : Vector2i = Vector2i(3, 12)
+var previousClick: Vector2i = Vector2i(3,7)
 
 func setup(initial_behavior : Callable, up : PatternNode = null, right: PatternNode = null, down : PatternNode = null, left : PatternNode = null):
     behavior = initial_behavior
@@ -36,7 +37,7 @@ func hover_event(starting_tile : Vector2i, rotation : int, unhover: bool = false
 
     if select and not unhover:
         previous = Global.selectionTile.get_cell_atlas_coords(starting_tile)
-        Global.selectionTile.set_cell(starting_tile, 11, Vector2i(3,0))
+        Global.selectionTile.set_cell(starting_tile, 11, Vector2i(3,7))
     elif select and unhover:
         Global.selectionTile.set_cell(starting_tile, 11, previous)
 
@@ -137,4 +138,56 @@ func proccess_event(starting_tile : Tile, rotation : int = 0, visited : Array[Pa
 
             if left != null:
                 left.proccess_event(Global.tileManager.get_tile_entity(starting_tile.location + Vector2i(0, -1)), rotation, visited)
-        
+
+
+func click_event(starting_tile : Vector2i, rotation : int, unhover: bool = false, visited: Array[PatternNode] = []):
+    if visited.has(self):
+        return
+    else:
+        visited.append(self)
+
+
+    if select and not unhover:
+        previousClick = previous
+        Global.selectionTile.set_cell(starting_tile, 11, Vector2i(3,0))
+    elif select and unhover:
+        Global.selectionTile.set_cell(starting_tile, 11, previousClick)
+
+    match rotation:
+        0:
+            if up != null:
+                up.click_event(starting_tile + Vector2i(0, 1), rotation, unhover, visited)
+            if right != null:
+                right.click_event(starting_tile + Vector2i(1, 0), rotation, unhover, visited)
+            if down != null:
+                down.click_event(starting_tile + Vector2i(0, -1), rotation, unhover, visited)
+            if left != null:
+                left.click_event(starting_tile + Vector2i(-1, 0), rotation, unhover, visited)
+        1:
+            if up != null:
+                up.click_event(starting_tile + Vector2i(1, 0), rotation, unhover, visited)
+            if right != null:
+                right.click_event(starting_tile + Vector2i(0, -1), rotation, unhover, visited)
+            if down != null:
+                down.click_event(starting_tile + Vector2i(-1, 0), rotation, unhover, visited)
+            if left != null:
+                left.click_event(starting_tile + Vector2i(0, 1), rotation, unhover, visited)
+        2:
+            if up != null:
+                up.click_event(starting_tile + Vector2i(0, -1), rotation, unhover, visited)
+            if right != null:
+                right.click_event(starting_tile + Vector2i(-1, 0), rotation, unhover, visited)
+            if down != null:
+                down.click_event(starting_tile + Vector2i(0, 1), rotation, unhover, visited)
+            if left != null:
+                left.click_event(starting_tile + Vector2i(1, 0), rotation, unhover, visited)
+        3:
+            if up != null:
+                up.click_event(starting_tile + Vector2i(-1, 0), rotation, unhover, visited)
+            if right != null:
+                right.click_event(starting_tile + Vector2i(0, 1), rotation, unhover, visited)
+            if down != null:
+                down.click_event(starting_tile + Vector2i(1, 0), rotation, unhover, visited)
+            if left != null:
+                left.click_event(starting_tile + Vector2i(0, -1), rotation, unhover, visited)
+

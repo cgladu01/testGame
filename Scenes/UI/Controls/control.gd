@@ -24,6 +24,7 @@ var deckscene = null
 # Hover related stuff
 var lastHover : Vector2i = Vector2i(0,0)
 var lastHoverSelection : Vector2i = Vector2i(3, 12)
+var click : bool = false
 
 var prevSpot : Vector2i = Vector2i(0, 0)
 var tileManager : TileManager = null
@@ -44,18 +45,30 @@ func _process(delta: float) -> void:
 
 	if Global.currentAction is SplashAction:
 		var splashAction = Global.currentAction as SplashAction
-		splashAction.hover_event(lastHover, 0, true)
-		splashAction.hover_event(tile, 0, false)
+		if not click:
+			splashAction.hover_event(lastHover, 0, true)
+
+		if prevSpot != tile:
+			click = false
+			lastHover = tile
+			splashAction.hover_event(tile, 0, false)
+		elif selection.get_cell_atlas_coords(tile) != Vector2i(3, 0):
+			click = true
+			prevSelection = Vector2i(-1,-1)
+			splashAction.click_event(tile, 0, false)
+
 	else:
-		selection.set_cell(lastHover, 11, lastHoverSelection)
+		if not click:
+			selection.set_cell(lastHover, 11, lastHoverSelection)
 		
 		if prevSpot != tile:
+			click = false
 			lastHover = tile
 			lastHoverSelection = selection.get_cell_atlas_coords(tile)
 			selection.set_cell(tile, 11, Vector2i(3,7))
 		elif selection.get_cell_atlas_coords(tile) != Vector2i(3, 0):
+			click = true
 			prevSelection = lastHoverSelection
-			lastHoverSelection = Vector2i(3,0)
 			selection.set_cell(tile, 11, Vector2i(3,0))
 
 
@@ -73,11 +86,17 @@ func _unhandled_input(event: InputEvent) -> void:
 		var mouse_pos = get_global_mouse_position()
 		var tile_mouse_pos = terrain.local_to_map(mouse_pos)
 		if tile_mouse_pos != prevSpot and prevSelection != Vector2i(2,7):
-			selection.set_cell(prevSpot, 11, prevSelection)
+			
+			if Global.currentAction is SplashAction:
+				var splashAction = Global.currentAction as SplashAction
+				splashAction.click_event(prevSpot, 0, true)
+			else:
+				selection.set_cell(prevSpot, 11, prevSelection)
+
 		if tile_mouse_pos == prevSpot and is_instance_valid(confirmWindow):
 			confirmWindow._on_confirm_pressed()
 		prevSpot = tile_mouse_pos
-
+		click = true
 		var tile = tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1))
 
 		# If tile is entity display enemy actions or if character display hand
