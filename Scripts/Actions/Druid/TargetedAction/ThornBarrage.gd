@@ -26,11 +26,21 @@ func setup(owner: Entities):
 
 func button_pressed():
     Global.actionSelection(self)
-    Global.selectionTile.markTiles(owner.location, 0, 3)
+    Global.selectionTile.markTiles(owner.location, 0, 4)
 
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
-    if not starttile or not tileManager:
+    startTile = starttile
+    endTile = endtile
+
+    if Global.tileManager.distance(startTile.location, endTile.location) > 3:
+        return false
+    elif  startTile.location.x != endTile.location.x and startTile.location.y != endTile.location.y:
         return false
 
-    return true
+    return super(starttile, endtile, tileManager)
+
+func execute():
+    super()
+    super()
+
