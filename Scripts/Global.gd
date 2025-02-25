@@ -15,6 +15,9 @@ func actionSelection(selected_action: Action):
 # Impassable Objects on the board. Not used rn.
 var impassableList = []
 
+# Combat is still active or not
+var combatActive = true
+
 # Represents the board
 var tileshift : Vector2 = Vector2(1,1)
 var tileShift : Vector2i = Vector2i(1, 1)

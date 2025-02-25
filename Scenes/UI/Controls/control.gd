@@ -27,6 +27,8 @@ var deckscene = null
 var character_hands_load = preload("res://Scenes/UI/CardsUI/SeeAllHands.tscn")
 var character_hands_scene = null
 
+var rewardScreen = preload("res://Scenes/Menu/RewardsScreen.tscn")
+
 # Hover related stuff
 var lastHover : Vector2i = Vector2i(0,0)
 var lastHoverSelection : Vector2i = Vector2i(3, 12)
@@ -43,6 +45,7 @@ func _ready() -> void:
 	Global.confirmationWindow.connect(_makeConfirmationWindow)
 	Global.roundStart.connect(_onRoundStart)
 	Global.update_hand.connect(_onUpdateHand)
+	Global.combatEnd.connect(_combatEnd)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -106,7 +109,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		var tile = tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1))
 
 		# If tile is entity display enemy actions or if character display hand
-		if tile is Entities:
+		if tile is Entities and Global.combatActive:
 			
 			if tile is Character:
 				character = tile as Character
@@ -188,6 +191,9 @@ func _onRoundStart():
 func _onUpdateHand():
 	if character:
 		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
+
+func _combatEnd():
+	canvas_layer.add_child(rewardScreen.instantiate())
 
 func _makeConfirmationWindow():
 	if confirmWindow == null:

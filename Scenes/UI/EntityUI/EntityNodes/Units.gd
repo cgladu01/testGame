@@ -74,12 +74,16 @@ func _on_enemy_foresight_button_up() -> void:
 	clearActionLine()
 
 func _on_entity_death():
-	for i in Global.enemies.size():
+	for i in range(0, Global.enemies.size()):
 		var enemy : Entities = Global.enemies[i]
 		if enemy.get_health() == 0:
 			enemy.node.queue_free()
 			Global.enemies.remove_at(i)
+			if Global.enemies.size() == 0:
+				Global.combatActive = false
+				Global.combatEnd.emit()
 			break
+
 
 # Plan to make lose on any character death so will have to make a lose screen
 func _on_character_death():

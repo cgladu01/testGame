@@ -33,6 +33,8 @@ func random_actions(standard_deck : Deck) -> Array[Action]:
 func non_random_actions() -> Array[Action]:
 	var returner : Array[Action] = []
 	for x in range(actions.size() - pitched_cards, actions.size()):
+		if x <= 0:
+			break
 		returner.append(actions[x])
 	
 	return returner
