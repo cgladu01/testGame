@@ -12,14 +12,20 @@ var terrain: TileMapLayer = null
 @onready var canvas_layer: CanvasLayer = $".."
 @onready var units : Node2D = $"../../Units"
 
-var confirmscene = preload("res://Scenes/UI/Controls/Confirmation.tscn")
 var scene = preload("res://Scenes/UI/EntityUI/pannelWindow.tscn")
-var pausescene = preload("res://Scenes/Menu/PauseScreen.tscn")
-var decksceneload = preload("res://Scenes/UI/CardsUI/DisplayDeck.tscn")
 var window = null
+
+var confirmscene = preload("res://Scenes/UI/Controls/Confirmation.tscn")
 var confirmWindow = null
+
+var pausescene = preload("res://Scenes/Menu/PauseScreen.tscn")
 var pauseScreenWindow = null
+
+var decksceneload = preload("res://Scenes/UI/CardsUI/DisplayDeck.tscn")
 var deckscene = null
+
+var character_hands_load = preload("res://Scenes/UI/CardsUI/SeeAllHands.tscn")
+var character_hands_scene = null
 
 # Hover related stuff
 var lastHover : Vector2i = Vector2i(0,0)
@@ -156,6 +162,15 @@ func _unhandled_input(event: InputEvent) -> void:
 		Global.select_mode = PitchMode.new()
 		Global.select_mode.setup(character)
 		_makeConfirmationWindow()
+	
+	elif event.is_action_pressed("See All Hands"):
+		if character_hands_scene == null:
+			character_hands_scene = character_hands_load.instantiate()
+			canvas_layer.add_child(character_hands_scene)
+			character_hands_scene.displayAllHands()
+		elif character_hands_scene != null:
+			character_hands_scene.queue_free()
+			deckscene = null
 
 
 	elif event is InputEventKey:

@@ -8,21 +8,23 @@ var action : Action = null
 var selectionNumber: Label = null
 var inspect_resource = preload("res://Scenes/UI/CardsUI/CardInspect.tscn")
 var inspect_scene = null
+var unplayable = false 
 
-func setAction(action : Action):
+func setAction(action : Action, s_unplayable = false):
 	
 	self.action = action 
 	# self.cardImage = 
 	self.cardName.text = action.name
 	self.cardDescription.text = action.description
 	action.container = self
+	unplayable = s_unplayable
 
 # Activate card on left click and inspect card on right click
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
-		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Global.select_mode == null:
+		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Global.select_mode == null and not unplayable:
 			action.button_pressed()
-		elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT:
+		elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not unplayable:
 			onSelect()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			if inspect_scene == null:

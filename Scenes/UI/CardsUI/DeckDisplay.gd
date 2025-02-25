@@ -18,7 +18,7 @@ func dispDeck(deck: Deck):
 		padding.add_theme_constant_override("margin_top", y)
 		padding.size = Vector2(x, y)
 		self.add_child(cardcontainer)
-		cardcontainer.setAction(action)
+		cardcontainer.setAction(action, true)
 
 # Combat deck has special rules to not display cards in order so it needs to new which cards are "known"
 func dispCombatDeck(random_actions: Array[Action], ordered_actions : Array[Action]):
@@ -32,7 +32,7 @@ func dispCombatDeck(random_actions: Array[Action], ordered_actions : Array[Actio
 		padding.add_theme_constant_override("margin_top", y)
 		padding.size = Vector2(x, y)
 		self.add_child(cardcontainer)
-		cardcontainer.setAction(action)
+		cardcontainer.setAction(action, true)
 		
 	for action in ordered_actions:
 		var padding = MarginContainer.new()
@@ -44,7 +44,7 @@ func dispCombatDeck(random_actions: Array[Action], ordered_actions : Array[Actio
 		padding.add_theme_constant_override("margin_top", y)
 		padding.size = Vector2(x, y)
 		self.add_child(cardcontainer)
-		cardcontainer.setAction(action)
+		cardcontainer.setAction(action, true)
 
 
 
