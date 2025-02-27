@@ -64,6 +64,9 @@ signal entityDeath
 #Signal for characterdeath
 signal characterDeath
 
+# Signal to show previous click for confirm
+signal confirm_pressed
+
 # Is the log container in the bottom right of screen
 var log_container
 

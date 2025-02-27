@@ -36,7 +36,7 @@ func handleDraw(drawCount: int):
 		if discardDeck.actions.is_empty():
 			return
 		else: 
-			combatDeck.addActions(discardDeck.empty())
+			combatDeck.shuffle_in(discardDeck.empty())
 			handleDraw(drawCount - amount)
 	else:
 		hand.addActions(combatDeck.draw(drawCount))

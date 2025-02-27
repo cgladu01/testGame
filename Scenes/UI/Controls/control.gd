@@ -46,6 +46,7 @@ func _ready() -> void:
 	Global.roundStart.connect(_onRoundStart)
 	Global.update_hand.connect(_onUpdateHand)
 	Global.combatEnd.connect(_combatEnd)
+	Global.confirm_pressed.connect(_on_confirm_pressed)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -199,3 +200,12 @@ func _makeConfirmationWindow():
 	if confirmWindow == null:
 		confirmWindow = confirmscene.instantiate()
 		canvas_layer.add_child(confirmWindow)
+
+func _on_confirm_pressed():
+	if Global.currentAction is SplashAction:
+		var splashAction = Global.currentAction as SplashAction
+		splashAction.click_event(prevSpot, true)
+	else:
+		selection.set_cell(prevSpot, 11, prevSelection)
+	
+	prevSpot = Vector2i(-1,-1)

@@ -22,6 +22,8 @@ func dispDeck(deck: Deck):
 
 # Combat deck has special rules to not display cards in order so it needs to new which cards are "known"
 func dispCombatDeck(random_actions: Array[Action], ordered_actions : Array[Action]):
+	if random_actions.size() + ordered_actions.size() == 0:
+		print("No cards in deck")
 	for action in random_actions:
 		var padding = MarginContainer.new()
 		self.add_child(padding)

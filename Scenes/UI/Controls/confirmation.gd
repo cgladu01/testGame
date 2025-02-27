@@ -11,11 +11,13 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_deny_pressed() -> void:
+	print("deny")
 	if Global.select_mode != null:
 		Global.select_mode.onDecline()
 	end()
 
 func _on_confirm_pressed() -> void:
+	print("Confirm")
 	if Global.select_mode != null:
 		Global.select_mode.onConfirm()
 	else:
@@ -24,6 +26,7 @@ func _on_confirm_pressed() -> void:
 	end()
 
 func end():
+	Global.confirm_pressed.emit()
 	Global.currentAction = null
 	Global.selection = false
 	Global.selectionTile.clear()
