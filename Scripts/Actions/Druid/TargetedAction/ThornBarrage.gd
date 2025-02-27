@@ -1,6 +1,6 @@
 class_name ThornBarrage extends SplashAction
 
-func setup(owner: Entities):
+func setup(owner: Character):
     name = "Thorn Barrage"
     description = "Attack 6, Inflict 2 Bleed twice in a wall pattern within range 3."
     cost = 2
@@ -44,3 +44,4 @@ func execute():
     if canPlay():
         patternNode.proccess_event(self.endTile, find_rotation(self.endTile.location))
         patternNode.proccess_event(self.endTile, find_rotation(self.endTile.location))
+        owner.discardDeck.insertAtFront(self)

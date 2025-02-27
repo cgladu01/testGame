@@ -1,6 +1,6 @@
 class_name BearWitness extends Action
 
-func setup(owner: Entities):
+func setup(owner: Character):
     name = "Bear Witness"
     description = "Inflict Call of the Abyss 4 on all enemies withing Range 3. Gain Call of the Abyss 5 if you do not have it, else decelerate it by 2."
     type = 1
@@ -19,6 +19,8 @@ func execute():
             owner.addStatus(CallOfTheAbyss.new().setup_Status(5, owner), owner)
         else:
             owner.hasStatus("Call of the Abyss").incrementCount(2)
+        
+        owner.discardDeck.insertAtFront(self)
 
 
-    super()
+        super()

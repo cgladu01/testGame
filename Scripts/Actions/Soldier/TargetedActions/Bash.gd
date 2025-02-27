@@ -1,7 +1,7 @@
 class_name Bash extends TargetedAction
 var tileManager: TileManager = null
 
-func setup(owner: Entities):
+func setup(owner: Character):
 	name = "Bash"
 	description = "Attack 4. Inflict 3 Daze"
 	super(owner)
@@ -25,4 +25,5 @@ func execute():
 		var target = endTile as Enemy
 		owner.attack(500, target)
 		target.addStatus(Daze.new().setup_Status(3, target), owner)
+		owner.discardDeck.insertAtFront(self)
 		super()

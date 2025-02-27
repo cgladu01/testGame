@@ -1,7 +1,7 @@
 class_name Action
 
 var name : String = "Unknown"
-var owner : Entities
+var owner : Character
 var used : bool = false
 var cost : int = 1
 var description : String = "Undefined"
@@ -12,7 +12,7 @@ var upgraded : int = 0
 
 signal executed
 
-func setup(owner : Entities):
+func setup(owner : Character):
 	self.owner = owner
 
 func setup_placeholder(init_name: String, owner : Entities):

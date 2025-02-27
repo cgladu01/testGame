@@ -2,7 +2,7 @@ class_name Attack extends TargetedAction
 
 var tileManager: TileManager = null
 
-func setup(owner: Entities):
+func setup(owner: Character):
 	name = "Attack"
 	description = "Attack 6"
 	super(owner)

@@ -1,7 +1,7 @@
 class_name Defend extends Action
 
 
-func setup(owner: Entities):
+func setup(owner: Character):
 	name = "Defend"
 	description = "Gain 5 block"
 	type = 1
@@ -14,4 +14,5 @@ func button_pressed():
 func execute():
 	if canPlay():
 		owner.gainBlock(5)
-	super()
+		super()
+		owner.discardDeck.insertAtFront(self)

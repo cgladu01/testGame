@@ -3,7 +3,7 @@ class_name Move extends TargetedAction
 var path : PackedVector2Array
 var tileManager: TileManager = null
 
-func setup(owner: Entities):
+func setup(owner: Character):
 	cost = 0
 	name = "Move"
 	super(owner)
