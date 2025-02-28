@@ -1,0 +1,41 @@
+[gd_scene load_steps=2 format=3 uid="uid://c54n7bygec4y8"]
+
+[ext_resource type="Script" path="res://Scenes/Menu/card_reward_screen.gd" id="1_oattl"]
+
+[node name="CardRewardScreen" type="VBoxContainer"]
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 6.0
+offset_top = 91.0
+offset_right = 6.0
+offset_bottom = -129.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_oattl")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+theme_override_font_sizes/font_size = 80
+text = "Pick a Card"
+horizontal_alignment = 1
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/margin_top = 100
+theme_override_constants/margin_bottom = 100
+
+[node name="CardLayers" type="HBoxContainer" parent="MarginContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="SkipButton" type="Button" parent="."]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+theme_override_font_sizes/font_size = 60
+text = "Skip"
+
+[connection signal="pressed" from="SkipButton" to="." method="_on_skip_button_pressed"]

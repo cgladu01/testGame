@@ -8,7 +8,9 @@ var action : Action = null
 var selectionNumber: Label = null
 var inspect_resource = preload("res://Scenes/UI/CardsUI/CardInspect.tscn")
 var inspect_scene = null
-var unplayable = false 
+var unplayable = false
+var behavior : Callable = func () : return null
+var behavior_set : bool = false
 
 func setAction(action : Action, s_unplayable = false):
 	
@@ -23,7 +25,10 @@ func setAction(action : Action, s_unplayable = false):
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Global.select_mode == null and not unplayable:
-			action.button_pressed()
+			if not behavior_set:
+				action.button_pressed()
+			else:
+				behavior.call()
 		elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not unplayable:
 			onSelect()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
@@ -36,6 +41,9 @@ func _on_gui_input(event:InputEvent) -> void:
 
 				inspect_scene.setAction(action)
 
+func setBehavoir(new_behavior: Callable):
+	behavior_set = true
+	behavior = new_behavior
 
 # Handles the Select Mode interactions			
 func onSelect():

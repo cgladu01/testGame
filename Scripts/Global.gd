@@ -73,3 +73,5 @@ var log_container
 # Current Level Number
 var level_number : int = 0
 
+# Card Container Default Size
+var CARD_CONTAINER_SIZE : int = 320

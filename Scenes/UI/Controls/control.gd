@@ -134,7 +134,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				prevSelection = Vector2i(2,7)
 				Global.confirmationWindow.emit()
 			
-
+ 
 
 	elif event.is_action_pressed("Pause"):
 		if pauseScreenWindow == null:

@@ -11,13 +11,11 @@ func _process(delta: float) -> void:
 	pass
 
 func _on_deny_pressed() -> void:
-	print("deny")
 	if Global.select_mode != null:
 		Global.select_mode.onDecline()
 	end()
 
 func _on_confirm_pressed() -> void:
-	print("Confirm")
 	if Global.select_mode != null:
 		Global.select_mode.onConfirm()
 	else:
