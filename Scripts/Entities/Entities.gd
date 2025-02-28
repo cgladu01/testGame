@@ -17,7 +17,7 @@ func get_health() -> int:
 	return health
 	
 func set_health(health : int):
-	health = health
+	self.health = health
 
 func change_health(difference : int):
 	if difference < 0:
@@ -26,7 +26,7 @@ func change_health(difference : int):
 	health += difference
 	if health > tot_health:
 		health = tot_health
-	elif health < 0:
+	elif health <= 0:
 		health = 0
 		if self is Character:
 			health = tot_health

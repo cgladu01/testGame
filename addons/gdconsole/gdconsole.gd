@@ -251,6 +251,15 @@ func _parse_command(p_text: String) -> String:
 
 
 func _parse_args(p_text: String) -> PackedStringArray:
+	if p_text.contains("["):
+
+		var split : PackedStringArray = p_text.split(" ", false, 1)
+		if split.size() > 1:
+			split.remove_at(0)
+			return split
+		return []
+
+
 	var split : PackedStringArray = p_text.split(" ", false)
 	if split.size() > 1:
 		split.remove_at(0)

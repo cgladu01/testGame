@@ -25,10 +25,7 @@ func setAction(action : Action, s_unplayable = false):
 func _on_gui_input(event:InputEvent) -> void:
 	if event is InputEventMouseButton:
 		if event.button_index == MOUSE_BUTTON_LEFT and event.pressed and Global.select_mode == null and not unplayable:
-			if not behavior_set:
-				action.button_pressed()
-			else:
-				behavior.call()
+			action.button_pressed()
 		elif event.pressed and event.button_index == MOUSE_BUTTON_LEFT and not unplayable:
 			onSelect()
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
@@ -40,8 +37,10 @@ func _on_gui_input(event:InputEvent) -> void:
 						child.move_child(inspect_scene, -1)
 
 				inspect_scene.setAction(action)
+		elif behavior_set:
+			behavior.call()
 
-func setBehavoir(new_behavior: Callable):
+func setBehavior(new_behavior: Callable):
 	behavior_set = true
 	behavior = new_behavior
 

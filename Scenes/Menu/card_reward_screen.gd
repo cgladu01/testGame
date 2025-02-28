@@ -3,6 +3,7 @@ class_name CardRewardScreen extends VBoxContainer
 
 var actions : Array[Action] = []
 var card_container_scene = preload("res://Scenes/UI/CardsUI/CardContainer/card_container.tscn")
+@onready var cardLayer = $MarginContainer/CardLayers
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -10,17 +11,15 @@ func _ready() -> void:
 
 func displayActions(disp_actions: Array[Action]):
 	actions = disp_actions
-	var margin_size = (DisplayServer.screen_get_size().x / actions.size()) - Global.CARD_CONTAINER_SIZE
 	for action in actions:
 		var cardcontainer = card_container_scene.instantiate()
-		var padding = MarginContainer.new()
-		padding.add_theme_constant_override("margin_left", margin_size)
-		add_child(padding)
-		padding.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
-		add_child(cardcontainer)
+		cardLayer.add_child(cardcontainer)
 		cardcontainer.setAction(action, true)
-		cardcontainer.setBehavior(func (): Global.characters[0].deck.insertAtBack(action))
-		cardcontainer.size_flags_horizontal = Control.SIZE_SHRINK_CENTER
+		cardcontainer.setBehavior(func (): 
+			Global.characters[0].deck.insertAtBack(action)
+			queue_free())
+
+		cardcontainer.size_flags_horizontal = Control.SIZE_SHRINK_CENTER + Control.SIZE_EXPAND
 		
 
 

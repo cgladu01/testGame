@@ -1,9 +1,13 @@
 # This class is responsible for setting up the levels and creating the corresponding entities/characters for it.
 extends Node2D
 var currentlevel = null
+var card_reward_scene = preload("res://Scenes/Menu/card_reward_screen.tscn")
+@onready var canvas_layer = $"../CanvasLayer"
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GDConsole.create_command(kill_all_enemies)
+	GDConsole.create_command(generate_card_rewards)
 	pass # Replace with function body.
 
 
@@ -38,3 +42,21 @@ func generate_level(level_number: int):
 			Global.enemyFactory.createEnemy("Wolf", entity as EntitiyNode)
 	
 	entities.queue_free()
+
+func kill_all_enemies():
+	while not Global.enemies.is_empty():
+		var enemy = Global.enemies.front()
+		enemy.set_health(0)
+		enemy.change_health(0)
+
+func generate_card_rewards(actionNames_str: String):
+	var actionNames = str_to_var(actionNames_str)
+	var actions : Array[Action] = []
+
+	for action in actionNames:
+		actions.append(Global.actionFactory.createAction(action, Global.characters.front()))
+	
+	var card_reward = card_reward_scene.instantiate()
+	canvas_layer.add_child(card_reward)
+	card_reward.displayActions(actions)
+	
