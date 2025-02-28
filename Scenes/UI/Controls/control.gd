@@ -41,6 +41,7 @@ var prevSelection : Vector2i = Vector2i(3, 12)
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	GDConsole.create_command(my_func)
 	$PanelContainer/HBoxContainer/VBoxContainer/EndTurn.EndTurnPlayerTurn.connect(_onEndTurn)
 	Global.confirmationWindow.connect(_makeConfirmationWindow)
 	Global.roundStart.connect(_onRoundStart)
@@ -81,6 +82,8 @@ func _process(delta: float) -> void:
 			prevSelection = lastHoverSelection
 			selection.set_cell(tile, 11, Vector2i(3,0))
 
+func my_func():
+	print("what's up dude")
 
 func _gui_input(event: InputEvent) -> void:
 	if event is InputEventMouseButton:

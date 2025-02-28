@@ -18,6 +18,7 @@ config/icon="res://icon.svg"
 [autoload]
 
 Global="*res://Scripts/Global.gd"
+GDConsole="*res://addons/gdconsole/gdconsole.gd"
 
 [display]
 
@@ -27,7 +28,7 @@ window/size/mode=4
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/gut/plugin.cfg", "res://addons/ldtk-importer/plugin.cfg")
+enabled=PackedStringArray("res://addons/gdconsole/plugin.cfg", "res://addons/gut/plugin.cfg", "res://addons/ldtk-importer/plugin.cfg")
 
 [input]
 
