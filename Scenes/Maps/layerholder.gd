@@ -8,6 +8,7 @@ var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_scr
 func _ready() -> void:
 	GDConsole.create_command(kill_all_enemies)
 	GDConsole.create_command(generate_card_rewards)
+	GDConsole.create_command(give_character_action)
 	pass # Replace with function body.
 
 
@@ -59,4 +60,10 @@ func generate_card_rewards(actionNames_str: String):
 	var card_reward = card_reward_scene.instantiate()
 	canvas_layer.add_child(card_reward)
 	card_reward.displayActions(actions)
-	
+
+func give_character_action(actionName: String, ownerName: String):
+	for character in Global.characters:
+		if character.name == ownerName:
+			character.hand.addAction(Global.actionFactory.createAction(actionName, character))
+			break
+

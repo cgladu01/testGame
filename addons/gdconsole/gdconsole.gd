@@ -15,7 +15,6 @@ const _CONSOLE_COMMAND : GDScript = preload("res://addons/gdconsole/console_comm
 const _NORMAL_FONT : FontFile = preload("res://addons/gdconsole/fonts/JetBrainsMono-Regular.ttf")
 const _BOLD_FONT : FontFile = preload("res://addons/gdconsole/fonts/JetBrainsMono-Bold.ttf")
 
-
 var _commands : Array[_CONSOLE_COMMAND] = []
 
 var _console_container : VBoxContainer
@@ -61,7 +60,6 @@ func _init() -> void:
 	create_command(_exit, "exit", "Exits the console.")
 	create_command(_quit, "quit", "Quits the game.")
 
-	print_line("Hello, World!")
 	print_line("Use 'help' to see list of available commands.")
 
 
@@ -252,7 +250,6 @@ func _parse_command(p_text: String) -> String:
 
 func _parse_args(p_text: String) -> PackedStringArray:
 	if p_text.contains("["):
-
 		var split : PackedStringArray = p_text.split(" ", false, 1)
 		if split.size() > 1:
 			split.remove_at(0)
@@ -260,10 +257,10 @@ func _parse_args(p_text: String) -> PackedStringArray:
 		return []
 
 
-	var split : PackedStringArray = p_text.split(" ", false)
+	var split : PackedStringArray = p_text.split(" ", false, 1)
 	if split.size() > 1:
 		split.remove_at(0)
-		return split
+		return split[0].split(",", false)
 	return []
 
 

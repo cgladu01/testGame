@@ -84,6 +84,10 @@ func _gui_input(event: InputEvent) -> void:
 		accept_event()
 
 func _unhandled_input(event: InputEvent) -> void:
+
+	if GDConsole.visible:
+		return
+
 	if terrain == null:
 		terrain = Global.tile_map_layer
 	if event.is_action_pressed("MouseClick"):
