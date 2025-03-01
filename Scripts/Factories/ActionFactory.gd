@@ -29,3 +29,12 @@ func createAction(name : String, owner : Entities) -> Action:
 			action.setup_placeholder(name, owner)
 
 	return action
+
+
+# Generates actions based on the owner gonna have
+# Will need to make a proper resource file or something else (JSON?)
+# of all actions to do this
+
+var possibleActions = ["Thorn Barrage", "Bash"]
+func createRandomAction(owner : Entities) -> Action:
+	return createAction(possibleActions[Global.rng.rand_weighted(PackedFloat32Array([1, 1]))], owner)

@@ -9,7 +9,9 @@ extends Node2D
 @onready var layerholder = $Layerholder
 var tileManager : TileManager = Global.tileManager
 
-var rewardScreen = preload("res://Scenes/Menu/RewardScreens/RewardsScreen.tscn")
+var rewardScreenScene = preload("res://Scenes/Menu/RewardScreens/RewardsScreen.tscn")
+var rewardItemScene = preload("res://Scenes/Menu/RewardScreens/Reward_item.tscn")
+var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_screen.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -23,8 +25,23 @@ func _ready() -> void:
 	Global.combatEnd.connect(_on_combatEnd)
 
 func _on_combatEnd():
-	canvas.add_child(rewardScreen.instantiate())
+	var rewardScreen = rewardScreenScene.instantiate()
+	canvas.add_child(rewardScreen)
+	var rewardItem = rewardItemScene.instantiate()
+	rewardScreen.addReward(rewardItem)
+	rewardItem.setup(generateCardRewardBehavior(), "Card Reward")
 
+
+func generateCardRewardBehavior() -> Callable:
+	var actions: Array[Action] = []
+
+	for x in range(Global.card_reward_count):
+		actions.append(Global.actionFactory.createRandomAction(Global.characters[0]))
+
+	return 	func ():
+		var card_reward = card_reward_scene.instantiate()
+		canvas.add_child(card_reward)
+		card_reward.displayActions(actions)
 
 func generateLevel(level_number: int):
 	layerholder.generate_level(level_number)

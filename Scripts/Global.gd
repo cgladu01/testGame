@@ -74,4 +74,7 @@ var log_container
 var level_number : int = 0
 
 # Card Container Default Size
-var CARD_CONTAINER_SIZE : int = 320
+const CARD_CONTAINER_SIZE : int = 320
+
+# Default values for runs
+var card_reward_count : int = 3

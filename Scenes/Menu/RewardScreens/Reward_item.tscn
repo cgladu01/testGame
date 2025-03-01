@@ -12,4 +12,7 @@ script = ExtResource("1_ok0eg")
 
 [node name="Label" type="Label" parent="."]
 layout_mode = 2
+theme_override_font_sizes/font_size = 30
 text = "Reward Item"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
