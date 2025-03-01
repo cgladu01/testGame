@@ -9,6 +9,7 @@ extends Node2D
 @onready var layerholder = $Layerholder
 var tileManager : TileManager = Global.tileManager
 
+var rewardScreen = preload("res://Scenes/Menu/RewardScreens/RewardsScreen.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -19,7 +20,10 @@ func _ready() -> void:
 	seed(0)
 	Global.log_container = log_container
 	generateLevel(Global.level_number)
+	Global.combatEnd.connect(_on_combatEnd)
 
+func _on_combatEnd():
+	canvas.add_child(rewardScreen.instantiate())
 
 
 func generateLevel(level_number: int):

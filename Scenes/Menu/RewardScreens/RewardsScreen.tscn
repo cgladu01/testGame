@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://cejj2x3xuutqe"]
+[gd_scene format=3 uid="uid://c7rp4uh78vcce"]
 
 [node name="Control" type="PanelContainer"]
 custom_minimum_size = Vector2(500, 850)

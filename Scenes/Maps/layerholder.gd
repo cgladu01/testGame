@@ -1,7 +1,7 @@
 # This class is responsible for setting up the levels and creating the corresponding entities/characters for it.
 extends Node2D
 var currentlevel = null
-var card_reward_scene = preload("res://Scenes/Menu/card_reward_screen.tscn")
+var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_screen.tscn")
 @onready var canvas_layer = $"../CanvasLayer"
 
 # Called when the node enters the scene tree for the first time.
