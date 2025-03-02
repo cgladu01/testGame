@@ -22,9 +22,3 @@ func decrementCount(times: int =1):
 
 func incrementCount(times : int = 1):
 	count = count + times
-
-func deffendEffect(incoming: int, target : Entities, attacker: Entities) -> int:
-	return incoming
-
-func attackEffect(incoming: int, attacker: Entities, target: Entities) -> int:
-	return incoming

@@ -26,9 +26,12 @@ func button_pressed():
 	print("Do nothing")
 
 func canPlay():
+	if type == Global.SKILL and owner.hasStatus("Silence") != null:
+		return false
+
 	if owner is Character:
 		var character = owner as Character
-		return character.energy >= cost
+		return character.energy - cost >= 0
 
 func execute():
 	Global.selectionTile.clear()

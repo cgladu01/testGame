@@ -4,7 +4,7 @@ class_name Defend extends Action
 func setup(owner: Character):
 	name = "Defend"
 	description = "Gain 5 block"
-	type = 1
+	type = Global.SKILL
 	super(owner)
 
 

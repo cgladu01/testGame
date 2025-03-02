@@ -13,6 +13,13 @@ var tot_health : int = 100
 var block : int = 0
 signal entityUpdate
 
+# Status Effect Groupings
+var onAttackStatuses : Array[Status] = []
+var onDefendStatuses : Array[Status] = []
+var onGainBlockStatuses : Array[Status] = []
+var onNearMovementStatuses : Array[Status] = []
+var onMovementStatuses : Array[Status] = []
+
 func get_health() -> int:
 	return health
 	
@@ -52,13 +59,33 @@ func addStatus(status: Status, sender: Entities):
 			if status.name == x.name:
 				x.count += status.count
 				exists = true
+				if status.has_method("moveEffect"):
+					addStatusToGrouping(onMovementStatuses, status)
+				if status.has_method("nearMoveEffect"):
+					addStatusToGrouping(onNearMovementStatuses, status)
 				break
 		if not exists:
 			statuses.append(status)
+			if status.has_method("moveEffect"):
+				addStatusToGrouping(onMovementStatuses, status)
+			if status.has_method("nearMoveEffect"):
+				addStatusToGrouping(onNearMovementStatuses, status)
 	else:
 		statuses.append(status)
 
 	entityUpdate.emit()
+
+func addStatusToGrouping(grouping: Array[Status], new_status: Status):
+	var added = false
+	if new_status is UnStackableStatus:
+		grouping.append(new_status)
+	else:
+		for status in grouping:
+			if status.name == new_status.name:
+				status.count += new_status.count
+				added = true
+	if not added:
+		grouping.append(new_status)
 
 func removeStatus(status: Status):
 	var index = 0
@@ -70,14 +97,21 @@ func removeStatus(status: Status):
 		index = index + 1
 
 func attack(incomming : int, target: Entities):
-	for x in statuses:
+	for x in onAttackStatuses:
 		incomming = x.attackEffect(incomming, self, target)
 	Global.hapFactory.createAttackHap(incomming, target, self)
+
+	if target.hasStatus("Under The Sanctuary"):
+		for status in target.statuses:
+			if status.name == "Under The Sanctuary":
+				status.sanctuary_owner.attack_damage(incomming, self)
+				return
+
 	target.attack_damage(incomming, self)
 
 func attack_damage(incoming : int, attacker: Entities):
 	var damage = incoming
-	for x in statuses:
+	for x in onDefendStatuses:
 		damage = x.deffendEffect(damage, self, attacker)
 	var placeholder = damage
 	damage = damage - block
@@ -91,6 +125,7 @@ func attack_damage(incoming : int, attacker: Entities):
 	change_health(-damage)
 
 func move_on_path(distance: int, path: Array[Vector2i]):
+	var og_position = location
 	if path.size() <= distance:
 		node.move_along_path(path)
 		Global.hapFactory.createMovementHap(self.location, path.back(), self)
@@ -99,7 +134,14 @@ func move_on_path(distance: int, path: Array[Vector2i]):
 		node.move_along_path(path.slice(0, distance))
 		Global.hapFactory.createMovementHap(self.location, path[distance - 1], self)
 		Global.tileManager.move_entity(self, path[distance - 1])	
+	
+	for x in onMovementStatuses:
+		x.moveEffect(distance)
 
+	if og_position != location:
+		Global.moved_entity = self
+		Global.entityMoved.emit()
+	
 func gainBlock(differnce : int):
 	block += differnce 
 

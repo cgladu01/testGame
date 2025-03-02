@@ -61,6 +61,11 @@ signal roundEnd
 #Signal For an entities death
 signal entityDeath
 
+# Yeah
+signal entityMoved
+
+var moved_entity : Entities = null
+
 #Signal for characterdeath
 signal characterDeath
 
@@ -78,3 +83,6 @@ const CARD_CONTAINER_SIZE : int = 320
 
 # Default values for runs
 var card_reward_count : int = 3
+
+# Enums For Card Types
+enum {ATTACK, SKILL, POWER, STATUS, CURSE}

@@ -23,10 +23,12 @@ func setup_character(init_name : String, starting_actions : Array[Action], start
 
 
 func roundStart():
+	super()
 	moved = false
 	pitched = false
 	energy = max_energy
 	handleDraw(round_start_draw)
+
 
 # If you draw more cards then in deck, shiffle in discard after doing draw.
 func handleDraw(drawCount: int):

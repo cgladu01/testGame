@@ -199,6 +199,8 @@ func get_entities_within(location: Vector2i, max_dist : int, enemy: int = 1) -> 
 			for pot in array:
 				if get_tile_entity(pot) is Enemy and enemy == 1:
 					returner.append(get_tile_entity(pot))
+				elif get_tile_entity(pot) is Character and enemy == 0:
+					returner.append(get_tile_entity(pot))
 
 	return returner
 

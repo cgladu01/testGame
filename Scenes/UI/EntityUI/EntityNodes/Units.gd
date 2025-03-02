@@ -8,6 +8,7 @@ func _ready() -> void:
 	$"../CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EndTurn".EndTurnPlayerTurn.connect(_onEndTurn)
 	Global.entityDeath.connect(_on_entity_death)
 	Global.characterDeath.connect(_on_character_death)
+	Global.entityMoved.connect(_on_entity_moved)
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -83,6 +84,16 @@ func _on_entity_death():
 				Global.combatActive = false
 				Global.combatEnd.emit()
 			break
+
+
+func _on_entity_moved():
+	for character in Global.characters:
+		for status in character.onNearMovementStatuses:
+			status.nearMoveEffect(Global.moved_entity)
+	
+	for enemy in Global.enemies:
+		for status in enemy.onNearMovementStatuses:
+			status.nearMoveEffect(Global.moved_entity)
 
 
 # Plan to make lose on any character death so will have to make a lose screen
