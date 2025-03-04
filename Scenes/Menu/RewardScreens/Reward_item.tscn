@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bhhxyv1qyt1bx"]
 
-[ext_resource type="Script" path="res://Scenes/Menu/RewardScreens/reward_item.gd" id="1_ok0eg"]
+[ext_resource type="Script" uid="uid://cpwixt6jlwcxh" path="res://Scenes/Menu/RewardScreens/reward_item.gd" id="1_ok0eg"]
 
 [node name="RewardItem" type="HBoxContainer"]
 anchors_preset = 10

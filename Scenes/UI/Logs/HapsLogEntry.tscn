@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://63owmf4gs4po"]
 
-[ext_resource type="Script" path="res://Scenes/UI/Logs/haps_log_entry.gd" id="1_c50x5"]
+[ext_resource type="Script" uid="uid://bo64b4tse2yam" path="res://Scenes/UI/Logs/haps_log_entry.gd" id="1_c50x5"]
 
 [node name="HapContainer" type="PanelContainer"]
 offset_right = 262.0

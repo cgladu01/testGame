@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dmwe75dqoasys"]
 
-[ext_resource type="Script" path="res://Scenes/UI/EntityUI/EntityNodes/PlayerNode.gd" id="1_84b2d"]
+[ext_resource type="Script" uid="uid://f4llcx22syu0" path="res://Scenes/UI/EntityUI/EntityNodes/PlayerNode.gd" id="1_84b2d"]
 [ext_resource type="Texture2D" uid="uid://c6ycievgykr23" path="res://icon.svg" id="2_dxk40"]
 
 [node name="Character" type="Node2D"]

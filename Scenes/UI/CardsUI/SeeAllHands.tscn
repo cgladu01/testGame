@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://bwcgolp3uub50"]
 
-[ext_resource type="Script" path="res://Scenes/UI/CardsUI/see_all_hands.gd" id="1_pqvsk"]
+[ext_resource type="Script" uid="uid://iwak7sl0xsdh" path="res://Scenes/UI/CardsUI/see_all_hands.gd" id="1_pqvsk"]
 
 [node name="Character Lines" type="VBoxContainer"]
 anchors_preset = 15

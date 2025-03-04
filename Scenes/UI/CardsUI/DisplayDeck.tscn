@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cugoayr26fkk2"]
 
-[ext_resource type="Script" path="res://Scenes/UI/CardsUI/DeckDisplay.gd" id="1_4y67d"]
+[ext_resource type="Script" uid="uid://cno7rxj2r0oaw" path="res://Scenes/UI/CardsUI/DeckDisplay.gd" id="1_4y67d"]
 
 [node name="DisplayDeckGrid" type="GridContainer"]
 anchors_preset = 15

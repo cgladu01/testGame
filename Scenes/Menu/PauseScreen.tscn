@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://b5rvh52hvd53k"]
 
-[ext_resource type="Script" path="res://Scenes/Menu/pause_screen.gd" id="1_gpj7j"]
+[ext_resource type="Script" uid="uid://dri6aeckngomd" path="res://Scenes/Menu/pause_screen.gd" id="1_gpj7j"]
 
 [node name="PanelContainer" type="PanelContainer"]
 anchors_preset = 15

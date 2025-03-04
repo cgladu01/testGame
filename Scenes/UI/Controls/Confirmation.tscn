@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://pbc5ajat3u1q"]
 
-[ext_resource type="Script" path="res://Scenes/UI/Controls/confirmation.gd" id="1_lyohv"]
+[ext_resource type="Script" uid="uid://wxhxjungsirf" path="res://Scenes/UI/Controls/confirmation.gd" id="1_lyohv"]
 
 [sub_resource type="Theme" id="Theme_6exbp"]
 

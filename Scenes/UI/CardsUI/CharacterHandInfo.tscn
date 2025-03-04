@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://dqe5x4tdl20hp"]
 
-[ext_resource type="Script" path="res://Scenes/UI/CardsUI/character_hand_info.gd" id="1_ueuj8"]
+[ext_resource type="Script" uid="uid://bxwd2vxxx1uck" path="res://Scenes/UI/CardsUI/character_hand_info.gd" id="1_ueuj8"]
 [ext_resource type="PackedScene" uid="uid://b6xyp4y3xhh2x" path="res://Scenes/UI/EntityUI/pannelWindow.tscn" id="2_4fntw"]
 
 [node name="CharacterHand" type="HBoxContainer"]

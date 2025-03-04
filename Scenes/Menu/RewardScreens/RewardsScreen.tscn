@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://c7rp4uh78vcce"]
 
-[ext_resource type="Script" path="res://Scenes/Menu/RewardScreens/rewards_screen.gd" id="1_4myur"]
+[ext_resource type="Script" uid="uid://cib77vyucvoq" path="res://Scenes/Menu/RewardScreens/rewards_screen.gd" id="1_4myur"]
 
 [node name="Control" type="PanelContainer"]
 custom_minimum_size = Vector2(500, 850)
