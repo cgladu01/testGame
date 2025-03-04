@@ -23,6 +23,7 @@ var pauseScreenWindow = null
 
 var decksceneload = preload("res://Scenes/UI/CardsUI/DisplayDeck.tscn")
 var deckscene = null
+var discardDeckscene = null
 
 var character_hands_load = preload("res://Scenes/UI/CardsUI/SeeAllHands.tscn")
 var character_hands_scene = null
@@ -146,22 +147,10 @@ func _unhandled_input(event: InputEvent) -> void:
 			pauseScreenWindow = null
 
 	elif event.is_action_pressed("View Combat Deck"):
-		if deckscene == null and character != null:
-			deckscene = decksceneload.instantiate()
-			canvas_layer.add_child(deckscene)
-			deckscene.dispCombatDeck(character.combatDeck.random_actions(character.deck), character.combatDeck.non_random_actions())
-		elif deckscene != null:
-			deckscene.queue_free()
-			deckscene = null
+		changeOverlay("View Combat Deck")
 	
 	elif event.is_action_pressed("View Deck"):
-		if deckscene == null and character != null:
-			deckscene = decksceneload.instantiate()
-			canvas_layer.add_child(deckscene)
-			deckscene.dispDeck(character.deck)
-		elif deckscene != null:
-			deckscene.queue_free()
-			deckscene = null
+		changeOverlay("View Deck")
 			
 	elif event.is_action_pressed("Pitch"):
 		Global.select_mode = PitchMode.new()
@@ -169,18 +158,66 @@ func _unhandled_input(event: InputEvent) -> void:
 		_makeConfirmationWindow()
 	
 	elif event.is_action_pressed("See All Hands"):
-		if character_hands_scene == null:
-			character_hands_scene = character_hands_load.instantiate()
-			canvas_layer.add_child(character_hands_scene)
-			character_hands_scene.displayAllHands()
-		elif character_hands_scene != null:
-			character_hands_scene.queue_free()
-			deckscene = null
+		changeOverlay("See All Hands")
 
 
 	elif event is InputEventKey:
 		var direction: Vector2 = Input.get_vector("CameraLeft", "CameraRight", "CameraUp", "CameraDown")
 		camera_2d.position += direction * 10
+
+func changeOverlay(overlay: String):
+
+	match overlay:
+		"See All Hands":
+			if deckscene != null:
+				deckscene.queue_free()
+				deckscene = null
+			
+			if discardDeckscene != null:
+				discardDeckscene.queue_free()
+				discardDeckscene = null
+
+			if character_hands_scene == null:
+				character_hands_scene = character_hands_load.instantiate()
+				canvas_layer.add_child(character_hands_scene)
+				character_hands_scene.displayAllHands()
+			elif character_hands_scene != null:
+				character_hands_scene.queue_free()
+				deckscene = null
+		
+		"View Deck":
+			if discardDeckscene != null:
+				discardDeckscene.queue_free()
+				discardDeckscene = null
+
+			if character_hands_scene != null:
+				character_hands_scene.queue_free()
+				character_hands_scene = null
+
+			if deckscene == null and character != null:
+				deckscene = decksceneload.instantiate()
+				canvas_layer.add_child(deckscene)
+				deckscene.dispDeck(character.deck)
+			elif deckscene != null:
+				deckscene.queue_free()
+				deckscene = null
+		
+		"View Combat Deck":
+			if deckscene != null:
+				deckscene.queue_free()
+				deckscene = null
+
+			if character_hands_scene != null:
+				character_hands_scene.queue_free()
+				character_hands_scene = null
+			
+			if discardDeckscene == null and character != null:
+				discardDeckscene = decksceneload.instantiate()
+				canvas_layer.add_child(discardDeckscene)
+				discardDeckscene.dispCombatDeck(character.combatDeck.random_actions(character.deck), character.combatDeck.non_random_actions())
+			elif discardDeckscene != null:
+				discardDeckscene.queue_free()
+				discardDeckscene = null
 
 func _onEndTurn():
 	if is_instance_valid(confirmWindow):
