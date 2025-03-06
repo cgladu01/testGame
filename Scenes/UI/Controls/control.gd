@@ -11,6 +11,7 @@ var terrain: TileMapLayer = null
 @onready var world: Node2D = $"../.."
 @onready var canvas_layer: CanvasLayer = $".."
 @onready var units : Node2D = $"../../Units"
+@onready var layoutMap : LayoutMap =$"../../LayoutMap"
 
 var scene = preload("res://Scenes/UI/EntityUI/pannelWindow.tscn")
 var window = null
@@ -159,6 +160,13 @@ func _unhandled_input(event: InputEvent) -> void:
 	
 	elif event.is_action_pressed("See All Hands"):
 		changeOverlay("See All Hands")
+	
+	elif event.is_action_pressed("View Map"):
+		if layoutMap.is_visible():
+			layoutMap.visible = false
+		else:
+			layoutMap.visible = true
+
 
 
 	elif event is InputEventKey:

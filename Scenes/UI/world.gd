@@ -7,6 +7,7 @@ extends Node2D
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var log_container = $CanvasLayer/LogContainer
 @onready var layerholder = $Layerholder
+@onready var layoutMap = $LayoutMap
 var tileManager : TileManager = Global.tileManager
 
 var rewardScreenScene = preload("res://Scenes/Menu/RewardScreens/RewardsScreen.tscn")
@@ -23,6 +24,7 @@ func _ready() -> void:
 	Global.log_container = log_container
 	generateLevel(Global.level_number)
 	Global.combatEnd.connect(_on_combatEnd)
+	layoutMap.generateMap()
 
 func _on_combatEnd():
 	var rewardScreen = rewardScreenScene.instantiate()

@@ -85,4 +85,10 @@ const CARD_CONTAINER_SIZE : int = 320
 var card_reward_count : int = 3
 
 # Enums For Card Types
-enum {ATTACK, SKILL, POWER, STATUS, CURSE}
+enum card_type {ATTACK, SKILL, POWER, STATUS, CURSE}
+
+# Enums for room types
+enum roomType {UNKNOWN, COMBAT, ELITE, BOSS, SHOP, INITIAL, CAMPSITE}
+
+# Enums for direction
+enum  direction {UP, RIGHT, DOWN, LEFT}
