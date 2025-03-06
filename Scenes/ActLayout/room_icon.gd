@@ -3,6 +3,10 @@ class_name RoomIcon extends Control
 @onready var sprite : Sprite2D = $"Container/Sprite2D"
 
 const SEPERATION = 65
+const CONNECTOR_SEPERATOR = 5
+const CONNECTOR_MIDIAN = 15
+const ICON_SIZE = 60
+
 var type = Global.roomType.UNKNOWN
 var explored = false
 var current = false
@@ -39,20 +43,38 @@ func add_adajacent_room(i_direction: Global.direction, room: RoomIcon):
 		Global.direction.UP:
 			up = room
 			room.down = self
-			room.position = self.position + Vector2(0, SEPERATION)
+			room.position = self.position - Vector2(0, SEPERATION)
+			var panel = Panel.new()
+			panel.size = Vector2(30,5)
+			get_parent().add_child(panel)
+			panel.position = self.position - Vector2(-CONNECTOR_MIDIAN, CONNECTOR_SEPERATOR)
+		
 		Global.direction.RIGHT:
 			right = room
 			room.left = self
-			room.position = self.position + Vector2(SEPERATION, 0)		
+			room.position = self.position + Vector2(SEPERATION, 0)
+			var panel = Panel.new()
+			panel.size = Vector2(5,30)
+			get_parent().add_child(panel)
+			panel.position = self.position + Vector2(ICON_SIZE, CONNECTOR_MIDIAN)
+
 		Global.direction.DOWN:
 			down = room
 			room.up = self
-			room.position = self.position - Vector2(0, SEPERATION)		
+			room.position = self.position + Vector2(0, SEPERATION)
+			var panel = Panel.new()
+			panel.size = Vector2(30,5)
+			get_parent().add_child(panel)
+			panel.position = self.position + Vector2(CONNECTOR_MIDIAN, ICON_SIZE)
+		
 		Global.direction.LEFT:
 			left = room
 			room.right = self
-			room.position = self.position - Vector2(SEPERATION, 0)		
-
+			room.position = self.position - Vector2(SEPERATION, 0)
+			var panel = Panel.new()
+			panel.size = Vector2(5,30)
+			get_parent().add_child(panel)
+			panel.position = self.position - Vector2(CONNECTOR_SEPERATOR, -CONNECTOR_MIDIAN)
 
 func set_image():
 	var image_path = ""

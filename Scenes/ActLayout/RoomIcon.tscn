@@ -24,4 +24,3 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 
 [node name="Sprite2D" type="Sprite2D" parent="Container"]
-scale = Vector2(1, 1)
