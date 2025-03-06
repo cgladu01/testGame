@@ -9,11 +9,16 @@ const ICON_SIZE = 60
 
 var type = Global.roomType.UNKNOWN
 var explored = false
+var completed = false
 var current = false
+
 var up : RoomIcon = null
 var right : RoomIcon = null
 var down : RoomIcon = null
 var left : RoomIcon = null
+
+var behavior : Callable = func (): print("No function")
+
 
 func setup(n_type : Global.roomType = Global.roomType.INITIAL,
 	n_up : RoomIcon = null, n_right : RoomIcon = null, n_down : RoomIcon = null, n_left : RoomIcon = null):
@@ -99,3 +104,8 @@ func set_image():
 
 	sprite.set_texture(load(image_path))
 	sprite.scale = Vector2(0.125,0.125)
+
+
+func _on_gui_input(event: InputEvent) -> void:
+	if event.is_action_pressed("MouseClick"):
+		get_parent().get_parent().get_parent().changeRoom(self)

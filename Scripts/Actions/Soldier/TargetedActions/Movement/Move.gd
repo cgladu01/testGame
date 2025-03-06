@@ -6,6 +6,7 @@ var tileManager: TileManager = null
 func setup(owner: Character):
 	cost = 0
 	name = "Move"
+	type = Global.card_type.ATTACK
 	super(owner)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:

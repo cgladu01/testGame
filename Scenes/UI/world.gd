@@ -11,6 +11,7 @@ extends Node2D
 var tileManager : TileManager = Global.tileManager
 
 var rewardScreenScene = preload("res://Scenes/Menu/RewardScreens/RewardsScreen.tscn")
+var rewardScreen = null
 var rewardItemScene = preload("res://Scenes/Menu/RewardScreens/Reward_item.tscn")
 var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_screen.tscn")
 
@@ -25,13 +26,26 @@ func _ready() -> void:
 	generateLevel(Global.level_number)
 	Global.combatEnd.connect(_on_combatEnd)
 	layoutMap.generateMap()
+	Global.level_changed.connect(_level_changed)
 
 func _on_combatEnd():
-	var rewardScreen = rewardScreenScene.instantiate()
+	rewardScreen = rewardScreenScene.instantiate()
 	canvas.add_child(rewardScreen)
 	var rewardItem = rewardItemScene.instantiate()
 	rewardScreen.addReward(rewardItem)
 	rewardItem.setup(generateCardRewardBehavior(), "Card Reward")
+
+
+func _level_changed():
+	if rewardScreen != null:
+		rewardScreen.queue_free()
+		rewardScreen = null
+	generateLevel(Global.level_number)
+
+func changeRoom(new_room : RoomIcon):
+	if Global.currentRoom.explored:
+		Global.currentRoom = new_room
+		Global.currentRoom.behavior.call()
 
 
 func generateCardRewardBehavior() -> Callable:

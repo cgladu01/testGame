@@ -7,10 +7,10 @@ path="res://.godot/imported/test_map_1.ldtk-8a6f8500f6ee9acdc2b4755b75fb12da.scn
 
 [deps]
 
-files=["res://Scenes/Maps/LDTK/tilesets/tileset_16px.res", "res://Scenes/Maps/LDTK/levels/Level_0.scn", "res://Scenes/Maps/LDTK/levels/Level_1.scn", "res://.godot/imported/test_map_1.ldtk-8a6f8500f6ee9acdc2b4755b75fb12da.scn"]
+files=["res://Scenes/Maps/LDTK/tilesets/tileset_16px.res", "res://Scenes/Maps/LDTK/levels/Level_0.scn", "res://Scenes/Maps/LDTK/levels/Level_1.scn", "res://Scenes/Maps/LDTK/levels/Level_2.scn", "res://.godot/imported/test_map_1.ldtk-8a6f8500f6ee9acdc2b4755b75fb12da.scn"]
 
 source_file="res://Scenes/Maps/LDTK/test_map_1.ldtk"
-dest_files=["res://.godot/imported/test_map_1.ldtk-8a6f8500f6ee9acdc2b4755b75fb12da.scn", "res://Scenes/Maps/LDTK/tilesets/tileset_16px.res", "res://Scenes/Maps/LDTK/levels/Level_0.scn", "res://Scenes/Maps/LDTK/levels/Level_1.scn", "res://.godot/imported/test_map_1.ldtk-8a6f8500f6ee9acdc2b4755b75fb12da.scn"]
+dest_files=["res://.godot/imported/test_map_1.ldtk-8a6f8500f6ee9acdc2b4755b75fb12da.scn", "res://Scenes/Maps/LDTK/tilesets/tileset_16px.res", "res://Scenes/Maps/LDTK/levels/Level_0.scn", "res://Scenes/Maps/LDTK/levels/Level_1.scn", "res://Scenes/Maps/LDTK/levels/Level_2.scn", "res://.godot/imported/test_map_1.ldtk-8a6f8500f6ee9acdc2b4755b75fb12da.scn"]
 
 [params]
 

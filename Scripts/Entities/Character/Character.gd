@@ -21,6 +21,12 @@ func setup_character(init_name : String, starting_actions : Array[Action], start
 	start_node.set_character(self)
 	setup_entity(start_health, start_location, init_name, start_node)
 
+func change_characterNode(new_node : CharacterNode):
+	node.queue_free()
+	location = Global.tile_map_layer.local_to_map(new_node.position)
+	node = new_node
+	node.set_character(self)
+	Global.tileManager.change_tile_entity(self, self.location)
 
 func roundStart():
 	super()

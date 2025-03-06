@@ -136,8 +136,6 @@ func _unhandled_input(event: InputEvent) -> void:
 			if targettedAction.validTarget(character, tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1)), tileManager):
 				prevSelection = Vector2i(2,7)
 				Global.confirmationWindow.emit()
-			
- 
 
 	elif event.is_action_pressed("Pause"):
 		if pauseScreenWindow == null:

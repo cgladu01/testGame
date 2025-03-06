@@ -82,6 +82,8 @@ func _on_entity_death():
 			Global.enemies.remove_at(i)
 			if Global.enemies.size() == 0:
 				Global.combatActive = false
+				Global.currentRoom.explored = true
+				Global.currentRoom.completed = true
 				Global.combatEnd.emit()
 			break
 

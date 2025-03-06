@@ -61,9 +61,8 @@ signal roundEnd
 #Signal For an entities death
 signal entityDeath
 
-# Yeah
+# Checks for last entity moved to do onNearMoved Status effects
 signal entityMoved
-
 var moved_entity : Entities = null
 
 #Signal for characterdeath
@@ -77,6 +76,7 @@ var log_container
 
 # Current Level Number
 var level_number : int = 0
+signal level_changed
 
 # Card Container Default Size
 const CARD_CONTAINER_SIZE : int = 320
@@ -92,3 +92,6 @@ enum roomType {UNKNOWN, COMBAT, ELITE, BOSS, SHOP, INITIAL, CAMPSITE}
 
 # Enums for direction
 enum  direction {UP, RIGHT, DOWN, LEFT}
+
+# Current Room 
+var currentRoom : RoomIcon = null

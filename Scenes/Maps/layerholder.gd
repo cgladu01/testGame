@@ -3,6 +3,8 @@ extends Node2D
 var currentlevel = null
 var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_screen.tscn")
 @onready var canvas_layer = $"../CanvasLayer"
+@onready var playerNodes = $'../Units/PlayerUnits'
+@onready var enemyNodes = $'../Units/EnemyUnits'
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +20,9 @@ func _process(delta: float) -> void:
 
 # This is called from world and makes the level depening on the number provided.
 func generate_level(level_number: int):
+
+	if Global.tile_map_layer != null:
+		disable_current_level()
 	currentlevel = load(str("res://Scenes/Maps/LDTK/levels/Level_", level_number, ".scn")).instantiate()
 	self.add_child(currentlevel)
 	self.move_child(currentlevel, 0)
@@ -37,12 +42,20 @@ func generate_level(level_number: int):
 			var characterNode: CharacterNode = entity as CharacterNode
 			if Global.characterNames[characterNode.get_meta("number") - 1] != "" and Global.characters.size() < 2:
 				Global.characterFactory.createCharacter(Global.characterNames[characterNode.get_meta("number") - 1], characterNode)
+			elif characterNode.get_meta("number") < 3:
+				Global.characters[characterNode.get_meta("number") - 1].change_characterNode(characterNode)
+				playerNodes.add_child(characterNode)
 			else:
 				characterNode.queue_free()
 		else:
 			Global.enemyFactory.createEnemy("Wolf", entity as EntitiyNode)
+			entity.reparent(enemyNodes)
 	
 	entities.queue_free()
+
+func disable_current_level():
+	Global.tile_map_layer.queue_free()
+	currentlevel.queue_free()
 
 func kill_all_enemies():
 	while not Global.enemies.is_empty():
@@ -66,4 +79,3 @@ func give_character_action(actionName: String, ownerName: String):
 		if character.name == ownerName:
 			character.hand.addAction(Global.actionFactory.createAction(actionName, character))
 			break
-

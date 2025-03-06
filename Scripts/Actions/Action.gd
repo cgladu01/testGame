@@ -26,7 +26,7 @@ func button_pressed():
 	print("Do nothing")
 
 func canPlay():
-	if type == Global.SKILL and owner.hasStatus("Silence") != null:
+	if type == Global.card_type.SKILL and owner.hasStatus("Silence") != null:
 		return false
 
 	if owner is Character:
