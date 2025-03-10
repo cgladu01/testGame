@@ -166,6 +166,14 @@ func hasStatus(status_name: String) -> Status:
 func combatStart():
 	pass
 
+func combatEnd():
+	statuses.clear()
+	onAttackStatuses.clear()
+	onDefendStatuses.clear()
+	onGainBlockStatuses.clear()
+	onNearMovementStatuses.clear()
+	onMovementStatuses.clear()	
+
 func roundEnd():
 	pass
 

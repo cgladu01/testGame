@@ -16,8 +16,8 @@ func _process(delta: float) -> void:
 	pass
 
 func turnOne():
-	Global.hapFactory.createStartOfRoundHap(1)
 	Global.combatStart.emit()
+	Global.hapFactory.createStartOfRoundHap(1)
 	for character in Global.characters:
 		character.combatStart()
 
@@ -84,6 +84,8 @@ func _on_entity_death():
 				Global.combatActive = false
 				Global.currentRoom.explored = true
 				Global.currentRoom.completed = true
+				for character in Global.characters:
+					character.combatEnd()
 				Global.combatEnd.emit()
 			break
 

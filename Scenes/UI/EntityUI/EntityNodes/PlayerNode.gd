@@ -14,7 +14,6 @@ func _process(delta: float) -> void:
 func set_character(character: Character):
 	set_entity(character)
 	self.character = character
-	print(self.position)
 
 
 func refresh_Actions():
