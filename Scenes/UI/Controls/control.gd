@@ -11,7 +11,7 @@ var terrain: TileMapLayer = null
 @onready var world: Node2D = $"../.."
 @onready var canvas_layer: CanvasLayer = $".."
 @onready var units : Node2D = $"../../Units"
-@onready var layoutMap : LayoutMap =$"../../LayoutMap"
+@onready var layoutMap : LayoutMap =$"../LayoutMap"
 
 var scene = preload("res://Scenes/UI/EntityUI/pannelWindow.tscn")
 var window = null
@@ -28,6 +28,9 @@ var discardDeckscene = null
 
 var character_hands_load = preload("res://Scenes/UI/CardsUI/SeeAllHands.tscn")
 var character_hands_scene = null
+
+signal _on_map_pressed
+signal _on_pause_pressed
 
 
 # Hover related stuff
@@ -47,6 +50,8 @@ func _ready() -> void:
 	Global.roundStart.connect(_onRoundStart)
 	Global.update_hand.connect(_onUpdateHand)
 	Global.confirm_pressed.connect(_on_confirm_pressed)
+	_on_map_pressed.connect(_layout_map)
+	_on_pause_pressed.connect(_pause_screen)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -138,12 +143,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				Global.confirmationWindow.emit()
 
 	elif event.is_action_pressed("Pause"):
-		if pauseScreenWindow == null:
-			pauseScreenWindow = pausescene.instantiate()
-			canvas_layer.add_child(pauseScreenWindow)
-		else:
-			pauseScreenWindow.queue_free()
-			pauseScreenWindow = null
+		_on_pause_pressed.emit()
 
 	elif event.is_action_pressed("View Combat Deck"):
 		changeOverlay("View Combat Deck")
@@ -160,12 +160,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		changeOverlay("See All Hands")
 	
 	elif event.is_action_pressed("View Map"):
-		if layoutMap.is_visible():
-			layoutMap.visible = false
-		else:
-			layoutMap.visible = true
-
-
+		_on_map_pressed.emit()
 
 	elif event is InputEventKey:
 		var direction: Vector2 = Input.get_vector("CameraLeft", "CameraRight", "CameraUp", "CameraDown")
@@ -228,6 +223,20 @@ func changeOverlay(overlay: String):
 func _onEndTurn():
 	if is_instance_valid(confirmWindow):
 		confirmWindow.queue_free()
+
+func _layout_map():
+	if layoutMap.is_visible():
+		layoutMap.visible = false
+	else:
+		layoutMap.visible = true
+
+func _pause_screen():
+	if pauseScreenWindow == null:
+		pauseScreenWindow = pausescene.instantiate()
+		canvas_layer.add_child(pauseScreenWindow)
+	else:
+		pauseScreenWindow.queue_free()
+		pauseScreenWindow = null
 
 func _onRoundStart():
 	if character:

@@ -7,7 +7,7 @@ extends Node2D
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var log_container = $CanvasLayer/LogContainer
 @onready var layerholder = $Layerholder
-@onready var layoutMap = $LayoutMap
+@onready var layoutMap = $CanvasLayer/LayoutMap
 var tileManager : TileManager = Global.tileManager
 
 var rewardScreenScene = preload("res://Scenes/Menu/RewardScreens/RewardsScreen.tscn")

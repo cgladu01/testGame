@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://bdlukl6b1kr58"]
+[gd_scene load_steps=15 format=3 uid="uid://bdlukl6b1kr58"]
 
 [ext_resource type="Script" uid="uid://dhcbqduagqeh5" path="res://Scenes/UI/world.gd" id="1_vkwxu"]
 [ext_resource type="TileSet" uid="uid://bws6a6w1ivdry" path="res://tiles.tres" id="2_10fdo"]
@@ -11,6 +11,7 @@
 [ext_resource type="PackedScene" uid="uid://dujclmvvguvt6" path="res://Astar2Grid.tscn" id="8_hqvw0"]
 [ext_resource type="PackedScene" uid="uid://m7vfqn5u4rwb" path="res://Scenes/UI/Logs/LogContainer.tscn" id="9_yj4n1"]
 [ext_resource type="PackedScene" uid="uid://dbbaa0vkp2bc2" path="res://Scenes/ActLayout/LayoutMap.tscn" id="11_0u0od"]
+[ext_resource type="PackedScene" uid="uid://bgnu3tvnrwg7r" path="res://Scenes/UI/Controls/Topbar.tscn" id="11_d2sgt"]
 
 [sub_resource type="Theme" id="Theme_vd5pf"]
 
@@ -106,8 +107,11 @@ offset_top = -487.0
 offset_right = -21.0
 offset_bottom = -362.0
 
-[node name="LayoutMap" parent="." instance=ExtResource("11_0u0od")]
+[node name="LayoutMap" parent="CanvasLayer" instance=ExtResource("11_0u0od")]
 visible = false
+
+[node name="Topbar" parent="CanvasLayer" instance=ExtResource("11_d2sgt")]
+offset_bottom = 31.0
 
 [connection signal="button_down" from="CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_down"]
 [connection signal="button_up" from="CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_up"]
