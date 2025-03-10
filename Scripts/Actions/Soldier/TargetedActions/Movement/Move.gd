@@ -1,6 +1,6 @@
 class_name Move extends TargetedAction
 
-var path : PackedVector2Array
+var path : Array[Vector2i]
 var tileManager: TileManager = null
 
 func setup(owner: Character):

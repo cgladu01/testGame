@@ -115,7 +115,7 @@ func find_closet_open_tile(tile_start: Vector2i, tile_two: Vector2i, max : int =
 						continue
 					
 					var pot_tile = do_distance_comparison(x, y, tile_two, tile_start)
-					tile = pot_tile if distance(pot_tile, tile_start) < distance(tile, tile_start) or tile == Vector2i(-1,-1) else tile
+					tile = pot_tile if getPath(tile_start, pot_tile, 1) < getPath(tile_start, tile, 1) or tile == Vector2i(-1,-1) else tile
 			if tile != Vector2i(-1, -1):
 				return tile
 	
@@ -126,10 +126,10 @@ func do_distance_comparison(x: int, y: int, tile_two: Vector2i, tile_start: Vect
 	var dist = 999
 
 	var array = [
-		distance(tile_two + Vector2i(x, y), tile_start) if get_tile_entity(tile_two + Vector2i(x, y)) is EmptyTile  else -1,
-		distance(tile_two - Vector2i(x, y), tile_start) if get_tile_entity(tile_two - Vector2i(x, y)) is EmptyTile else -1,
-		distance(tile_two + Vector2i(-x, y), tile_start) if get_tile_entity(tile_two + Vector2i(-x, y)) is EmptyTile else -1,
-		distance(tile_two + Vector2i(x, -y), tile_start) if get_tile_entity(tile_two + Vector2i(x, -y)) is EmptyTile else -1,
+		getPath(tile_start, tile_two + Vector2i(x, y), 1).size() if get_tile_entity(tile_two + Vector2i(x, y)) is EmptyTile  else -1,
+		getPath(tile_two - Vector2i(x, y), tile_start, 1).size() if get_tile_entity(tile_two - Vector2i(x, y)) is EmptyTile else -1,
+		getPath(tile_start, tile_two + Vector2i(-x, y), 1).size() if get_tile_entity(tile_two + Vector2i(-x, y)) is EmptyTile else -1,
+		getPath(tile_start, tile_two + Vector2i(x, -y), 1).size() if get_tile_entity(tile_two + Vector2i(x, -y)) is EmptyTile else -1,
 		]
 	
 
@@ -147,7 +147,7 @@ func do_distance_comparison(x: int, y: int, tile_two: Vector2i, tile_start: Vect
 
 	return destination
 
-func getPath(start: Vector2i, end: Vector2i, mod : int = 0):
+func getPath(start: Vector2i, end: Vector2i, mod : int = 0) -> Array[Vector2i]:
 	var path = null
 	
 	# Doing movement for enemies
