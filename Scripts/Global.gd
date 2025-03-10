@@ -75,7 +75,7 @@ signal confirm_pressed
 var log_container
 
 # Current Level Number
-var level_number : int = 0
+var level_number : int = 2
 signal level_changed
 
 # Card Container Default Size

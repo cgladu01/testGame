@@ -15,6 +15,8 @@ var astar2Grid = null
 const TERRAIN_LAYER: int = 0
 const ENTITIY_LAYER: int = 1
 
+var tileTypeReader : TileTypeReader = TileTypeReader.new()
+
 func setup(input_layers : Array[TileMapLayer], width: int, height : int, depth : int = 2):
 	layers = input_layers
 	self.width = width
@@ -166,13 +168,7 @@ func getPath(start: Vector2i, end: Vector2i, mod : int = 0):
 	return path
 
 func get_tile_type_from_atlas(source_id: int, atlas_cord: Vector2i) -> Tile:
-	var newTile = null
-
-	if source_id == 4 and atlas_cord == Vector2i(6,2):
-		newTile = Obstacle.new()
-	elif (source_id == 4 and atlas_cord == Vector2i(5,3)) or (source_id == 4 and atlas_cord == Vector2i(0,6)):
-		newTile = EmptyTile.new()
-	return newTile
+	return tileTypeReader.getTileType(source_id, atlas_cord)
 
 func get_entities_within(location: Vector2i, max_dist : int, enemy: int = 1) -> Array[Entities]:
 	var returner : Array[Entities] = []
