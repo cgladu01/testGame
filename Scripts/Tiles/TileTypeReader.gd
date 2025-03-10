@@ -23,7 +23,6 @@ func getTileType(source_id: int, atlas_cord: Vector2i) -> Tile:
 
 	if source_id in emptyTileDict and atlas_cord in emptyTileDict[source_id]:
 		newTile = EmptyTile.new()
-		print(atlas_cord)
 	elif source_id in emptyTileDict and atlas_cord in obstacleTileDict[source_id]:
 		newTile = Obstacle.new()
 	
