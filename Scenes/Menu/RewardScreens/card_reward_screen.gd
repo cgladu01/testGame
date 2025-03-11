@@ -17,6 +17,7 @@ func displayActions(disp_actions: Array[Action]):
 		cardcontainer.setAction(action, true)
 		cardcontainer.setBehavior(func (): 
 			Global.characters[0].deck.insertAtBack(action)
+			Global.rewardTaken.emit()
 			queue_free())
 
 		cardcontainer.size_flags_horizontal = Control.SIZE_SHRINK_CENTER + Control.SIZE_EXPAND

@@ -1,0 +1,28 @@
+class_name RewardHandler
+
+var rewardScreenScene = preload("res://Scenes/Menu/RewardScreens/RewardsScreen.tscn")
+var rewardItemScene = preload("res://Scenes/Menu/RewardScreens/Reward_item.tscn")
+var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_screen.tscn")
+var canvas = null
+
+func setup(s_canvas : CanvasLayer):
+	canvas = s_canvas
+
+func generateRewards() -> RewardScreen:
+	var rewardScreen = rewardScreenScene.instantiate()
+	var rewardItem = rewardItemScene.instantiate()
+	canvas.add_child(rewardScreen)
+	rewardScreen.addReward(rewardItem)
+	rewardItem.setup(generateCardRewardBehavior(rewardItem), "Card Reward")
+	return rewardScreen
+
+func generateCardRewardBehavior(rewardItem: RewardItem) -> Callable:
+	var actions: Array[Action] = []
+
+	for x in range(Global.card_reward_count):
+		actions.append(Global.actionFactory.createRandomAction(Global.characters[0]))
+
+	return 	func ():
+		var card_reward = card_reward_scene.instantiate()
+		canvas.add_child(card_reward)
+		card_reward.displayActions(actions)

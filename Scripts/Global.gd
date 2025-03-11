@@ -32,6 +32,10 @@ var actionFactory: ActionFactory = ActionFactory.new()
 var enemyFactory : EnemyFactory = EnemyFactory.new()
 var hapFactory : HapFactory = HapFactory.new()
 
+# Reward Related Info
+signal rewardTaken
+signal rewardItemTaken
+
 # Node that holds all other units
 var unitsNode = null 
 

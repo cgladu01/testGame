@@ -10,10 +10,9 @@ extends Node2D
 @onready var layoutMap = $CanvasLayer/LayoutMap
 var tileManager : TileManager = Global.tileManager
 
-var rewardScreenScene = preload("res://Scenes/Menu/RewardScreens/RewardsScreen.tscn")
-var rewardScreen = null
-var rewardItemScene = preload("res://Scenes/Menu/RewardScreens/Reward_item.tscn")
-var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_screen.tscn")
+# Reward Handling after combat completion
+var rewardhandler : RewardHandler = RewardHandler.new()
+var rewardScreen : RewardScreen = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -27,14 +26,10 @@ func _ready() -> void:
 	Global.combatEnd.connect(_on_combatEnd)
 	layoutMap.generateMap()
 	Global.level_changed.connect(_level_changed)
+	rewardhandler.setup(canvas)
 
 func _on_combatEnd():
-	rewardScreen = rewardScreenScene.instantiate()
-	canvas.add_child(rewardScreen)
-	var rewardItem = rewardItemScene.instantiate()
-	rewardScreen.addReward(rewardItem)
-	rewardItem.setup(generateCardRewardBehavior(), "Card Reward")
-
+	rewardScreen = rewardhandler.generateRewards()
 
 func _level_changed():
 	if rewardScreen != null:
@@ -46,18 +41,6 @@ func changeRoom(new_room : RoomIcon):
 	if Global.currentRoom.explored:
 		Global.currentRoom = new_room
 		Global.currentRoom.behavior.call()
-
-
-func generateCardRewardBehavior() -> Callable:
-	var actions: Array[Action] = []
-
-	for x in range(Global.card_reward_count):
-		actions.append(Global.actionFactory.createRandomAction(Global.characters[0]))
-
-	return 	func ():
-		var card_reward = card_reward_scene.instantiate()
-		canvas.add_child(card_reward)
-		card_reward.displayActions(actions)
 
 func generateLevel(level_number: int):
 	layerholder.generate_level(level_number)
