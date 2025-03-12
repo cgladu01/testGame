@@ -16,7 +16,7 @@ func displayActions(disp_actions: Array[Action]):
 		cardLayer.add_child(cardcontainer)
 		cardcontainer.setAction(action, true)
 		cardcontainer.setBehavior(func (): 
-			Global.characters[0].deck.insertAtBack(action)
+			Global.selected_character.deck.insertAtBack(action)
 			Global.rewardTaken.emit()
 			queue_free())
 

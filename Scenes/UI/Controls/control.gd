@@ -122,6 +122,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 			if tile is Character:
 				character = tile as Character
+				Global.selected_character = character
 				action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
 				character.clicked()
 
@@ -196,10 +197,10 @@ func changeOverlay(overlay: String):
 				character_hands_scene.queue_free()
 				character_hands_scene = null
 
-			if deckscene == null and character != null:
+			if deckscene == null and Global.selected_character != null:
 				deckscene = decksceneload.instantiate()
 				canvas_layer.add_child(deckscene)
-				deckscene.dispDeck(character.deck)
+				deckscene.dispDeck(Global.selected_character.deck)
 			elif deckscene != null:
 				deckscene.queue_free()
 				deckscene = null
@@ -213,10 +214,11 @@ func changeOverlay(overlay: String):
 				character_hands_scene.queue_free()
 				character_hands_scene = null
 			
-			if discardDeckscene == null and character != null:
+			if discardDeckscene == null and Global.selected_character != null:
 				discardDeckscene = decksceneload.instantiate()
 				canvas_layer.add_child(discardDeckscene)
-				discardDeckscene.dispCombatDeck(character.combatDeck.random_actions(character.deck), character.combatDeck.non_random_actions())
+				discardDeckscene.dispCombatDeck(Global.selected_character.combatDeck.random_actions(
+					Global.selected_character.deck), Global.selected_character.combatDeck.non_random_actions())
 			elif discardDeckscene != null:
 				discardDeckscene.queue_free()
 				discardDeckscene = null
