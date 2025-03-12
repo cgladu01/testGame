@@ -55,7 +55,7 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
-	var mouse_pos = get_viewport().get_mouse_position()
+	var mouse_pos = get_global_mouse_position() + camera_2d.position
 	var tile = selection.local_to_map(mouse_pos)
 
 	if Global.currentAction is SplashAction:
@@ -101,7 +101,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if tileManager == null:
 			tileManager = world.return_tileManager()
 			
-		var mouse_pos = get_global_mouse_position()
+		var mouse_pos = get_global_mouse_position() + camera_2d.position
 		var tile_mouse_pos = terrain.local_to_map(mouse_pos)
 		if tile_mouse_pos != prevSpot and prevSelection != Vector2i(2,7):
 			
