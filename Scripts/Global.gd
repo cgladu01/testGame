@@ -43,6 +43,7 @@ var unitsNode = null
 var characters : Array[Character] = []
 var enemies : Array[Enemy] = []
 var characterNames : Array[String] = ["DudeMan", "Druid", ""]
+var selected_character : Character = null
 
 # Updates the energy shown in the bottom left
 signal update_energy

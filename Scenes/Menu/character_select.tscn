@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqf6r88tesvmf"]
+
+[ext_resource type="Script" uid="uid://c377gtfdy75ld" path="res://Scenes/Menu/character_select.gd" id="1_be6ap"]
+
+[node name="CharacterSelect" type="PanelContainer"]
+offset_right = 1920.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_be6ap")
+
+[node name="Hbox" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="CharacterName" type="Label" parent="Hbox"]
+layout_mode = 2
+size_flags_vertical = 2
+text = "Character Name"
+
+[node name="CharacterSprite" type="Sprite2D" parent="Hbox"]
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]

@@ -170,21 +170,22 @@ func changeOverlay(overlay: String):
 
 	match overlay:
 		"See All Hands":
-			if deckscene != null:
-				deckscene.queue_free()
-				deckscene = null
-			
-			if discardDeckscene != null:
-				discardDeckscene.queue_free()
-				discardDeckscene = null
+			if Global.combatActive:
+				if deckscene != null:
+					deckscene.queue_free()
+					deckscene = null
+				
+				if discardDeckscene != null:
+					discardDeckscene.queue_free()
+					discardDeckscene = null
 
-			if character_hands_scene == null:
-				character_hands_scene = character_hands_load.instantiate()
-				canvas_layer.add_child(character_hands_scene)
-				character_hands_scene.displayAllHands()
-			elif character_hands_scene != null:
-				character_hands_scene.queue_free()
-				deckscene = null
+				if character_hands_scene == null:
+					character_hands_scene = character_hands_load.instantiate()
+					canvas_layer.add_child(character_hands_scene)
+					character_hands_scene.displayAllHands()
+				elif character_hands_scene != null:
+					character_hands_scene.queue_free()
+					deckscene = null
 		
 		"View Deck":
 			if discardDeckscene != null:
