@@ -5,6 +5,7 @@ var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_scr
 @onready var canvas_layer = $"../CanvasLayer"
 @onready var playerNodes = $'../Units/PlayerUnits'
 @onready var enemyNodes = $'../Units/EnemyUnits'
+@onready var camera_2d = $'../Camera2D'
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -24,6 +25,7 @@ func generate_level(level_number: int):
 	if Global.tile_map_layer != null:
 		disable_current_level()
 	currentlevel = load(str("res://Scenes/Maps/LDTK/levels/Level_", level_number, ".scn")).instantiate()
+	camera_2d.position = camera_2d.position - (get_viewport().size as Vector2 - (currentlevel.size as Vector2))/2 as Vector2
 	self.add_child(currentlevel)
 	self.move_child(currentlevel, 0)
 	Global.tile_map_layer = currentlevel.get_child(0)
