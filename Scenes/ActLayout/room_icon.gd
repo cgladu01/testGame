@@ -8,14 +8,22 @@ const CONNECTOR_MIDIAN = 15
 const ICON_SIZE = 60
 
 var type = Global.roomType.UNKNOWN
-var explored = false
+
+# Room is discovered 
+var discovered = false
+
+# Room is done and there are not other actions to be done it.
 var completed = false
 var current = false
 
 var up : RoomIcon = null
+var upSeperator : Panel = null
 var right : RoomIcon = null
+var rightSeperator: Panel = null
 var down : RoomIcon = null
+var downSeperator : Panel = null
 var left : RoomIcon = null
+var leftSeperator : Panel = null
 
 var behavior : Callable = func (): print("No function")
 
@@ -24,6 +32,12 @@ func setup(n_type : Global.roomType = Global.roomType.INITIAL,
 	n_up : RoomIcon = null, n_right : RoomIcon = null, n_down : RoomIcon = null, n_left : RoomIcon = null):
 	type = n_type 
 	up = n_up
+	if type != Global.roomType.INITIAL:
+		visible = false
+	else:
+		set_discovered()
+		set_completed()
+
 	if up != null:
 		up.add_adajacent_room(Global.direction.DOWN, self)
 
@@ -38,7 +52,8 @@ func setup(n_type : Global.roomType = Global.roomType.INITIAL,
 	left = n_left
 	if left != null:
 		left.add_adajacent_room(Global.direction.RIGHT, self)
-		
+	
+
 	set_image()
 
 
@@ -49,37 +64,49 @@ func add_adajacent_room(i_direction: Global.direction, room: RoomIcon):
 			up = room
 			room.down = self
 			room.position = self.position - Vector2(0, SEPERATION)
-			var panel = Panel.new()
-			panel.size = Vector2(30,5)
-			get_parent().add_child(panel)
-			panel.position = self.position - Vector2(-CONNECTOR_MIDIAN, CONNECTOR_SEPERATOR)
+			room.visible = completed
+			upSeperator = Panel.new()
+			room.downSeperator = upSeperator
+			upSeperator.size = Vector2(30,5)
+			get_parent().add_child(upSeperator)
+			upSeperator.visible = visible
+			upSeperator.position = self.position - Vector2(-CONNECTOR_MIDIAN, CONNECTOR_SEPERATOR)
 		
 		Global.direction.RIGHT:
 			right = room
 			room.left = self
 			room.position = self.position + Vector2(SEPERATION, 0)
-			var panel = Panel.new()
-			panel.size = Vector2(5,30)
-			get_parent().add_child(panel)
-			panel.position = self.position + Vector2(ICON_SIZE, CONNECTOR_MIDIAN)
+			room.visible = completed
+			rightSeperator = Panel.new()
+			room.leftSeperator = rightSeperator
+			rightSeperator.size = Vector2(5,30)
+			get_parent().add_child(rightSeperator)
+			rightSeperator.visible = visible
+			rightSeperator.position = self.position + Vector2(ICON_SIZE, CONNECTOR_MIDIAN)
 
 		Global.direction.DOWN:
 			down = room
 			room.up = self
 			room.position = self.position + Vector2(0, SEPERATION)
-			var panel = Panel.new()
-			panel.size = Vector2(30,5)
-			get_parent().add_child(panel)
-			panel.position = self.position + Vector2(CONNECTOR_MIDIAN, ICON_SIZE)
+			room.visible = completed
+			downSeperator = Panel.new()
+			room.upSeperator = downSeperator
+			downSeperator.size = Vector2(30,5)
+			get_parent().add_child(downSeperator)
+			downSeperator.visible = visible
+			downSeperator.position = self.position + Vector2(CONNECTOR_MIDIAN, ICON_SIZE)
 		
 		Global.direction.LEFT:
 			left = room
 			room.right = self
 			room.position = self.position - Vector2(SEPERATION, 0)
-			var panel = Panel.new()
-			panel.size = Vector2(5,30)
-			get_parent().add_child(panel)
-			panel.position = self.position - Vector2(CONNECTOR_SEPERATOR, -CONNECTOR_MIDIAN)
+			room.visible = completed
+			leftSeperator = Panel.new()
+			room.rightSeperator = leftSeperator
+			leftSeperator.size = Vector2(5,30)
+			get_parent().add_child(leftSeperator)
+			leftSeperator.visible = visible
+			leftSeperator.position = self.position - Vector2(CONNECTOR_SEPERATOR, -CONNECTOR_MIDIAN)
 
 func set_image():
 	var image_path = ""
@@ -105,6 +132,34 @@ func set_image():
 	sprite.set_texture(load(image_path))
 	sprite.scale = Vector2(0.125,0.125)
 
+
+func set_discovered(n_discovered : bool = true):
+	discovered = n_discovered
+	if discovered:
+		if upSeperator != null:
+			upSeperator.visible = true
+		if leftSeperator != null:
+			leftSeperator.visible = true
+		if rightSeperator != null:
+			rightSeperator.visible = true
+		if downSeperator != null:
+			downSeperator.visible = true
+
+func set_completed(n_completed : bool = true):
+	completed = n_completed
+	if completed:
+		if up != null:
+			up.visible = true
+			up.set_discovered()
+		if left != null:
+			left.visible = true
+			left.set_discovered()
+		if right != null:
+			right.visible = true
+			right.set_discovered()
+		if left != null:
+			down.visible = true
+			down.set_discovered()
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("MouseClick"):

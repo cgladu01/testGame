@@ -38,7 +38,7 @@ func _level_changed():
 	generateLevel(Global.level_number)
 
 func changeRoom(new_room : RoomIcon):
-	if Global.currentRoom.explored:
+	if Global.currentRoom.completed:
 		Global.currentRoom = new_room
 		Global.currentRoom.behavior.call()
 
