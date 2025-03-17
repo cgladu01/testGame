@@ -100,3 +100,6 @@ enum  direction {UP, RIGHT, DOWN, LEFT}
 
 # Current Room 
 var currentRoom : RoomIcon = null
+
+# Keyword Handler that brings up tool tips
+var keywordHandler : KeywordHandler = KeywordHandler.new()

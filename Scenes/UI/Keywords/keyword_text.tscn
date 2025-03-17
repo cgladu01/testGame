@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://di73notlquu04"]
+
+[ext_resource type="Script" uid="uid://riw5q2cm226l" path="res://Scenes/UI/Keywords/keyword_text.gd" id="1_5dojd"]
+
+[node name="KeywordText" type="RichTextLabel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+bbcode_enabled = true
+scroll_active = false
+meta_underlined = false
+hint_underlined = false
+script = ExtResource("1_5dojd")
+
+[connection signal="meta_hover_ended" from="." to="." method="_on_meta_hover_ended"]
+[connection signal="meta_hover_started" from="." to="." method="_on_meta_hover_started"]
+[connection signal="ready" from="." to="." method="_on_ready"]
