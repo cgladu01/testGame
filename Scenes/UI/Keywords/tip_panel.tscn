@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://d2k0ytify4gyv"]
+[gd_scene load_steps=3 format=3 uid="uid://d2k0ytify4gyv"]
 
 [ext_resource type="Script" uid="uid://csjseephbnlg0" path="res://Scenes/UI/Keywords/tip_panel.gd" id="1_q2oaq"]
+[ext_resource type="PackedScene" uid="uid://di73notlquu04" path="res://Scenes/UI/Keywords/keyword_text.tscn" id="2_flc3o"]
 
 [node name="Tip Panel" type="PanelContainer"]
 anchors_preset = 4
@@ -21,18 +22,5 @@ size_flags_horizontal = 3
 size_flags_vertical = 0
 text = "Item to be described"
 
-[node name="KeyWord Description" type="RichTextLabel" parent="VBoxContainer"]
-custom_minimum_size = Vector2(350, 0)
+[node name="KeywordText" parent="VBoxContainer" instance=ExtResource("2_flc3o")]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/bold_italics_font_size = 1
-theme_override_font_sizes/normal_font_size = 12
-bbcode_enabled = true
-text = "[url={how do you do}]The[/url] description for the keyword."
-fit_content = true
-scroll_active = false
-meta_underlined = false
-hint_underlined = false
-
-[connection signal="meta_hover_ended" from="VBoxContainer/KeyWord Description" to="." method="_on_key_word_description_meta_hover_ended"]
-[connection signal="meta_hover_started" from="VBoxContainer/KeyWord Description" to="." method="_on_key_word_description_meta_hover_started"]

@@ -3,6 +3,9 @@ extends Node
 # RNG for use in Enemy Action selection
 var rng : RandomNumberGenerator = null
 
+# canvas_layer
+var canvas_layer : CanvasLayer = null
+
 # Is an action selected and what is that action
 var selection : bool = false
 var currentAction : Action = null

@@ -26,6 +26,7 @@ func _ready() -> void:
 	Global.combatEnd.connect(_on_combatEnd)
 	layoutMap.generateMap()
 	Global.level_changed.connect(_level_changed)
+	Global.canvas_layer = canvas
 	rewardhandler.setup(canvas)
 
 func _on_combatEnd():
