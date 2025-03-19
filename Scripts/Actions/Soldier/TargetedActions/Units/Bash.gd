@@ -3,7 +3,7 @@ var tileManager: TileManager = null
 
 func setup(owner: Character):
 	name = "Bash"
-	description = "Attack 4. Inflict 3 Daze"
+	description = "Attack 4. Inflict 3 [url=Daze]Daze[/url].[url=Daze]Call Of The Abyss[/url]"
 	super(owner)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:

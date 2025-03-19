@@ -39,14 +39,16 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CardDescription" type="Label" parent="CardContainer/VBoxContainer"]
-custom_minimum_size = Vector2(160, 0)
+[node name="CardDescription" type="RichTextLabel" parent="CardContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-theme_override_font_sizes/font_size = 25
-text = "Example Description"
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
 horizontal_alignment = 1
-autowrap_mode = 2
+meta_underlined = false
+hint_underlined = false
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="tree_entered" from="." to="." method="_on_tree_entered"]
 [connection signal="gui_input" from="CardContainer" to="." method="_on_card_container_gui_input"]

@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=3 uid="uid://cnc5wjy3jh1f5"]
+[gd_scene load_steps=3 format=3 uid="uid://cnc5wjy3jh1f5"]
 
 [ext_resource type="Script" uid="uid://bbo4ynjyv02ck" path="res://Scenes/UI/CardsUI/CardContainer/card_container.gd" id="1_qaeou"]
+[ext_resource type="PackedScene" uid="uid://di73notlquu04" path="res://Scenes/UI/Keywords/keyword_text.tscn" id="2_m0d5r"]
 
 [node name="CardContainer" type="PanelContainer"]
 custom_minimum_size = Vector2(200, 320)
@@ -38,13 +39,8 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 
-[node name="CardDescription" type="Label" parent="VBoxContainer"]
-custom_minimum_size = Vector2(160, 0)
+[node name="CardDescription" parent="VBoxContainer" instance=ExtResource("2_m0d5r")]
 layout_mode = 2
-size_flags_vertical = 3
-theme_override_font_sizes/font_size = 11
-text = "Example Description"
 horizontal_alignment = 1
-autowrap_mode = 2
 
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

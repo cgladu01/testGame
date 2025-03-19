@@ -2,7 +2,7 @@ class_name CardContainer extends PanelContainer
 @onready var energyCost: Label = $VBoxContainer/HBoxContainer/EnergyCost
 @onready var cardName: Label = $VBoxContainer/HBoxContainer/CardName
 @onready var cardImage: TextureRect = $VBoxContainer/CardImage
-@onready var cardDescription: Label = $VBoxContainer/CardDescription
+@onready var cardDescription: KeywordText = $VBoxContainer/CardDescription
 
 var action : Action = null
 var selectionNumber: Label = null
@@ -31,10 +31,8 @@ func _on_gui_input(event:InputEvent) -> void:
 		elif event.button_index == MOUSE_BUTTON_RIGHT and event.pressed:
 			if inspect_scene == null:
 				inspect_scene = inspect_resource.instantiate()
-				for child in get_tree().get_root().get_child(1).get_children():
-					if child is CanvasLayer:
-						child.add_child(inspect_scene)
-						child.move_child(inspect_scene, -1)
+				Global.canvas_layer.add_child(inspect_scene)
+				Global.canvas_layer.move_child(inspect_scene, -1)
 
 				inspect_scene.setAction(action)
 		elif behavior_set:
