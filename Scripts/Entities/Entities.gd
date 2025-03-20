@@ -15,6 +15,7 @@ signal entityUpdate
 
 # Status Effect Groupings
 var onAttackStatuses : Array[Status] = []
+var onUnblockedStatus : Array[Status] = []
 var onDefendStatuses : Array[Status] = []
 var onGainBlockStatuses : Array[Status] = []
 var onNearMovementStatuses : Array[Status] = []
@@ -52,17 +53,14 @@ func setup_entity(start_health : int, start_location : Vector2i, name : String, 
 		node.set_entity(self)
 
 func addStatus(status: Status, sender: Entities):
+
 	Global.hapFactory.createGiveStatusHap(status, self, sender)
 	var exists = false
 	if status is not UnStackableStatus:
 		for x in statuses:
 			if status.name == x.name:
-				x.count += status.count
+				x.incrementCount(status.count)
 				exists = true
-				if status.has_method("moveEffect"):
-					addStatusToGrouping(onMovementStatuses, status)
-				if status.has_method("nearMoveEffect"):
-					addStatusToGrouping(onNearMovementStatuses, status)
 				break
 		if not exists:
 			statuses.append(status)
@@ -70,6 +68,8 @@ func addStatus(status: Status, sender: Entities):
 				addStatusToGrouping(onMovementStatuses, status)
 			if status.has_method("nearMoveEffect"):
 				addStatusToGrouping(onNearMovementStatuses, status)
+			if status.has_method("unblockEffect"):
+					addStatusToGrouping(onUnblockedStatus, status)
 	else:
 		statuses.append(status)
 
@@ -82,7 +82,6 @@ func addStatusToGrouping(grouping: Array[Status], new_status: Status):
 	else:
 		for status in grouping:
 			if status.name == new_status.name:
-				status.count += new_status.count
 				added = true
 	if not added:
 		grouping.append(new_status)
@@ -118,10 +117,16 @@ func attack_damage(incoming : int, attacker: Entities):
 	block = block - placeholder
 
 	if block < 0:
-		Global.hapFactory.createLoseBlockHap(block + placeholder, self)
+		if block + placeholder != 0:
+			Global.hapFactory.createLoseBlockHap(block + placeholder, self)
 		block = 0
 	else:
 		Global.hapFactory.createLoseBlockHap(placeholder, self)
+	
+	if damage > 0:
+		for status in onUnblockedStatus:
+			status.unblockEffect(damage)
+	
 	change_health(-damage)
 
 func move_on_path(distance: int, path: Array[Vector2i]):
@@ -175,6 +180,8 @@ func combatEnd():
 	onMovementStatuses.clear()	
 
 func roundEnd():
+	for status in statuses:
+		status.roundEnd()
 	pass
 
 func _init() -> void:

@@ -3,7 +3,7 @@ var tileManager: TileManager = null
 
 func setup(owner: Character):
 	name = "Bash"
-	description = "Attack 4. Inflict 3 [url=Daze]Daze[/url].[url=Daze]Call Of The Abyss[/url]"
+	description = "Attack 4. Inflict 3 [url=Daze]Daze[/url]."
 	super(owner)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
@@ -23,7 +23,7 @@ func execute():
 	if canPlay():
 		used = true
 		var target = endTile as Enemy
-		owner.attack(500, target)
+		owner.attack(4, target)
 		target.addStatus(Daze.new().setup_Status(3, target), owner)
 		owner.discardDeck.insertAtFront(self)
 		super()
