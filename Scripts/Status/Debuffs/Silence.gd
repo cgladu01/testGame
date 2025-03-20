@@ -5,7 +5,7 @@ func setup_Status(start_count : int, new_owner: Entities) -> Status:
 	name = "Silence"
 	return super(start_count, new_owner)
 
-func roundStart():
+func roundEnd():
 	decrementCount()
 
 func decrementCount(times: int = 1):

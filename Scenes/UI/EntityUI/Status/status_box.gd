@@ -15,4 +15,14 @@ func _process(delta: float) -> void:
 func display_status(status: Status):
 	disp_status = status
 	self.texture = load(disp_status.image_path)
-	count.text = str(disp_status.count)
+	if disp_status.count != 0:
+		count.text = str(disp_status.count)
+	else:
+		count.text = ""
+
+
+func _on_mouse_exited() -> void:
+	Global.keywordHandler.removeToolTip(disp_status.name)
+
+func _on_mouse_entered() -> void:
+	Global.keywordHandler.generateToolTip(disp_status.name, self)

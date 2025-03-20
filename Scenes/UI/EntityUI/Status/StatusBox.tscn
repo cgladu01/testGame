@@ -32,3 +32,6 @@ offset_right = 34.0
 offset_bottom = 39.0
 theme = SubResource("Theme_n6s8j")
 text = "1"
+
+[connection signal="mouse_entered" from="." to="." method="_on_mouse_entered"]
+[connection signal="mouse_exited" from="." to="." method="_on_mouse_exited"]
