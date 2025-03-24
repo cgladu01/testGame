@@ -27,6 +27,9 @@ func createAction(name : String, owner : Entities) -> Action:
 		"Silent Protector":
 			action = SilentProtector.new()
 			action.setup(owner)
+		"Splintering Shield":
+			action = SplinteringShield.new()
+			action.setup(owner)
 		_:
 			action= Action.new()
 			action.setup_placeholder(name, owner)

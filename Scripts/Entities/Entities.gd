@@ -20,6 +20,7 @@ var onDefendStatuses : Array[Status] = []
 var onGainBlockStatuses : Array[Status] = []
 var onNearMovementStatuses : Array[Status] = []
 var onMovementStatuses : Array[Status] = []
+var onBrokenBlock : Array[Status] = []
 
 func get_health() -> int:
 	return health
@@ -69,7 +70,10 @@ func addStatus(status: Status, sender: Entities):
 			if status.has_method("nearMoveEffect"):
 				addStatusToGrouping(onNearMovementStatuses, status)
 			if status.has_method("unblockEffect"):
-					addStatusToGrouping(onUnblockedStatus, status)
+				addStatusToGrouping(onUnblockedStatus, status)
+			if status.has_method("brokenBlockEffect"):
+				addStatusToGrouping(onBrokenBlock, status)
+				
 	else:
 		statuses.append(status)
 
@@ -94,6 +98,8 @@ func removeStatus(status: Status):
 			statuses.remove_at(index)
 			break
 		index = index + 1
+	
+	entityUpdate.emit()
 
 func attack(incomming : int, target: Entities):
 	for x in onAttackStatuses:
@@ -109,6 +115,10 @@ func attack(incomming : int, target: Entities):
 	target.attack_damage(incomming, self)
 
 func attack_damage(incoming : int, attacker: Entities):
+	var hasblock = false
+	if block > 0:
+		hasblock = true
+
 	var damage = incoming
 	for x in onDefendStatuses:
 		damage = x.deffendEffect(damage, self, attacker)
@@ -116,7 +126,11 @@ func attack_damage(incoming : int, attacker: Entities):
 	damage = damage - block
 	block = block - placeholder
 
-	if block < 0:
+	if block <= 0:
+		if hasblock:
+			for statuses in onBrokenBlock:
+				statuses.brokenBlockEffect()
+
 		if block + placeholder != 0:
 			Global.hapFactory.createLoseBlockHap(block + placeholder, self)
 		block = 0
@@ -172,12 +186,17 @@ func combatStart():
 	pass
 
 func combatEnd():
+	clearAllStatuses()
+
+func clearAllStatuses():
 	statuses.clear()
 	onAttackStatuses.clear()
 	onDefendStatuses.clear()
 	onGainBlockStatuses.clear()
 	onNearMovementStatuses.clear()
-	onMovementStatuses.clear()	
+	onMovementStatuses.clear()
+	onUnblockedStatus.clear()
+
 
 func roundEnd():
 	for status in statuses:
