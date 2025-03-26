@@ -25,6 +25,7 @@ GDConsole="*res://addons/gdconsole/gdconsole.gd"
 window/size/viewport_width=1920
 window/size/viewport_height=1080
 window/size/mode=4
+window/stretch/scale_mode="integer"
 
 [editor_plugins]
 

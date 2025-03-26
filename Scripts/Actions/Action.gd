@@ -1,11 +1,12 @@
 class_name Action
 
 var name : String = "Unknown"
-var owner : Character
-var used : bool = false
 var cost : int = 1
 var description : String = "Undefined"
 var image_path : String = ""
+var owner : Character
+var used : bool = false
+
 var container : CardContainer = null
 var type : int = 0
 var upgraded : int = 0

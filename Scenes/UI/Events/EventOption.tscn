@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://ddav2huti5ge3"]
+
+[ext_resource type="Script" uid="uid://y3i14vq5e2dc" path="res://Scenes/UI/Events/event_optionNode.gd" id="1_b1t2m"]
+
+[node name="PanelContainer" type="PanelContainer"]
+script = ExtResource("1_b1t2m")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+size_flags_vertical = 4
+bbcode_enabled = true
+text = "Example Options"
+fit_content = true
+scroll_active = false
