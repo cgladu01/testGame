@@ -36,9 +36,12 @@ func generate_behavior(behavior_type : Global.roomType = Global.roomType.COMBAT)
 		Global.roomType.UNKNOWN:
 			return func():
 				var event = ReflectionMirror.new()
+				event.setup()
 				var eventNode : EventNode = load("res://Scenes/UI/Events/EventNode.tscn").instantiate()
 				eventNode.event = event
 				Global.canvas_layer.add_child(eventNode)
+				Global.canvas_layer.move_child(eventNode, -1)
+				self.visible = false
 		
 
 
