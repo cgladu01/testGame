@@ -1,9 +1,12 @@
-[gd_scene load_steps=2 format=3 uid="uid://cqf6r88tesvmf"]
+[gd_scene load_steps=4 format=3 uid="uid://cqf6r88tesvmf"]
 
 [ext_resource type="Script" uid="uid://c377gtfdy75ld" path="res://Scenes/Menu/character_select.gd" id="1_be6ap"]
+[ext_resource type="Texture2D" uid="uid://cnnan4q1px3io" path="res://icons/healthbarUnder.png" id="2_2d86f"]
+[ext_resource type="Texture2D" uid="uid://b703a07elmwad" path="res://icons/healthbarProgress.png" id="3_b8nst"]
 
 [node name="CharacterSelect" type="PanelContainer"]
-offset_right = 1920.0
+offset_right = 634.0
+offset_bottom = 50.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_be6ap")
@@ -15,8 +18,25 @@ size_flags_vertical = 3
 
 [node name="CharacterName" type="Label" parent="Hbox"]
 layout_mode = 2
-size_flags_vertical = 2
+size_flags_vertical = 0
 text = "Character Name"
+
+[node name="VBoxContainer" type="HBoxContainer" parent="Hbox"]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="Hbox/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Health: x/y"
+
+[node name="HealthBar" type="TextureProgressBar" parent="Hbox/VBoxContainer"]
+custom_minimum_size = Vector2(192, 0)
+layout_mode = 2
+size_flags_vertical = 3
+nine_patch_stretch = true
+texture_under = ExtResource("2_2d86f")
+texture_progress = ExtResource("3_b8nst")
 
 [node name="CharacterSprite" type="Sprite2D" parent="Hbox"]
 

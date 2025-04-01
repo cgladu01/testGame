@@ -162,5 +162,5 @@ func set_completed(n_completed : bool = true):
 			down.set_discovered()
 
 func _on_gui_input(event: InputEvent) -> void:
-	if event.is_action_pressed("MouseClick"):
+	if event.is_action_pressed("MouseClick"): 
 		get_parent().get_parent().get_parent().get_parent().changeRoom(self)
