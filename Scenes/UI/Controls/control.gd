@@ -228,10 +228,7 @@ func _onEndTurn():
 		confirmWindow.queue_free()
 
 func _layout_map():
-	if layoutMap.is_visible():
-		layoutMap.visible = false
-	else:
-		layoutMap.visible = true
+	Global.toggle_map.emit()
 
 func _pause_screen():
 	if pauseScreenWindow == null:

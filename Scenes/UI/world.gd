@@ -32,13 +32,15 @@ func _ready() -> void:
 func _on_combatEnd():
 	rewardScreen = rewardhandler.generateRewards()
 
+
 func _level_changed():
-	if rewardScreen != null:
-		rewardScreen.queue_free()
-		rewardScreen = null
 	generateLevel(Global.level_number)
 
 func changeRoom(new_room : RoomIcon):
+	if rewardScreen != null:
+		rewardScreen.queue_free()
+		rewardScreen = null
+		
 	if Global.currentRoom.completed:
 		Global.currentRoom = new_room
 		Global.currentRoom.behavior.call()
