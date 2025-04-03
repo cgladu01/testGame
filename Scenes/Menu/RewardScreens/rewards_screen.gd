@@ -2,7 +2,6 @@ class_name RewardScreen extends PanelContainer
 
 @onready var rewardHolder = $"VBoxContainer/ScrollContainer/RewardsHolder"
 
-
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.rewardItemTaken.connect(_on_RewardTaken)
@@ -23,4 +22,5 @@ func _on_RewardTaken():
 			break
 
 	if delete:
+		Global.toggle_map.emit()
 		queue_free()

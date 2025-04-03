@@ -79,6 +79,9 @@ signal characterDeath
 # Signal to show previous click for confirm
 signal confirm_pressed
 
+# Brings up or puts away the map
+signal toggle_map
+
 # Is the log container in the bottom right of screen
 var log_container
 

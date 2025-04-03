@@ -5,7 +5,9 @@ var initial_room : RoomIcon = null
 var room_load = preload("res://Scenes/ActLayout/RoomIcon.tscn")
 
 
+
 func generateMap():
+	Global.toggle_map.connect(_on_toggle_map)
 	initial_room = room_load.instantiate()
 	container.add_child(initial_room)
 	initial_room.setup(Global.roomType.INITIAL, null, null)
@@ -48,3 +50,6 @@ func generate_behavior(behavior_type : Global.roomType = Global.roomType.COMBAT)
 	return func ():
 		print("Hello")
 	
+
+func _on_toggle_map():
+	visible = not visible
