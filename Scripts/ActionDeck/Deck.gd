@@ -1,11 +1,24 @@
 class_name Deck
 # Simulates a deck with Godot Arrays
 var actions: Array[Action] = []
+var attacks: int = 0
+var skills: int = 0
+var powers: int = 0
+var curses: int = 0
 
 func setupDeck(actions : Array[Action]):
-	self.actions = actions.duplicate()
+	addActions(actions.duplicate())
 
 func addAction(newAction : Action):
+	match  newAction.type:
+		Global.card_type.ATTACK:
+			attacks += 1
+		Global.card_type.SKILL:
+			skills += 1
+		Global.card_type.POWER:
+			powers += 1
+		Global.CURSE:
+			curses += 1
 	actions.append(newAction)
 
 func removeAction(action : Action):
@@ -52,7 +65,8 @@ func intersect(compared_actions: Array[Action]) -> Array[Action]:
 	return resulting_actions
 
 func addActions(newactions : Array[Action]):
-	actions.append_array(newactions)
+	for new_action in newactions:
+		addAction(new_action)
 
 func empty() -> Array[Action]:
 	var returner : Array[Action] = []

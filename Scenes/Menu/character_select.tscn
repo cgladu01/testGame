@@ -40,4 +40,55 @@ texture_progress = ExtResource("3_b8nst")
 
 [node name="CharacterSprite" type="Sprite2D" parent="Hbox"]
 
+[node name="CardStatisticsHolder" type="HBoxContainer" parent="Hbox"]
+layout_mode = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Hbox/CardStatisticsHolder"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Hbox/CardStatisticsHolder/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Hbox/CardStatisticsHolder/VBoxContainer"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Hbox/CardStatisticsHolder"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Hbox/CardStatisticsHolder/VBoxContainer2"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Hbox/CardStatisticsHolder/VBoxContainer2"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 10
+
+[node name="VBoxContainer3" type="VBoxContainer" parent="Hbox/CardStatisticsHolder"]
+layout_mode = 2
+
+[node name="RichTextLabel" type="RichTextLabel" parent="Hbox/CardStatisticsHolder/VBoxContainer3"]
+layout_mode = 2
+size_flags_vertical = 3
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="Panel" type="Panel" parent="Hbox/CardStatisticsHolder/VBoxContainer3"]
+custom_minimum_size = Vector2(40, 0)
+layout_mode = 2
+size_flags_vertical = 10
+
 [connection signal="gui_input" from="." to="." method="_on_gui_input"]

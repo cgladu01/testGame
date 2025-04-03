@@ -8,7 +8,7 @@ var owner : Character
 var used : bool = false
 
 var container : CardContainer = null
-var type : int = 0
+var type : Global.card_type = Global.card_type.ATTACK
 var upgraded : int = 0
 
 signal executed
