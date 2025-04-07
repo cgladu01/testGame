@@ -54,6 +54,7 @@ func _ready() -> void:
 	Global.confirm_pressed.connect(_on_confirm_pressed)
 	_on_map_pressed.connect(_layout_map)
 	_on_pause_pressed.connect(_pause_screen)
+	Global.selected_character_update.connect(_selected_character)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -123,10 +124,7 @@ func _unhandled_input(event: InputEvent) -> void:
 		if tile is Entities and Global.combatActive:
 			
 			if tile is Character:
-				character = tile as Character
-				Global.selected_character = character
-				action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
-				character.clicked()
+				select_character(tile as Character)
 
 			if window == null:
 				window = scene.instantiate()
@@ -168,6 +166,17 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event is InputEventKey:
 		var direction: Vector2 = Input.get_vector("CameraLeft", "CameraRight", "CameraUp", "CameraDown")
 		camera_2d.position += direction * 10
+
+func select_character(character : Character, emit_update : bool = true):
+
+	Global.selected_character = character
+	if emit_update:
+		Global.selected_character_update.emit()
+	
+	if Global.selected_character != null:
+		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
+		character.clicked()
+
 
 func changeOverlay(overlay: String):
 
@@ -272,3 +281,15 @@ func _on_view_discard_pressed() -> void:
 
 func _on_view_draw_pressed() -> void:
 	changeOverlay("View Combat Deck")
+
+func _selected_character() -> void:
+	if discardDeckscene != null:
+		discardDeckscene.queue_free()
+		discardDeckscene = null
+	if deckscene != null:
+		deckscene.queue_free()
+		deckscene = null
+	if character_hands_scene != null:
+		character_hands_scene.queue_free()
+		character_hands_scene = null
+	select_character(Global.selected_character, false)

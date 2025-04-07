@@ -1,0 +1,68 @@
+[gd_scene load_steps=6 format=3 uid="uid://cdoc3rqo8m752"]
+
+[ext_resource type="Script" uid="uid://dy3kisfq8ckgj" path="res://Scenes/UI/EntityUI/pannel_window_alt.gd" id="1_ebrw4"]
+[ext_resource type="Texture2D" uid="uid://cnnan4q1px3io" path="res://icons/healthbarUnder.png" id="2_ene0v"]
+[ext_resource type="Texture2D" uid="uid://b703a07elmwad" path="res://icons/healthbarProgress.png" id="3_ekaru"]
+
+[sub_resource type="Theme" id="Theme_r1pme"]
+
+[sub_resource type="Theme" id="Theme_jiyu5"]
+
+[node name="Window" type="PanelContainer"]
+visibility_layer = 512
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -344.0
+offset_top = 59.0
+offset_right = -66.0
+offset_bottom = 190.0
+grow_horizontal = 0
+theme = SubResource("Theme_r1pme")
+script = ExtResource("1_ebrw4")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="TitleLine" type="HBoxContainer" parent="VBoxContainer"]
+layout_mode = 2
+
+[node name="MiniPortrait" type="TextureRect" parent="VBoxContainer/TitleLine"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
+expand_mode = 1
+
+[node name="Title" type="Label" parent="VBoxContainer/TitleLine"]
+custom_minimum_size = Vector2(150, 0)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 0
+
+[node name="MarginContainer" type="MarginContainer" parent="VBoxContainer"]
+layout_mode = 2
+theme = SubResource("Theme_jiyu5")
+theme_override_constants/margin_left = 10
+
+[node name="VBoxContainer" type="VBoxContainer" parent="VBoxContainer/MarginContainer"]
+layout_mode = 2
+
+[node name="HBoxContainer" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+layout_mode = 2
+
+[node name="Health" type="Label" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "Health: x/y"
+
+[node name="HealthBar" type="TextureProgressBar" parent="VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+nine_patch_stretch = true
+texture_under = ExtResource("2_ene0v")
+texture_progress = ExtResource("3_ekaru")
+
+[node name="StatusLine" type="HBoxContainer" parent="VBoxContainer/MarginContainer/VBoxContainer"]
+custom_minimum_size = Vector2(30, 30)
+layout_mode = 2
+size_flags_vertical = 0
