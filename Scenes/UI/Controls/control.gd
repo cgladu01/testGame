@@ -265,3 +265,10 @@ func _on_confirm_pressed():
 		selection.set_cell(prevSpot, 11, prevSelection)
 	
 	prevSpot = Vector2i(-1,-1)
+
+
+func _on_view_discard_pressed() -> void:
+	changeOverlay("View Deck")
+
+func _on_view_draw_pressed() -> void:
+	changeOverlay("View Combat Deck")

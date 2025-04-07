@@ -77,6 +77,21 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_34cot")
 layout_mode = 2
 alignment = 2
 
+[node name="ViewDeckSection" type="VBoxContainer" parent="CanvasLayer/Control/PanelContainer/HBoxContainer"]
+layout_mode = 2
+
+[node name="ViewDraw" type="Button" parent="CanvasLayer/Control/PanelContainer/HBoxContainer/ViewDeckSection"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "View Draw
+Deck"
+
+[node name="ViewDiscard" type="Button" parent="CanvasLayer/Control/PanelContainer/HBoxContainer/ViewDeckSection"]
+layout_mode = 2
+size_flags_vertical = 3
+text = "View Discard
+Deck"
+
 [node name="ActionMenu" parent="CanvasLayer/Control/PanelContainer/HBoxContainer" instance=ExtResource("5_ymabw")]
 layout_mode = 2
 size_flags_horizontal = 3
@@ -113,5 +128,7 @@ visible = false
 [node name="Topbar" parent="CanvasLayer" instance=ExtResource("11_d2sgt")]
 offset_bottom = 31.0
 
+[connection signal="pressed" from="CanvasLayer/Control/PanelContainer/HBoxContainer/ViewDeckSection/ViewDraw" to="CanvasLayer/Control" method="_on_view_draw_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/PanelContainer/HBoxContainer/ViewDeckSection/ViewDiscard" to="CanvasLayer/Control" method="_on_view_discard_pressed"]
 [connection signal="button_down" from="CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_down"]
 [connection signal="button_up" from="CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EnemyForesight" to="Units" method="_on_enemy_foresight_button_up"]
