@@ -29,6 +29,8 @@ var discardDeckscene = null
 var character_hands_load = preload("res://Scenes/UI/CardsUI/SeeAllHands.tscn")
 var character_hands_scene = null
 
+var no_character_selected_load = preload("res://Scenes/UI/Controls/NoCharacterSelectedPanel.tscn")
+
 signal _on_map_pressed
 signal _on_pause_pressed
 
@@ -197,7 +199,9 @@ func changeOverlay(overlay: String):
 				character_hands_scene.queue_free()
 				character_hands_scene = null
 
-			if deckscene == null and Global.selected_character != null:
+			if Global.selected_character == null:
+				canvas_layer.add_child(no_character_selected_load.instantiate())
+			elif deckscene == null:
 				deckscene = decksceneload.instantiate()
 				canvas_layer.add_child(deckscene)
 				deckscene.dispDeck(Global.selected_character.deck)
@@ -214,7 +218,9 @@ func changeOverlay(overlay: String):
 				character_hands_scene.queue_free()
 				character_hands_scene = null
 			
-			if discardDeckscene == null and Global.selected_character != null:
+			if Global.selected_character == null:
+				canvas_layer.add_child(no_character_selected_load.instantiate())
+			elif discardDeckscene == null:
 				discardDeckscene = decksceneload.instantiate()
 				canvas_layer.add_child(discardDeckscene)
 				discardDeckscene.dispCombatDeck(Global.selected_character.combatDeck.random_actions(

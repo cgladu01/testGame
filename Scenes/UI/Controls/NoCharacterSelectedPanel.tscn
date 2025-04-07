@@ -1,0 +1,29 @@
+[gd_scene load_steps=3 format=3 uid="uid://s1vypua240hb"]
+
+[ext_resource type="Script" uid="uid://dj8yl5175kywv" path="res://Scenes/UI/Controls/no_character_selected_panel.gd" id="1_mi7lq"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mi7lq"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -16.5
+offset_right = 91.5
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mi7lq")
+script = ExtResource("1_mi7lq")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+text = "No Character Selected"
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1
