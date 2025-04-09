@@ -6,6 +6,7 @@ var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_scr
 @onready var playerNodes = $'../Units/PlayerUnits'
 @onready var enemyNodes = $'../Units/EnemyUnits'
 @onready var camera_2d = $'../Camera2D'
+@onready var control = $'../CanvasLayer/Control'
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -21,6 +22,9 @@ func _process(delta: float) -> void:
 
 # This is called from world and makes the level depening on the number provided.
 func generate_level(level_number: int):
+	
+	Global.selectionTile.clear()
+	control.visible = true
 
 	if Global.tile_map_layer != null:
 		disable_current_level()

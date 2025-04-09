@@ -5,9 +5,11 @@ extends Node2D
 @onready var selection: TileMapLayer = $Layerholder/selection
 @onready var units: Node2D = $Units
 @onready var canvas: CanvasLayer = $CanvasLayer
-@onready var log_container = $CanvasLayer/LogContainer
+@onready var log_container = $CanvasLayer/Control/LogContainer
 @onready var layerholder = $Layerholder
 @onready var layoutMap = $CanvasLayer/LayoutMap
+@onready var control = $CanvasLayer/Control
+
 var tileManager : TileManager = Global.tileManager
 
 # Reward Handling after combat completion
@@ -16,13 +18,14 @@ var rewardScreen : RewardScreen = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
+	control.visible = false
+	layoutMap.visible = true
 	Global.selectionTile = selection
 	Global.rng = RandomNumberGenerator.new()
 	Global.unitsNode = units
 	Global.rng.set_seed(0)
 	seed(0)
 	Global.log_container = log_container
-	generateLevel(Global.level_number)
 	Global.combatEnd.connect(_on_combatEnd)
 	layoutMap.generateMap()
 	Global.level_changed.connect(_level_changed)
@@ -34,6 +37,7 @@ func _on_combatEnd():
 
 
 func _level_changed():
+	control.visible = false
 	generateLevel(Global.level_number)
 
 func changeRoom(new_room : RoomIcon):

@@ -58,6 +58,9 @@ func _ready() -> void:
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
+	if not self.visible:
+		return
+		
 	var mouse_pos = get_global_mouse_position() + camera_2d.position
 	var tile = selection.local_to_map(mouse_pos)
 
@@ -94,6 +97,9 @@ func _gui_input(event: InputEvent) -> void:
 		accept_event()
 
 func _unhandled_input(event: InputEvent) -> void:
+
+	if  not self.visible:
+		return
 
 	if GDConsole.visible:
 		return
