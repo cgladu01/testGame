@@ -68,3 +68,6 @@ func clicked():
 
 func _init() -> void:
 	pass
+
+func perform_rest():
+	health = min(health + tot_health * 0.3, tot_health)

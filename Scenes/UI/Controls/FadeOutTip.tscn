@@ -1,0 +1,28 @@
+[gd_scene load_steps=3 format=3 uid="uid://bvsg5q8mfdt20"]
+
+[ext_resource type="Script" uid="uid://cdrjdasp4pfug" path="res://Scenes/UI/Controls/fade_out_tip.gd" id="1_i0p2v"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mi7lq"]
+bg_color = Color(0, 0, 0, 1)
+
+[node name="Panel" type="PanelContainer"]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -91.5
+offset_top = -16.5
+offset_right = 91.5
+offset_bottom = 16.5
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_mi7lq")
+script = ExtResource("1_i0p2v")
+
+[node name="RichTextLabel" type="RichTextLabel" parent="."]
+layout_mode = 2
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+vertical_alignment = 1

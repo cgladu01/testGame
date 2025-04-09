@@ -35,6 +35,11 @@ var actionFactory: ActionFactory = ActionFactory.new()
 var enemyFactory : EnemyFactory = EnemyFactory.new()
 var hapFactory : HapFactory = HapFactory.new()
 
+# Act Related Stuff
+var rests_available = 2
+var max_rests = 2
+var available_dialogue = 0
+
 # Reward Related Info
 signal rewardTaken
 signal rewardItemTaken
@@ -110,3 +115,11 @@ var currentRoom : RoomIcon = null
 
 # Keyword Handler that brings up tool tips
 var keywordHandler : KeywordHandler = KeywordHandler.new()
+
+# Generate Tip
+var tool_tip_load = preload("res://Scenes/UI/Controls/FadeOutTip.tscn")
+func fadeAwayToolTip(tip : String):
+	if Global.canvas_layer:
+		var tool_tip = tool_tip_load.instantiate()
+		tool_tip.tip_text = tip
+		Global.canvas_layer.add_child(tool_tip)

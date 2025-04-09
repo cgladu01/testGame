@@ -1,0 +1,50 @@
+[gd_scene load_steps=2 format=3 uid="uid://c763m30sscyaj"]
+
+[ext_resource type="Script" uid="uid://tmx3up552bdt" path="res://Scenes/Menu/party_menu.gd" id="1_v1e6d"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -5.0
+offset_top = 1.0
+offset_right = -5.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_v1e6d")
+
+[node name="HintLayer" type="RichTextLabel" parent="."]
+layout_mode = 0
+offset_left = 562.0
+offset_top = 165.0
+offset_right = 1508.0
+offset_bottom = 266.0
+bbcode_enabled = true
+fit_content = true
+scroll_active = false
+horizontal_alignment = 1
+
+[node name="PartyTalk" type="Button" parent="."]
+layout_mode = 0
+offset_left = 560.0
+offset_top = 288.0
+offset_right = 960.0
+offset_bottom = 418.0
+text = "Check in"
+
+[node name="Rest" type="Button" parent="."]
+layout_mode = 0
+offset_left = 1109.0
+offset_top = 288.0
+offset_right = 1509.0
+offset_bottom = 418.0
+text = "Rest"
+
+[connection signal="mouse_entered" from="PartyTalk" to="." method="_on_party_talk_mouse_entered"]
+[connection signal="mouse_exited" from="PartyTalk" to="." method="_on_party_talk_mouse_exited"]
+[connection signal="pressed" from="PartyTalk" to="." method="_on_party_talk_pressed"]
+[connection signal="mouse_entered" from="Rest" to="." method="_on_rest_mouse_entered"]
+[connection signal="mouse_exited" from="Rest" to="." method="_on_rest_mouse_exited"]
+[connection signal="pressed" from="Rest" to="." method="_on_rest_pressed"]
