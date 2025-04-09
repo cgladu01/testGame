@@ -158,8 +158,8 @@ func set_completed(n_completed : bool = true):
 			right.visible = true
 			right.set_discovered()
 		if left != null:
-			down.visible = true
-			down.set_discovered()
+			left.visible = true
+			left.set_discovered()
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("MouseClick"): 
