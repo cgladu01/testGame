@@ -25,11 +25,12 @@ var downSeperator : Panel = null
 var left : RoomIcon = null
 var leftSeperator : Panel = null
 
+var distance_from_initial = 0
 var behavior : Callable = func (): print("No function")
 
 
 func setup(n_type : Global.roomType = Global.roomType.INITIAL,
-	n_up : RoomIcon = null, n_right : RoomIcon = null, n_down : RoomIcon = null, n_left : RoomIcon = null):
+	n_up : RoomIcon = null, n_right : RoomIcon = null, n_down : RoomIcon = null, n_left : RoomIcon = null, n_distance_from_initial = 0):
 	type = n_type 
 	up = n_up
 	if type != Global.roomType.INITIAL:
@@ -53,6 +54,7 @@ func setup(n_type : Global.roomType = Global.roomType.INITIAL,
 	if left != null:
 		left.add_adajacent_room(Global.direction.RIGHT, self)
 	
+	distance_from_initial = n_distance_from_initial
 
 	set_image()
 
