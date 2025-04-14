@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://dl4o0ev4ih2l" path="res://Scenes/UI/Controls/Topbar.gd" id="1_nsfv3"]
 
 [node name="Topbar" type="PanelContainer"]
+z_index = 1
 anchors_preset = 10
 anchor_right = 1.0
 offset_top = 2.0

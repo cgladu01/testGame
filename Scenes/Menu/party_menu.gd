@@ -8,10 +8,14 @@ const _duration = 0.7
 var _tween : Tween
 
 func _ready() -> void:
-	partyTalk.position.x = self.size.x / 2 -(spacing / 2) - partyTalk.size.x
+	partyTalk.position.x = get_viewport().size.x / 2 -(spacing / 2) - partyTalk.size.x
 	rest.disabled = Global.rests_available == 0
 	rest.position.x = partyTalk.position.x + spacing + partyTalk.size.x
-	hintext.position.x = self.size.x / 2 - (hintext.size.x / 2)
+	hintext.position.x = get_viewport().size.x / 2 - (hintext.size.x / 2)
+	Global.level_changed.connect(_on_level_changed)
+
+func _on_level_changed():
+	queue_free()
 
 
 func _on_rest_mouse_entered() -> void:

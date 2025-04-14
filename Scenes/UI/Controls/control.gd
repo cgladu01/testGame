@@ -13,6 +13,7 @@ var terrain: TileMapLayer = null
 @onready var units : Node2D = $"../../Units"
 @onready var layoutMap : LayoutMap =$"../LayoutMap"
 
+
 var scene = preload("res://Scenes/UI/EntityUI/pannelWindow.tscn")
 var window = null
 
@@ -98,15 +99,12 @@ func _gui_input(event: InputEvent) -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 
-	if  not self.visible:
-		return
-
 	if GDConsole.visible:
 		return
 
 	if terrain == null:
 		terrain = Global.tile_map_layer
-	if event.is_action_pressed("MouseClick"):
+	if event.is_action_pressed("MouseClick") and visible:
 		if tileManager == null:
 			tileManager = world.return_tileManager()
 			
@@ -152,24 +150,24 @@ func _unhandled_input(event: InputEvent) -> void:
 	elif event.is_action_pressed("Pause"):
 		_on_pause_pressed.emit()
 
-	elif event.is_action_pressed("View Combat Deck"):
+	elif event.is_action_pressed("View Combat Deck") and visible:
 		changeOverlay("View Combat Deck")
 	
-	elif event.is_action_pressed("View Deck"):
+	elif event.is_action_pressed("View Deck") and visible:
 		changeOverlay("View Deck")
 			
-	elif event.is_action_pressed("Pitch"):
+	elif event.is_action_pressed("Pitch") and visible:
 		Global.select_mode = PitchMode.new()
 		Global.select_mode.setup(character)
 		_makeConfirmationWindow()
 	
-	elif event.is_action_pressed("See All Hands"):
+	elif event.is_action_pressed("See All Hands") and visible:
 		changeOverlay("See All Hands")
 	
 	elif event.is_action_pressed("View Map"):
 		_on_map_pressed.emit()
 
-	elif event is InputEventKey:
+	elif event is InputEventKey and visible:
 		var direction: Vector2 = Input.get_vector("CameraLeft", "CameraRight", "CameraUp", "CameraDown")
 		camera_2d.position += direction * 10
 

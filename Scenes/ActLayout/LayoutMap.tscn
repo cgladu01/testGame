@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dbbaa0vkp2bc2"]
+[gd_scene load_steps=4 format=3 uid="uid://dbbaa0vkp2bc2"]
 
 [ext_resource type="Script" uid="uid://uidk2b82is7c" path="res://Scenes/ActLayout/layout_map.gd" id="1_uuygs"]
+
+[sub_resource type="Theme" id="Theme_uuygs"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kan7a"]
+bg_color = Color(0.753984, 0.753984, 0.753984, 1)
 
 [node name="LayoutMap" type="CanvasLayer"]
 script = ExtResource("1_uuygs")
@@ -11,3 +16,5 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+theme = SubResource("Theme_uuygs")
+theme_override_styles/panel = SubResource("StyleBoxFlat_kan7a")
