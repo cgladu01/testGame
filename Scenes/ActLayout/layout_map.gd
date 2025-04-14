@@ -8,23 +8,12 @@ var room_load = preload("res://Scenes/ActLayout/RoomIcon.tscn")
 
 func generateMap():
 	Global.toggle_map.connect(_on_toggle_map)
-	initial_room = room_load.instantiate()
-	container.add_child(initial_room)
-	initial_room.setup(Global.roomType.INITIAL, null, null)
-	Global.currentRoom = initial_room
+	Global.actLaytoutFactory.generateLayout(1)
+	Global.actLaytoutFactory.rooms[9][9].bfsAddTo(container)
+	Global.currentRoom = Global.actLaytoutFactory.rooms[9][9]
+	Global.level_changed.connect(_on_level_changed)
 
-	var down_room = room_load.instantiate()
-	container.add_child(down_room)
-	down_room.setup(Global.roomType.UNKNOWN, initial_room)
-	down_room.behavior = generate_behavior(Global.roomType.UNKNOWN)
 
-	var down_right_room = room_load.instantiate()
-	container.add_child(down_right_room)
-	down_right_room.setup(Global.roomType.COMBAT, null, null, null, down_room)
-	down_right_room.behavior = generate_behavior(Global.roomType.COMBAT)
-	var double_right_room = room_load.instantiate()
-	container.add_child(double_right_room)
-	double_right_room.setup(Global.roomType.CAMPSITE, null, null, down_right_room, initial_room)
 
 func generate_behavior(behavior_type : Global.roomType = Global.roomType.COMBAT) -> Callable:
 
@@ -50,6 +39,8 @@ func generate_behavior(behavior_type : Global.roomType = Global.roomType.COMBAT)
 	return func ():
 		print("Hello")
 	
+func _on_level_changed():
+	visible = false
 
 func _on_toggle_map():
 	visible = not visible

@@ -28,6 +28,13 @@ var leftSeperator : Panel = null
 var distance_from_initial = 0
 var behavior : Callable = func (): print("No function")
 
+func _ready():
+	set_image()
+	for seperator in [upSeperator, rightSeperator, downSeperator, leftSeperator]:
+		if seperator:
+			get_parent().add_child(seperator)
+	
+	position_spacers()
 
 func setup(n_type : Global.roomType = Global.roomType.INITIAL,
 	n_up : RoomIcon = null, n_right : RoomIcon = null, n_down : RoomIcon = null, n_left : RoomIcon = null, n_distance_from_initial = 0):
@@ -56,9 +63,6 @@ func setup(n_type : Global.roomType = Global.roomType.INITIAL,
 	
 	distance_from_initial = n_distance_from_initial
 
-	set_image()
-
-
 func add_adajacent_room(i_direction: Global.direction, room: RoomIcon):
 
 	match i_direction:
@@ -70,7 +74,8 @@ func add_adajacent_room(i_direction: Global.direction, room: RoomIcon):
 			upSeperator = Panel.new()
 			room.downSeperator = upSeperator
 			upSeperator.size = Vector2(30,5)
-			get_parent().add_child(upSeperator)
+			if get_parent() != null:
+				get_parent().add_child(upSeperator)
 			upSeperator.visible = visible
 			upSeperator.position = self.position - Vector2(-CONNECTOR_MIDIAN, CONNECTOR_SEPERATOR)
 		
@@ -82,7 +87,8 @@ func add_adajacent_room(i_direction: Global.direction, room: RoomIcon):
 			rightSeperator = Panel.new()
 			room.leftSeperator = rightSeperator
 			rightSeperator.size = Vector2(5,30)
-			get_parent().add_child(rightSeperator)
+			if get_parent() != null:
+				get_parent().add_child(rightSeperator)
 			rightSeperator.visible = visible
 			rightSeperator.position = self.position + Vector2(ICON_SIZE, CONNECTOR_MIDIAN)
 
@@ -94,7 +100,8 @@ func add_adajacent_room(i_direction: Global.direction, room: RoomIcon):
 			downSeperator = Panel.new()
 			room.upSeperator = downSeperator
 			downSeperator.size = Vector2(30,5)
-			get_parent().add_child(downSeperator)
+			if get_parent() != null:
+				get_parent().add_child(downSeperator)
 			downSeperator.visible = visible
 			downSeperator.position = self.position + Vector2(CONNECTOR_MIDIAN, ICON_SIZE)
 		
@@ -106,7 +113,8 @@ func add_adajacent_room(i_direction: Global.direction, room: RoomIcon):
 			leftSeperator = Panel.new()
 			room.rightSeperator = leftSeperator
 			leftSeperator.size = Vector2(5,30)
-			get_parent().add_child(leftSeperator)
+			if get_parent() != null:
+				get_parent().add_child(leftSeperator)
 			leftSeperator.visible = visible
 			leftSeperator.position = self.position - Vector2(CONNECTOR_SEPERATOR, -CONNECTOR_MIDIAN)
 
@@ -159,9 +167,46 @@ func set_completed(n_completed : bool = true):
 		if right != null:
 			right.visible = true
 			right.set_discovered()
-		if left != null:
-			left.visible = true
-			left.set_discovered()
+		if down != null:
+			down.visible = true
+			down.set_discovered()
+
+func bfsAddTo(node : Node):
+	node.add_child(self)
+
+	if up != null and up.get_parent() == null:
+		up.bfsAddTo(node)
+	if left != null and left.get_parent() == null:
+		left.bfsAddTo(node)
+	if right != null and right.get_parent() == null:
+		right.bfsAddTo(node)
+	if down !=null and down.get_parent() == null:
+		down.bfsAddTo(node)
+
+func position_spacers():
+		if upSeperator:
+			if get_parent() != null:
+				get_parent().add_child(upSeperator)
+			upSeperator.visible = visible
+			upSeperator.position = self.position - Vector2(-CONNECTOR_MIDIAN, CONNECTOR_SEPERATOR)
+		
+		if rightSeperator:
+			if get_parent() != null:
+				get_parent().add_child(rightSeperator)
+			rightSeperator.visible = visible
+			rightSeperator.position = self.position + Vector2(ICON_SIZE, CONNECTOR_MIDIAN)
+
+		if downSeperator:
+			if get_parent() != null:
+				get_parent().add_child(downSeperator)
+			downSeperator.visible = visible
+			downSeperator.position = self.position + Vector2(CONNECTOR_MIDIAN, ICON_SIZE)
+	
+		if leftSeperator:
+			if get_parent() != null:
+				get_parent().add_child(leftSeperator)
+			leftSeperator.visible = visible
+			leftSeperator.position = self.position - Vector2(CONNECTOR_SEPERATOR, -CONNECTOR_MIDIAN)
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("MouseClick"): 
