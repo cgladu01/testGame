@@ -25,6 +25,8 @@ var downSeperator : Panel = null
 var left : RoomIcon = null
 var leftSeperator : Panel = null
 
+var tile_location : Vector2i = Vector2i(0, 0)
+
 var distance_from_initial = 0
 var behavior : Callable = func (): print("No function")
 
@@ -208,6 +210,15 @@ func position_spacers():
 			leftSeperator.visible = visible
 			leftSeperator.position = self.position - Vector2(CONNECTOR_SEPERATOR, -CONNECTOR_MIDIAN)
 
+func connected_rooms() -> Array[RoomIcon]:
+	var returner : Array[RoomIcon] = []
+	for x in [up,right,left,down]:
+		if x != null:
+			returner.append(x)
+	
+	return returner
+
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("MouseClick"): 
+		print(tile_location)
 		get_parent().get_parent().get_parent().get_parent().changeRoom(self)
