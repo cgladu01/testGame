@@ -8,6 +8,7 @@ anchors_preset = 0
 script = ExtResource("1_v1e6d")
 
 [node name="HintLayer" type="RichTextLabel" parent="."]
+layout_mode = 0
 offset_left = 562.0
 offset_top = 165.0
 offset_right = 1508.0
@@ -18,6 +19,7 @@ scroll_active = false
 horizontal_alignment = 1
 
 [node name="PartyTalk" type="Button" parent="."]
+layout_mode = 0
 offset_left = 560.0
 offset_top = 288.0
 offset_right = 960.0
@@ -25,6 +27,7 @@ offset_bottom = 418.0
 text = "Check in"
 
 [node name="Rest" type="Button" parent="."]
+layout_mode = 0
 offset_left = 1109.0
 offset_top = 288.0
 offset_right = 1509.0

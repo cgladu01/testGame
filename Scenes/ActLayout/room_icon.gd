@@ -35,8 +35,7 @@ func _ready():
 	for seperator in [upSeperator, rightSeperator, downSeperator, leftSeperator]:
 		if seperator:
 			get_parent().add_child(seperator)
-	
-	position_spacers()
+	call_deferred("position_adajcents")
 
 func setup(n_type : Global.roomType = Global.roomType.INITIAL,
 	n_up : RoomIcon = null, n_right : RoomIcon = null, n_down : RoomIcon = null, n_left : RoomIcon = null, n_distance_from_initial = 0):
@@ -185,30 +184,56 @@ func bfsAddTo(node : Node):
 	if down !=null and down.get_parent() == null:
 		down.bfsAddTo(node)
 
-func position_spacers():
+func bfsShowAll():
+	self.visible = true
+	if type == Global.roomType.INITIAL:
+		if up != null:
+			up.bfsShowAll()
+		if left != null:
+			left.bfsShowAll()
+		if right != null:
+			right.bfsShowAll()
+		if down !=null:
+			down.bfsShowAll()
+
+	if up != null and not up.visible:
+		up.bfsShowAll()
+	if left != null and not left.visible:
+		left.bfsShowAll()
+	if right != null and not right.visible:
+		right.bfsShowAll()
+	if down !=null and not down.visible:
+		down.bfsShowAll()
+
+func position_adajcents():
 		if upSeperator:
 			if get_parent() != null:
 				get_parent().add_child(upSeperator)
 			upSeperator.visible = visible
 			upSeperator.position = self.position - Vector2(-CONNECTOR_MIDIAN, CONNECTOR_SEPERATOR)
+			up.position = self.position - Vector2(0, SEPERATION)
 		
 		if rightSeperator:
 			if get_parent() != null:
 				get_parent().add_child(rightSeperator)
 			rightSeperator.visible = visible
 			rightSeperator.position = self.position + Vector2(ICON_SIZE, CONNECTOR_MIDIAN)
+			right.position = self.position + Vector2(SEPERATION, 0)
 
 		if downSeperator:
 			if get_parent() != null:
 				get_parent().add_child(downSeperator)
 			downSeperator.visible = visible
 			downSeperator.position = self.position + Vector2(CONNECTOR_MIDIAN, ICON_SIZE)
+			down.position = self.position + Vector2(0, SEPERATION)
 	
 		if leftSeperator:
 			if get_parent() != null:
 				get_parent().add_child(leftSeperator)
 			leftSeperator.visible = visible
 			leftSeperator.position = self.position - Vector2(CONNECTOR_SEPERATOR, -CONNECTOR_MIDIAN)
+			left.position = self.position - Vector2(SEPERATION, 0)
+
 
 func connected_rooms() -> Array[RoomIcon]:
 	var returner : Array[RoomIcon] = []
@@ -220,5 +245,4 @@ func connected_rooms() -> Array[RoomIcon]:
 
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("MouseClick"): 
-		print(tile_location)
 		get_parent().get_parent().get_parent().get_parent().changeRoom(self)

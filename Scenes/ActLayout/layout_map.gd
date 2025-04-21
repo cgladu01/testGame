@@ -16,6 +16,9 @@ func generateMap():
 func _on_level_changed():
 	visible = false
 
+func reveal():
+	Global.currentRoom.bfsShowAll()
+
 func _on_toggle_map():
 	visible = not visible
 	get_node("../Control").visible = not visible
