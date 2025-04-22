@@ -14,6 +14,7 @@ func _ready() -> void:
 	GDConsole.create_command(generate_card_rewards)
 	GDConsole.create_command(give_character_action)
 	GDConsole.create_command(reveal_layout)
+	GDConsole.create_command(regenerate_layout)
 	pass # Replace with function body.
 
 
@@ -83,8 +84,11 @@ func generate_card_rewards(actionNames_str: String):
 
 func reveal_layout():
 	canvas_layer.get_node("LayoutMap").reveal()
-	
 
+func regenerate_layout():
+	canvas_layer.get_node("LayoutMap").regnerate_layout()
+	canvas_layer.get_node("LayoutMap").reveal()
+	
 func give_character_action(actionName: String, ownerName: String):
 	for character in Global.characters:
 		if character.name == ownerName:

@@ -22,3 +22,8 @@ func reveal():
 func _on_toggle_map():
 	visible = not visible
 	get_node("../Control").visible = not visible
+
+func regnerate_layout():
+	Global.actLaytoutFactory.rooms[9][9].bfsQueueFree()
+	Global.currentRoom = Global.actLaytoutFactory.generateLayout(1)
+	Global.currentRoom = Global.actLaytoutFactory.rooms[9][9]

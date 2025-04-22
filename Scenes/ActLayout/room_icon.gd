@@ -35,6 +35,7 @@ func _ready():
 	for seperator in [upSeperator, rightSeperator, downSeperator, leftSeperator]:
 		if seperator:
 			get_parent().add_child(seperator)
+	#Some of the positions get scuffed so we wait a frame before doing itS
 	call_deferred("position_adajcents")
 
 func setup(n_type : Global.roomType = Global.roomType.INITIAL,
@@ -185,7 +186,7 @@ func bfsAddTo(node : Node):
 		down.bfsAddTo(node)
 
 func bfsShowAll():
-	self.visible = true
+	self.set_completed()
 	if type == Global.roomType.INITIAL:
 		if up != null:
 			up.bfsShowAll()
@@ -196,14 +197,25 @@ func bfsShowAll():
 		if down !=null:
 			down.bfsShowAll()
 
-	if up != null and not up.visible:
+	if up != null and not up.completed:
 		up.bfsShowAll()
-	if left != null and not left.visible:
+	if left != null and not left.completed:
 		left.bfsShowAll()
-	if right != null and not right.visible:
+	if right != null and not right.completed:
 		right.bfsShowAll()
-	if down !=null and not down.visible:
+	if down !=null and not down.completed:
 		down.bfsShowAll()
+
+func bfsQueueFree():
+	submit_to_be_freed()
+	if up != null and not up.is_queued_for_deletion():
+		up.bfsQueueFree()
+	if left != null and not left.is_queued_for_deletion():
+		left.bfsQueueFree()
+	if right != null and not right.is_queued_for_deletion():
+		right.bfsQueueFree()
+	if down !=null and not down.is_queued_for_deletion():
+		down.bfsQueueFree()
 
 func position_adajcents():
 		if upSeperator:
@@ -246,3 +258,11 @@ func connected_rooms() -> Array[RoomIcon]:
 func _on_gui_input(event: InputEvent) -> void:
 	if event.is_action_pressed("MouseClick"): 
 		get_parent().get_parent().get_parent().get_parent().changeRoom(self)
+
+func submit_to_be_freed():
+
+	for x in [upSeperator, rightSeperator, downSeperator, leftSeperator]:
+		if x != null:
+			x.queue_free()
+	
+	queue_free()
