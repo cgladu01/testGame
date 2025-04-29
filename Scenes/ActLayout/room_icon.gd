@@ -29,6 +29,7 @@ var tile_location : Vector2i = Vector2i(0, 0)
 
 var distance_from_initial = 0
 var behavior : Callable = func (): print("No function")
+var pathType : ActLayoutFactory.pathType = ActLayoutFactory.pathType.MAINPATH
 
 func _ready():
 	set_image()

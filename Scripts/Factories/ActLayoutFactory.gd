@@ -35,10 +35,15 @@ func generateLayout(act_number: int):
 			rooms[x].resize(20)
 	initialRoomsSetup()
 	for room in rooms[9][9].connected_rooms():
-		mainPath(room)
+
+		if mainPath(room):
+			print("Main Path generated error")
+			return
 	
 	for room in sidePaths:
-		sidePath(rooms[room.x][room.y])
+		if sidePath(rooms[room.x][room.y]):
+			print("Side Path generated error")
+			return
 
 #Makes a plus sign for the inital setup after that it becomes more random.
 func initialRoomsSetup():
@@ -58,7 +63,7 @@ func initialRoomsSetup():
 		rooms[initial_room.x][initial_room.y].distance_from_initial = 1
 		rooms[initial_room.x][initial_room.y].set_discovered()
 	
-func mainPath(room : RoomIcon):
+func mainPath(room : RoomIcon) -> int:
 	var length = Global.rng.randi_range(5, 7)
 	var last_subpath = 0
 	var subpath_count = 0
@@ -67,9 +72,9 @@ func mainPath(room : RoomIcon):
 
 	for x in range(length):	
 		var new_room = get_new_room(room.tile_location)
-		if new_room == null:
+		if new_room == Vector2i(-1, -1):
 			print("Failed to generate entire board")
-			return
+			return -1
 
 		makeRoomTypeAt(new_room, generate_random_room(room.distance_from_initial + 1))
 		addConnection(room.tile_location, new_room)
@@ -86,19 +91,24 @@ func mainPath(room : RoomIcon):
 	var new_room = available.pop_at(Global.rng.randi_range(0, available.size() - 1))
 	makeRoomTypeAt(new_room, generate_random_room(room.distance_from_initial + 1) if boss_rooms == 1 else Global.roomType.BOSS)
 	addConnection(new_room, room.tile_location)
+	return 0
 
 
-func sidePath(room : RoomIcon): 
+func sidePath(room : RoomIcon) -> int: 
 	var length = Global.rng.randi_range(3, 4)
 	var last_sideroom = 0
 	var sideroom_count = 0
 
 	for x in range(0, length):
 
-		var new_room = get_new_room(room.tile_location)
+		var new_room = get_new_room(room.tile_location, ActLayoutFactory.pathType.SUBPATH)
+		if new_room == Vector2i(-1, -1):
+			return -1 
 		makeRoomTypeAt(new_room, generate_random_room(room.distance_from_initial + 1))
 		addConnection(room.tile_location, new_room)
 		room = rooms[new_room.x][new_room.y]
+	
+	return 0
 
 func sideRoom(room: RoomIcon):
 	pass
@@ -231,11 +241,29 @@ func withinBounds(location : Vector2i):
 		return false
 	return true
 
-func get_new_room(location : Vector2i, pathType: ActLayoutFactory.pathType = ActLayoutFactory.pathType.MAINPATH) -> Vector2i:
+func move_up_the_chain(location: Vector2i, find: Callable) -> bool:
+	var room : RoomIcon = rooms[location.x][location.y]
+	while rooms != null:
+		if find.call(location):
+			return true
+		else:
+			var find_replacement = false
+			for potential in [room.up, room.right, room.down, room.left]:
+				if potential != null and potential.pathType == ActLayoutFactory.pathType.MAINPATH and potential.distance_from_initial > room.distance_from_initial:
+					room = potential
+					find_replacement = true
+					break
+					
+			if not find_replacement:
+				return false
+	
+	return false
+
+func get_new_room(location : Vector2i, pt: ActLayoutFactory.pathType = ActLayoutFactory.pathType.MAINPATH) -> Vector2i:
 	var available = findAvailable(location)
 	var returner = Vector2i(-1, -1)
 
-	match pathType:
+	match pt:
 		ActLayoutFactory.pathType.MAINPATH:
 			var available_of_available = []
 			for room in available:
@@ -250,7 +278,9 @@ func get_new_room(location : Vector2i, pathType: ActLayoutFactory.pathType = Act
 			rankings.fill(1)
 			var highest = 0
 			var second_highest = 1			
-
+			
+			if available.size() == 0:
+				return Vector2i(-1, -1)
 			if available.size() == 1:
 				returner = available[0]
 				return returner
@@ -268,7 +298,35 @@ func get_new_room(location : Vector2i, pathType: ActLayoutFactory.pathType = Act
 			returner = available[Global.rng.rand_weighted(rankings)]
 
 		ActLayoutFactory.pathType.SUBPATH:
-			pass
+			var available_of_available = []
+			for room in available:
+				var count = findAvailable(room).size()
+				available_of_available.append(count)
+
+			var rankings : Array[int] = []
+			rankings.resize(available_of_available.size())
+			rankings.fill(1)
+			var highest = 0
+			var second_highest = 1			
+			
+			if available.size() == 0:
+				print(location)
+				return Vector2i(-1, -1)
+			if available.size() == 1:
+				returner = available[0]
+				return returner
+			else:
+				for i in range(0, available_of_available.size()):
+					if available_of_available[i] > available_of_available[second_highest] and available_of_available[i] > available_of_available[highest]:
+						var placeholder = highest
+						highest = i
+						second_highest = placeholder
+					elif available_of_available[i] > available_of_available[second_highest]:
+						second_highest = i
+			
+			rankings[highest] = 7
+			rankings[second_highest] = 2
+			returner = available[Global.rng.rand_weighted(rankings)]
 		ActLayoutFactory.pathType.SIDEROOM:
 			pass
 
