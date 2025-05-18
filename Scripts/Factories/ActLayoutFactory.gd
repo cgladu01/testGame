@@ -95,18 +95,32 @@ func mainPath(room : RoomIcon) -> int:
 
 
 func sidePath(room : RoomIcon) -> int: 
+	var orig_room = room
 	var length = Global.rng.randi_range(3, 4)
 	var last_sideroom = 0
 	var sideroom_count = 0
 
-	for x in range(0, length):
+	var rooms_to_side_room = []
 
-		var new_room = get_new_room(room.tile_location, ActLayoutFactory.pathType.SUBPATH)
-		if new_room == Vector2i(-1, -1):
-			return -1 
-		makeRoomTypeAt(new_room, generate_random_room(room.distance_from_initial + 1))
-		addConnection(room.tile_location, new_room)
-		room = rooms[new_room.x][new_room.y]
+
+	var generate_sidePath = func ():
+		rooms_to_side_room.clear()
+		for x in range(0, length):
+
+			var new_room = get_new_room(room.tile_location, ActLayoutFactory.pathType.SUBPATH)
+			if new_room == Vector2i(-1, -1):
+				return -1 
+			makeRoomTypeAt(new_room, generate_random_room(room.distance_from_initial + 1))
+			addConnection(room.tile_location, new_room)
+			room = rooms[new_room.x][new_room.y]
+	
+	while rooms_to_side_room.size() != length:
+		generate_sidePath.call()
+		room = get_tile_at_location(move_up_the_chain(room.tile_location, func (): return true))
+		if room == null:
+			return 0
+
+
 	
 	return 0
 
@@ -241,11 +255,11 @@ func withinBounds(location : Vector2i):
 		return false
 	return true
 
-func move_up_the_chain(location: Vector2i, find: Callable) -> bool:
+func move_up_the_chain(location: Vector2i, find: Callable) -> Vector2i:
 	var room : RoomIcon = rooms[location.x][location.y]
 	while rooms != null:
 		if find.call(location):
-			return true
+			return location
 		else:
 			var find_replacement = false
 			for potential in [room.up, room.right, room.down, room.left]:
@@ -255,9 +269,9 @@ func move_up_the_chain(location: Vector2i, find: Callable) -> bool:
 					break
 					
 			if not find_replacement:
-				return false
+				return Vector2i(-1, -1)
 	
-	return false
+	return Vector2i(-1, -1)
 
 func get_new_room(location : Vector2i, pt: ActLayoutFactory.pathType = ActLayoutFactory.pathType.MAINPATH) -> Vector2i:
 	var available = findAvailable(location)
@@ -331,3 +345,8 @@ func get_new_room(location : Vector2i, pt: ActLayoutFactory.pathType = ActLayout
 			pass
 
 	return returner
+
+func get_tile_at_location(location :Vector2i) -> RoomIcon:
+	if location != Vector2i(-1, -1):
+		return rooms[location.x][location.y]
+	return null
