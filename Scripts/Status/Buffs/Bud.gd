@@ -7,18 +7,13 @@ func setup_Status(start_count : int, new_owner: Entities) -> Status:
     return super(3, new_owner)
 
 func roundStart():
-    print("Dubshoe")
     decrementCount(1)
-    if count == 0:
-        pass
-        # Gain the Flower Buff
 
 func decrementCount(times: int = 1):
     count = count - times
     if count == 0:
         owner.removeStatus(self)
-        pass
-        # Gain the Flower Buff
+        owner.addStatus(Flower.new().setup_Status(1, owner), owner)
 
 func brokenBlockEffect():
     owner.removeStatus(self)    

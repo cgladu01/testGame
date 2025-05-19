@@ -9,7 +9,7 @@ var keywordToDescriptionDict = {
 	"Strength" : "Increases attack damage by count.",
 	"Silence" : "Cannot play skills. Decrements on round end.",
 	"Bud" : "Decrements on round start. When it reaches zero gain [url=Flower]Flower[/url]",
-	"Flower": "Attacks deal 10% more damage and Blocks gain 10% more block."
+	"Flower": "Attacks deal 10% * stack more damage and Blocks gain 10% * stack more block."
 	}
 var tip_panels = []
 

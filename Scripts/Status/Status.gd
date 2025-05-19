@@ -2,6 +2,7 @@ class_name Status
 
 var image_path : String = ""
 var count : int = 0
+# Buff or not
 var type : int = 0
 var name : String = ""
 var owner : Entities = null

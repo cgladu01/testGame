@@ -15,9 +15,12 @@ signal entityUpdate
 
 # Status Effect Groupings
 var onAttackStatuses : Array[Status] = []
+var onAttackStatusesAdd : Array[Status] = []
+var onAttackStatusesMult : Array[Status] = []
 var onUnblockedStatus : Array[Status] = []
 var onDefendStatuses : Array[Status] = []
-var onGainBlockStatuses : Array[Status] = []
+var onGainBlockStatusesAdd : Array[Status] = []
+var onGainBlockStatusesMult : Array[Status] = []
 var onNearMovementStatuses : Array[Status] = []
 var onMovementStatuses : Array[Status] = []
 var onBrokenBlock : Array[Status] = []
@@ -73,6 +76,12 @@ func addStatus(status: Status, sender: Entities):
 				addStatusToGrouping(onUnblockedStatus, status)
 			if status.has_method("brokenBlockEffect"):
 				addStatusToGrouping(onBrokenBlock, status)
+			if status.has_method("attackAddEffect"):
+				addStatusToGrouping(onAttackStatusesAdd, status)
+			if status.has_method("attackMultEffect"):
+				addStatusToGrouping(onAttackStatusesMult, status)
+			if status.has_method("blockMultEffect"):
+				addStatusToGrouping(onGainBlockStatusesMult, status)
 				
 	else:
 		statuses.append(status)
@@ -102,8 +111,10 @@ func removeStatus(status: Status):
 	entityUpdate.emit()
 
 func attack(incomming : int, target: Entities):
-	for x in onAttackStatuses:
-		incomming = x.attackEffect(incomming, self, target)
+	for x in onAttackStatusesAdd:
+		incomming = x.attackEffectAdd(incomming, self, target)
+	for x in onAttackStatusesMult:
+		incomming = x.attackMultEffect(incomming, self, target)
 	Global.hapFactory.createAttackHap(incomming, target, self)
 
 	if target.hasStatus("Under The Sanctuary"):
@@ -162,6 +173,8 @@ func move_on_path(distance: int, path: Array[Vector2i]):
 		Global.entityMoved.emit()
 	
 func gainBlock(differnce : int):
+	for x in onGainBlockStatusesMult:
+		block = x.bloockMultEffect(block)
 	block += differnce 
 
 func roundStart():
@@ -191,8 +204,11 @@ func combatEnd():
 func clearAllStatuses():
 	statuses.clear()
 	onAttackStatuses.clear()
+	onAttackStatusesAdd.clear()
+	onAttackStatusesMult.clear()
 	onDefendStatuses.clear()
-	onGainBlockStatuses.clear()
+	onGainBlockStatusesAdd.clear()
+	onGainBlockStatusesMult.clear()
 	onNearMovementStatuses.clear()
 	onMovementStatuses.clear()
 	onUnblockedStatus.clear()
