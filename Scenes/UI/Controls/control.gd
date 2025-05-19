@@ -43,7 +43,6 @@ var click : bool = false
 
 var prevSpot : Vector2i = Vector2i(0, 0)
 var tileManager : TileManager = null
-var character : Character = null
 var prevSelection : Vector2i = Vector2i(3, 12)
 
 # Called when the node enters the scene tree for the first time.
@@ -143,7 +142,7 @@ func _unhandled_input(event: InputEvent) -> void:
 
 		if Global.currentAction is TargetedAction:
 			var targettedAction = Global.currentAction as TargetedAction
-			if targettedAction.validTarget(character, tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1)), tileManager):
+			if targettedAction.validTarget(Global.selected_character, tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1)), tileManager):
 				prevSelection = Vector2i(2,7)
 				Global.confirmationWindow.emit()
 
@@ -158,7 +157,7 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 	elif event.is_action_pressed("Pitch") and visible:
 		Global.select_mode = PitchMode.new()
-		Global.select_mode.setup(character)
+		Global.select_mode.setup(Global.selected_character)
 		_makeConfirmationWindow()
 	
 	elif event.is_action_pressed("See All Hands") and visible:
@@ -258,12 +257,12 @@ func _pause_screen():
 		pauseScreenWindow = null
 
 func _onRoundStart():
-	if character:
-		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
+	if Global.selected_character:
+		action_menu_control.on_action_update(Global.selected_character.hand, Global.selected_character.energy, Global.selected_character.max_energy)
 
 func _onUpdateHand():
-	if character:
-		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
+	if Global.selected_character:
+		action_menu_control.on_action_update(Global.selected_character.hand, Global.selected_character.energy, Global.selected_character.max_energy)
 
 func _makeConfirmationWindow():
 	if confirmWindow == null:
