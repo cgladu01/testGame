@@ -41,6 +41,7 @@ func generateLayout(act_number: int):
 			return
 	
 	for room in sidePaths:
+		return
 		if sidePath(rooms[room.x][room.y]):
 			print("Side Path generated error")
 			return
@@ -116,7 +117,7 @@ func sidePath(room : RoomIcon) -> int:
 	
 	while rooms_to_side_room.size() != length:
 		generate_sidePath.call()
-		room = get_tile_at_location(move_up_the_chain(room.tile_location, func (): return true))
+		room = get_tile_at_location(move_up_the_chain(room.tile_location, func (anything): return true))
 		if room == null:
 			return 0
 
