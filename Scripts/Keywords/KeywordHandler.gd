@@ -7,7 +7,9 @@ var keywordToDescriptionDict = {
 	"Sanctuary": "Redirects attack damge to self to allies within range. Range is equal to count. Removed at round start.",
 	"Under The Sanctuary" : "Attack damage recieved is redirected to ally with [url=Sanctuary]Sanctuary[/url]",
 	"Strength" : "Increases attack damage by count.",
-	"Silence" : "Cannot play skills. Decrements on round end."
+	"Silence" : "Cannot play skills. Decrements on round end.",
+	"Bud" : "Decrements on round start. When it reaches zero gain [url=Flower]Flower[/url]",
+	"Flower": "Attacks deal 10% more damage and Blocks gain 10% more block."
 	}
 var tip_panels = []
 

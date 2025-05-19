@@ -30,6 +30,9 @@ func createAction(name : String, owner : Entities) -> Action:
 		"Splintering Shield":
 			action = SplinteringShield.new()
 			action.setup(owner)
+		"Blossoming Blade":
+			action = BlossomingBlade.new()
+			action.setup(owner)
 		_:
 			action= Action.new()
 			action.setup_placeholder(name, owner)

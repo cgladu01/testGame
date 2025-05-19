@@ -60,6 +60,7 @@ func roundEnd():
 	discardDeck.addActions(hand.empty())
 
 func clicked():
+	Global.selectionTile.clear()
 	if moved:
 		pass
 	else:

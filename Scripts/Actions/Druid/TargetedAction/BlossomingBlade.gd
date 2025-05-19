@@ -1,28 +1,29 @@
-class_name Bash extends TargetedAction
+class_name BlossomingBlade extends TargetedAction
+var tileManager: TileManager = null
 
 func setup(owner: Character):
-	name = "Bash"
-	description = "Attack 4. Inflict 3 [url=Daze]Daze[/url]."
+	name = "Blossoming Blade"
+	description = "Attack 8, Gain 1 [url=Bud]Bud[/url]."
+	cost = 1
+
 	super(owner)
+
+func button_pressed():
+	Global.actionSelection(self)
+	Global.selectionTile.markTiles(owner.location, 0, 1)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
 	if not starttile or not endtile:
 		return false
 	startTile = starttile
 	endTile = endtile
-	self.tileManager = tileManager
 	return endTile is Enemy and tileManager.distance(startTile.location, endTile.location) <= 1
-
-
-func button_pressed():
-	Global.actionSelection(self)
-	Global.selectionTile.markTiles(owner.location, 0, 1)
 
 func execute():
 	if canPlay():
 		used = true
 		var target = endTile as Enemy
-		owner.attack(4, target)
-		target.addStatus(Daze.new().setup_Status(3, target), owner)
+		owner.attack(8, target)
+		owner.addStatus(Bud.new().setup_Status(3, owner), owner)
 		owner.discardDeck.insertAtFront(self)
 		super()

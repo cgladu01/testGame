@@ -15,6 +15,7 @@ func _ready() -> void:
 	GDConsole.create_command(give_character_action)
 	GDConsole.create_command(reveal_layout)
 	GDConsole.create_command(regenerate_layout)
+	GDConsole.create_command(trigger_roundStart)
 	pass # Replace with function body.
 
 
@@ -93,4 +94,10 @@ func give_character_action(actionName: String, ownerName: String):
 	for character in Global.characters:
 		if character.name == ownerName:
 			character.hand.addAction(Global.actionFactory.createAction(actionName, character))
+			break
+
+func trigger_roundStart(ownerName: String):
+	for character in Global.characters:
+		if character.name == ownerName:
+			character.roundStart()
 			break

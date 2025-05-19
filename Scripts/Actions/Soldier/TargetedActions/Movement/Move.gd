@@ -10,7 +10,7 @@ func setup(owner: Character):
 	super(owner)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:
-	if not starttile or not endtile or not endtile is Tile:
+	if not starttile or not endtile or not endtile is EmptyTile:
 		return false
 	startTile = starttile
 	self.tileManager = tileManager
