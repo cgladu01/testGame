@@ -37,7 +37,7 @@ func set_entity(entity : Entities):
 
 
 func dispActionline():
-	if entities is Enemy:
+	if entities is Enemy and not Global.selection:
 		if actionLine == null:
 			actionLine = scene.instantiate()
 			actionLine.set_enemy(entities as Enemy)
