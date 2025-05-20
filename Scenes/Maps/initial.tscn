@@ -122,12 +122,12 @@ keep_pressed_outside = true
 text = "End Turn"
 script = ExtResource("4_j5xhu")
 
+[node name="LayoutMap" parent="CanvasLayer" instance=ExtResource("11_0u0od")]
+visible = false
+
 [node name="Topbar" parent="CanvasLayer" instance=ExtResource("11_d2sgt")]
 z_index = -1
 offset_bottom = 33.0
-
-[node name="LayoutMap" parent="CanvasLayer" instance=ExtResource("11_0u0od")]
-visible = false
 
 [connection signal="pressed" from="CanvasLayer/Control/PanelContainer/HBoxContainer/ViewDeckSection/ViewDraw" to="CanvasLayer/Control" method="_on_view_draw_pressed"]
 [connection signal="pressed" from="CanvasLayer/Control/PanelContainer/HBoxContainer/ViewDeckSection/ViewDiscard" to="CanvasLayer/Control" method="_on_view_discard_pressed"]
