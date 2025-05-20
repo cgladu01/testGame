@@ -8,6 +8,8 @@ class_name LogContainer extends Control
 var drag_position = null
 var expanded : bool = false
 var SIZECHANGE : int = 400
+var init_bottom : int = 0
+var	init_top : int = 0
 var haplog = preload("res://Scenes/UI/Logs/HapsLogEntry.tscn")
 
 func gainHap(hap: Hap):
@@ -27,23 +29,24 @@ func clearHaps():
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	Global.combatStart.connect(clearHaps)
-	pass # Replace with function body.
+	init_bottom = self.position.y + self.size.y
+	init_top = self.position.y
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
 
 
 func _on_expand_pressed() -> void:
-	if expanded:
+	if expanded: # On Minimize
 		expanded = false
 		button.text = "Expand"
 		self.size = self.size + Vector2(0, -SIZECHANGE)
-		self.position = Vector2(self.position.x, 900) if (self.position + Vector2(0, SIZECHANGE)).y > 900 else self.position + Vector2(0, SIZECHANGE)
-	else:
+		self.position = Vector2(self.position.x, init_top) if (self.position).y + SIZECHANGE > init_top else self.position + Vector2(0, SIZECHANGE)
+	else: # On expand
 		expanded = true
 		button.text = "Minimize"
 		self.size = self.size  + Vector2(0, SIZECHANGE)
-		self.position = Vector2(self.position.x, 10) if (self.position - Vector2(0, SIZECHANGE)).y < 10 else self.position - Vector2(0, SIZECHANGE)
+		self.position = Vector2(self.position.x, -self.size.y + init_bottom) if (self.position - Vector2(0, SIZECHANGE)).y < init_bottom else self.position - Vector2(0, SIZECHANGE)
 
 
 func _on_title_gui_input(event:InputEvent) -> void:
@@ -54,3 +57,5 @@ func _on_title_gui_input(event:InputEvent) -> void:
 			drag_position = null
 	if event is InputEventMouseMotion and drag_position:
 		self.position = get_global_mouse_position() - drag_position
+		if self.position.y + self.size.y > init_bottom:
+			self.position = Vector2(self.position.x, -self.size.y + init_bottom)	
