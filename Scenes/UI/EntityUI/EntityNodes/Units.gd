@@ -66,12 +66,14 @@ func clearActionLine():
 func displayAllActionLine():
 	for x in enemyUnits.get_children():
 		if x is EntitiyNode:
+			x.show_targeting()
 			x.dispActionline()
 
 func _on_enemy_foresight_button_down() -> void:
 	displayAllActionLine()
 
 func _on_enemy_foresight_button_up() -> void:
+	# Global.end_preview.emit()
 	clearActionLine()
 
 func _on_entity_death():

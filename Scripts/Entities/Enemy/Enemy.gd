@@ -44,9 +44,29 @@ func do_enemy_move(dist : int):
 	if path.size() != 0 and Global.tileManager.get_tile_entity(path[min(dist - 1, path.size() - 1)]) is EmptyTile:
 		move_on_path(dist, path)
 
+func preMove():
+	print("hello")
+
+func show_targeting():
+	var damage = action.attack_values()
+	var inc_statuses = action.statuses()
+	var target = action.get_target()
+
+	if damage != -1:
+		pass
+	for status in inc_statuses:
+		pass
+	if target:
+		var arrow = Arrow.new()
+		arrow.target = target.node.global_position - self.node.global_position
+		arrow.head_length = 20
+		arrow.stem_width = 2
+		arrow.head_width = 15
+		arrow.corner_radius = 0
+		self.node.add_child(arrow)
 
 
 
-	
+
 func _init() -> void:
 	pass

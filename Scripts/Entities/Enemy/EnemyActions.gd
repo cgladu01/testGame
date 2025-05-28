@@ -11,3 +11,12 @@ func setup(owner: Enemy):
 
 func execute():
     pass
+
+func attack_values() -> int:
+    return -1
+
+func statuses() -> Array[Status]:
+    return []
+
+func get_target() -> Entities:
+    return null

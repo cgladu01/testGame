@@ -5,11 +5,13 @@ var scene = preload("res://Scenes/UI/EntityUI/actionline.tscn")
 var is_moving = false
 var entities: Entities
 var actionLine = null
+var real_position: Vector2 = Vector2(0, 0)
+var sprite : Sprite2D = null
 signal moved
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	pass
+	Global.end_preview.connect(end_preview)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
@@ -30,7 +32,7 @@ func move_along_path(path: Array[Vector2i]):
 func set_entity(entity : Entities):
 	self.entities = entity
 	self.position = Global.tile_map_layer.map_to_local(entities.location)
-	var sprite = Sprite2D.new()
+	sprite = Sprite2D.new()
 	sprite.scale = Vector2(0.125, 0.125)
 	sprite.set_texture(load(entity.spritePath))
 	add_child(sprite)
@@ -46,5 +48,20 @@ func dispActionline():
 		actionLine.update_actions()
 
 func clearActionLine():
+	end_preview()
 	if actionLine != null:
 		actionLine.queue_free()
+
+func previewMove(direction: Vector2i):
+	real_position = self.position
+	self.position = Global.tile_map_layer.map_to_local(direction)
+
+func end_preview():
+	#self.position = real_position
+	for x in get_children():
+		if x is Arrow:
+			x.queue_free()
+
+func show_targeting():
+	if entities is Enemy and not Global.selection:
+		entities.show_targeting()

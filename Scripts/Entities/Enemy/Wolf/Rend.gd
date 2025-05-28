@@ -12,3 +12,12 @@ func execute():
     if Global.tileManager.distance(owner.location, target.location) <= 1:
         owner.attack(10, target)
         target.addStatus(Bleed.new().setup_Status(1, target), owner)
+
+func attack_value():
+    return 10
+
+func get_target():
+    return owner.find_closest_player()
+
+func statuses():
+    return [Bleed.new().setup_Status(1, null)]

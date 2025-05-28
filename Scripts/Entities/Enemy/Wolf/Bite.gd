@@ -11,3 +11,9 @@ func execute():
     owner.do_enemy_move(4)
     if Global.tileManager.distance(owner.location, target.location) <= 1:
         owner.attack(20, target)
+
+func attack_values() -> int:
+    return 20
+
+func get_target() -> Entities:
+    return owner.find_closest_player()

@@ -124,3 +124,6 @@ func fadeAwayToolTip(tip : String):
 		var tool_tip = tool_tip_load.instantiate()
 		tool_tip.tip_text = tip
 		Global.canvas_layer.add_child(tool_tip)
+
+# Signal end preview mode
+signal end_preview
