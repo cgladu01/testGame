@@ -20,3 +20,9 @@ func statuses() -> Array[Status]:
 
 func get_target() -> Entities:
     return null
+
+func doPreMove():
+    pass
+
+func undoPreMove():
+    pass

@@ -127,3 +127,6 @@ func fadeAwayToolTip(tip : String):
 
 # Signal end preview mode
 signal end_preview
+
+# EnemyMoveEngine
+var enemyMoveEngine: EnemyMoveEngine = EnemyMoveEngine.new()

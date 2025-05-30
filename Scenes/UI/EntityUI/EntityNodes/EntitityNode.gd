@@ -5,7 +5,6 @@ var scene = preload("res://Scenes/UI/EntityUI/actionline.tscn")
 var is_moving = false
 var entities: Entities
 var actionLine = null
-var real_position: Vector2 = Vector2(0, 0)
 var sprite : Sprite2D = null
 signal moved
 
@@ -53,15 +52,12 @@ func clearActionLine():
 		actionLine.queue_free()
 
 func previewMove(direction: Vector2i):
-	real_position = self.position
 	self.position = Global.tile_map_layer.map_to_local(direction)
 
 func end_preview():
-	#self.position = real_position
-	for x in get_children():
-		if x is Arrow:
-			x.queue_free()
+	entities.undoPreMove()
+
 
 func show_targeting():
 	if entities is Enemy and not Global.selection:
-		entities.show_targeting()
+		entities.doPreMove()

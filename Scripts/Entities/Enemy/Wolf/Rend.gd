@@ -7,8 +7,10 @@ func setup(owner: Enemy):
     super(owner)
 
 func execute():
-    var target = owner.find_closest_player()
-    owner.do_enemy_move(4)
+    var result = Global.enemyMoveEngine.find_closest_player(owner)
+    var target = result[1]
+    owner.path = result[0]
+    Global.enemyMoveEngine.owner.do_enemy_move(4)
     if Global.tileManager.distance(owner.location, target.location) <= 1:
         owner.attack(10, target)
         target.addStatus(Bleed.new().setup_Status(1, target), owner)
@@ -17,7 +19,7 @@ func attack_value():
     return 10
 
 func get_target():
-    return owner.find_closest_player()
-
+    return Global.enemyMoveEngine.find_closest_player(owner)[1]
+    
 func statuses():
     return [Bleed.new().setup_Status(1, null)]

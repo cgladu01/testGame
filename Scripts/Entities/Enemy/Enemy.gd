@@ -24,30 +24,8 @@ func do_Turn():
 	action.execute()
 	pass
 
-# Find closets player
-func find_closest_player() -> Character:
-	path = []
-	var rcharacter = null
-	for character in Global.characters:
-		if Global.tileManager.distance(character.location,location) == 1:
-			rcharacter = character
-			break
-		var endTile = Global.tileManager.find_closet_open_tile(location, character.location, 1, false)
-		var newPath = Global.tileManager.getPath(location, endTile, 1)
-		if path.size() > newPath.size() or path.size() == 0:
-			path = newPath
-			rcharacter = character
-
-	return rcharacter
-
-func do_enemy_move(dist : int):
-	if path.size() != 0 and Global.tileManager.get_tile_entity(path[min(dist - 1, path.size() - 1)]) is EmptyTile:
-		move_on_path(dist, path)
-
-func preMove():
-	print("hello")
-
-func show_targeting():
+func doPreMove():
+	action.doPreMove()
 	var damage = action.attack_values()
 	var inc_statuses = action.statuses()
 	var target = action.get_target()
@@ -65,8 +43,11 @@ func show_targeting():
 		arrow.corner_radius = 0
 		self.node.add_child(arrow)
 
-
-
+func undoPreMove():
+	action.undoPreMove()
+	for x in self.node.get_children():
+		if x is Arrow:
+			x.queue_free()
 
 func _init() -> void:
 	pass
