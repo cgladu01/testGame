@@ -17,13 +17,15 @@ signal entityUpdate
 var onAttackStatuses : Array[Status] = []
 var onAttackStatusesAdd : Array[Status] = []
 var onAttackStatusesMult : Array[Status] = []
+var onTargetStatusAdd : Array[Status] = []
+var onTargetStatusMult : Array[Status] = []
 var onUnblockedStatus : Array[Status] = []
-var onDefendStatuses : Array[Status] = []
 var onGainBlockStatusesAdd : Array[Status] = []
 var onGainBlockStatusesMult : Array[Status] = []
 var onNearMovementStatuses : Array[Status] = []
 var onMovementStatuses : Array[Status] = []
 var onBrokenBlock : Array[Status] = []
+var onDefendStatuses : Array[Status] = []
 
 func get_health() -> int:
 	return health
@@ -82,6 +84,10 @@ func addStatus(status: Status, sender: Entities):
 				addStatusToGrouping(onAttackStatusesMult, status)
 			if status.has_method("blockMultEffect"):
 				addStatusToGrouping(onGainBlockStatusesMult, status)
+			if status.has_method("targetAddEffect"):
+				addStatusToGrouping(onTargetStatusAdd, status)
+			if status.has_method("targetMultEffect"):
+				addStatusToGrouping(onTargetStatusMult, status)
 				
 	else:
 		statuses.append(status)
@@ -131,8 +137,12 @@ func attack_damage(incoming : int, attacker: Entities):
 		hasblock = true
 
 	var damage = incoming
-	for x in onDefendStatuses:
-		damage = x.deffendEffect(damage, self, attacker)
+	for x in onTargetStatusAdd:
+		damage = x.onTargetStatusAdd(damage, attacker)
+	
+	for x in onTargetStatusMult:
+		damage = x.onTargetStatusMult(damage, attacker)
+	
 	var placeholder = damage
 	damage = damage - block
 	block = block - placeholder
