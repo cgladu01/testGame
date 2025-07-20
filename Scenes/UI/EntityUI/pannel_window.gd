@@ -1,6 +1,5 @@
 extends PanelContainer
 # When you click on an entity displays an overview in the top right
-
 @onready var title: Label = $VBoxContainer/TitleLine/Title
 @onready var mini_portrait: TextureRect = $VBoxContainer/TitleLine/MiniPortrait
 @onready var status_line: HBoxContainer = $VBoxContainer/MarginContainer/VBoxContainer/StatusLine

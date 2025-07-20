@@ -1,6 +1,6 @@
 class_name Topbar extends PanelContainer
 
-var party_view_load = preload("res://Scenes/Menu/PartyMenu.tscn")
+var party_view_load = preload("res://Scenes/Menu/party_menu.tscn")
 var party_view = null
 
 
