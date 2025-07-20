@@ -2,7 +2,7 @@ class_name LayoutMap extends CanvasLayer
 
 @onready var container = $"PanelContainer"
 var initial_room : RoomIcon = null
-var room_load = preload("res://Scenes/ActLayout/RoomIcon.tscn")
+var room_load = preload("res://Scenes/ActLayout/room_icon.tscn")
 
 
 

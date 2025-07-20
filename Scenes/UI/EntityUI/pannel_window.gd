@@ -1,12 +1,11 @@
 extends PanelContainer
 # When you click on an entity displays an overview in the top right
-
 @onready var title: Label = $VBoxContainer/TitleLine/Title
 @onready var mini_portrait: TextureRect = $VBoxContainer/TitleLine/MiniPortrait
 @onready var status_line: HBoxContainer = $VBoxContainer/MarginContainer/VBoxContainer/StatusLine
 @onready var health_bar: TextureProgressBar = $VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/HealthBar
 @onready var health_text: Label = $VBoxContainer/MarginContainer/VBoxContainer/HBoxContainer/Health
-var statusBox = preload("res://Scenes/UI/EntityUI/Status/StatusBox.tscn")
+var statusBox = preload("res://Scenes/UI/EntityUI/Status/status_box.tscn")
 
 var entity : Entities = null
 var drag_position = null

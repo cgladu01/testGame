@@ -1,7 +1,7 @@
 extends Button
 signal EndTurnPlayerTurn
 @onready var canvas_layer : CanvasLayer = $"../../../../../"
-var scene = preload("res://Scenes/UI/Controls/EndTurn.tscn")
+var scene = preload("res://Scenes/UI/Controls/end_turn.tscn")
 var window = null
 
 

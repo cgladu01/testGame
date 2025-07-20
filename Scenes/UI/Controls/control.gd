@@ -14,23 +14,23 @@ var terrain: TileMapLayer = null
 @onready var layoutMap : LayoutMap =$"../LayoutMap"
 
 
-var scene = preload("res://Scenes/UI/EntityUI/pannelWindow.tscn")
+var scene = preload("res://Scenes/UI/EntityUI/pannel_window.tscn")
 var window = null
 
-var confirmscene = preload("res://Scenes/UI/Controls/Confirmation.tscn")
+var confirmscene = preload("res://Scenes/UI/Controls/confirmation.tscn")
 var confirmWindow = null
 
-var pausescene = preload("res://Scenes/Menu/PauseScreen.tscn")
+var pausescene = preload("res://Scenes/Menu/pause_screen.tscn")
 var pauseScreenWindow = null
 
-var decksceneload = preload("res://Scenes/UI/CardsUI/DisplayDeck.tscn")
+var decksceneload = preload("res://Scenes/UI/CardsUI/display_deck.tscn")
 var deckscene = null
 var discardDeckscene = null
 
-var character_hands_load = preload("res://Scenes/UI/CardsUI/SeeAllHands.tscn")
+var character_hands_load = preload("res://Scenes/UI/CardsUI/see_all_hands.tscn")
 var character_hands_scene = null
 
-var no_character_selected_load = preload("res://Scenes/UI/Controls/NoCharacterSelectedPanel.tscn")
+var no_character_selected_load = preload("res://Scenes/UI/Controls/no_character_selected_panel.tscn")
 
 signal _on_map_pressed
 signal _on_pause_pressed
