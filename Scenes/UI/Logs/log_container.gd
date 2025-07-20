@@ -10,7 +10,7 @@ var expanded : bool = false
 var SIZECHANGE : int = 400
 var init_bottom : int = 0
 var	init_top : int = 0
-var haplog = preload("res://Scenes/UI/Logs/HapsLogEntry.tscn")
+var haplog = preload("res://Scenes/UI/Logs/haps_log_entry.tscn")
 
 func gainHap(hap: Hap):
 	var hapscene : HapContainer = haplog.instantiate()

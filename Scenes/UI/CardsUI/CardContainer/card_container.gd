@@ -6,7 +6,7 @@ class_name CardContainer extends PanelContainer
 
 var action : Action = null
 var selectionNumber: Label = null
-var inspect_resource = preload("res://Scenes/UI/CardsUI/CardInspect.tscn")
+var inspect_resource = preload("res://Scenes/UI/CardsUI/card_inspect.tscn")
 var inspect_scene = null
 var unplayable = false
 var behavior : Callable = func () : return null

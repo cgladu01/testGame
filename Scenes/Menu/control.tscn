@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://ujnh668va0qt"]
 
-[ext_resource type="Script" uid="uid://1iyw2ai2l22f" path="res://Scenes/Menu/MainMenu.gd" id="1_3fs8u"]
+[ext_resource type="Script" uid="uid://1iyw2ai2l22f" path="res://Scenes/Menu/main_menu.gd" id="1_3fs8u"]
 
 [node name="Control" type="PanelContainer"]
 anchors_preset = 15

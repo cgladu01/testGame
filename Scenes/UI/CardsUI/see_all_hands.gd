@@ -1,6 +1,6 @@
 class_name SeeAllHandsNode extends VBoxContainer
 
-var character_hand_info_load = preload("res://Scenes/UI/CardsUI/CharacterHandInfo.tscn")
+var character_hand_info_load = preload("res://Scenes/UI/CardsUI/character_hand_info.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:

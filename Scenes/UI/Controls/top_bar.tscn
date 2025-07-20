@@ -1,0 +1,38 @@
+[gd_scene load_steps=2 format=3 uid="uid://bgnu3tvnrwg7r"]
+
+[ext_resource type="Script" uid="uid://dl4o0ev4ih2l" path="res://Scenes/UI/Controls/top_bar.gd" id="1_nsfv3"]
+
+[node name="Topbar" type="PanelContainer"]
+z_index = 1
+anchors_preset = 10
+anchor_right = 1.0
+offset_top = 2.0
+offset_right = -1.0
+offset_bottom = 72.0
+grow_horizontal = 2
+script = ExtResource("1_nsfv3")
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Button" type="Button" parent="HBoxContainer"]
+layout_mode = 2
+text = "Party View"
+
+[node name="Map" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+text = "Map
+"
+
+[node name="Pause" type="Button" parent="HBoxContainer"]
+custom_minimum_size = Vector2(100, 0)
+layout_mode = 2
+size_flags_horizontal = 10
+size_flags_stretch_ratio = 0.0
+text = "Pause"
+
+[connection signal="pressed" from="HBoxContainer/Button" to="." method="_on_button_pressed"]
+[connection signal="pressed" from="HBoxContainer/Map" to="." method="_on_map_pressed"]
+[connection signal="pressed" from="HBoxContainer/Pause" to="." method="_on_pause_pressed"]
