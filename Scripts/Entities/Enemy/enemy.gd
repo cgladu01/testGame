@@ -36,11 +36,12 @@ func doPreMove():
 		pass
 	if target:
 		var arrow = Arrow.new()
-		arrow.target = target.node.global_position - self.node.global_position
-		arrow.head_length = 20
+		arrow.head_length = 8
 		arrow.stem_width = 2
-		arrow.head_width = 15
+		arrow.head_width = 10
 		arrow.corner_radius = 0
+		arrow.target = target.node.global_position - self.node.global_position
+		arrow.fill_color = Color.DARK_RED
 		self.node.add_child(arrow)
 
 func undoPreMove():

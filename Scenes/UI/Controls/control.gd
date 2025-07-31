@@ -136,7 +136,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				var enemy = tile as Enemy
 				enemy.node.dispActionline()
 			else:
-				units.clearActionLine()
+				units.clear_action_line()
 
 			window.set_entityDisplay(tile as Entities)
 

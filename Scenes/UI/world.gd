@@ -52,7 +52,7 @@ func changeRoom(new_room : RoomIcon):
 func generateLevel(level_number: int):
 	layerholder.generate_level(level_number)
 	astar_2_grid.setMap(tileManager)
-	units.turnOne()
+	units.turn_one()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.

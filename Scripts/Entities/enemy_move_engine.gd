@@ -4,7 +4,7 @@ class_name EnemyMoveEngine
 enum ACTION_TYPE {RANGED, MELEE, FLEEING}
 
 
-func find_closest_player(enemy : Enemy, type: EnemyMoveEngine.ACTION_TYPE = ACTION_TYPE.MELEE, range: int = 0) -> Array:
+func find_closest_player(enemy : Enemy, type: EnemyMoveEngine.ACTION_TYPE = ACTION_TYPE.MELEE, range: int = 0) -> Dictionary:
     var path = []
     var target = null
     for character in Global.characters:
@@ -19,7 +19,7 @@ func find_closest_player(enemy : Enemy, type: EnemyMoveEngine.ACTION_TYPE = ACTI
                     path = newPath
                     target = character
     
-    return [path, target]
+    return {"path": path, "target": target}
 
 func do_move_along_path(enemy: Enemy, path: Array[Vector2i], dist : int):
     if path.size() != 0 and Global.tileManager.get_tile_entity(path[min(dist - 1, path.size() - 1)]) is EmptyTile:

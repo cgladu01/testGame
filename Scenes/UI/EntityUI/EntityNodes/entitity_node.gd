@@ -43,10 +43,10 @@ func dispActionline():
 			actionLine = scene.instantiate()
 			actionLine.set_enemy(entities as Enemy)
 			self.add_child(actionLine)
-			actionLine.position = actionLine.position - Vector2(15, 25)
+
 		actionLine.update_actions()
 
-func clearActionLine():
+func clear_action_line():
 	end_preview()
 	if actionLine != null:
 		actionLine.queue_free()
