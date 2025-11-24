@@ -20,8 +20,8 @@ func execute():
 func attack_value():
     return BASE_ATTACK_VALUE
 
-func get_target():
-    var result = Global.enemyMoveEngine.find_closest_player(owner)
+func get_target(real_location: bool = true):
+    var result = Global.enemyMoveEngine.find_closest_player(owner, real_location)
     return result["target"] if result["path"].size() <= BASE_MOVE_VALUE else null
 
 func statuses():

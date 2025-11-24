@@ -76,6 +76,11 @@ func _on_enemy_foresight_button_up() -> void:
 	# Global.end_preview.emit()
 	clear_action_line()
 
+func display_targeting(real_location: bool = true):
+	for x in enemyUnits.get_children():
+		if x is EntitiyNode:
+			x.show_targeting(real_location)
+
 func _on_entity_death():
 	for i in range(0, Global.enemies.size()):
 		var enemy : Entities = Global.enemies[i]

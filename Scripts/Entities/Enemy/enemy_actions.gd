@@ -22,7 +22,7 @@ func attack_values() -> int:
 func statuses() -> Array[Status]:
     return []
 
-func get_target() -> Entities:
+func get_target(real_location: bool = true) -> Entities:
     return null
 
 func doPreMove():
