@@ -95,7 +95,7 @@ Deck"
 [node name="ViewDiscard" type="Button" parent="CanvasLayer/Control/PanelContainer/HBoxContainer/ViewDeckSection"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "View Discard
+text = "View Combat
 Deck"
 
 [node name="ActionMenu" parent="CanvasLayer/Control/PanelContainer/HBoxContainer" instance=ExtResource("5_ymabw")]

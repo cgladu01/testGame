@@ -1,4 +1,6 @@
-extends VBoxContainer
+class_name DisplayDeck extends PanelContainer
+@onready var card_rows: VBoxContainer = $DisplayDeckGrid
+
 
 var card_container_scene = preload("res://Scenes/UI/CardsUI/CardContainer/card_container.tscn")
 
@@ -13,7 +15,7 @@ func dispDeck(deck: Deck):
 	for action in deck.actions:
 		if count % 5 == 0:
 			box = HBoxContainer.new()
-			self.add_child(box)
+			card_rows.add_child(box)
 
 		var padding = MarginContainer.new()
 		box.add_child(padding)
@@ -37,7 +39,7 @@ func dispCombatDeck(random_actions: Array[Action], ordered_actions : Array[Actio
 	for action in random_actions:
 		if count % 5 == 0:
 			box = HBoxContainer.new()
-			self.add_child(box)
+			card_rows.add_child(box)
 		
 		var padding = MarginContainer.new()
 		box.add_child(padding)
@@ -54,7 +56,7 @@ func dispCombatDeck(random_actions: Array[Action], ordered_actions : Array[Actio
 	for action in ordered_actions:
 		if count % 5 == 0:
 			box = HBoxContainer.new()
-			self.add_child(box)
+			card_rows.add_child(box)
 		
 		var padding = MarginContainer.new()
 		box.add_child(padding)
@@ -68,8 +70,15 @@ func dispCombatDeck(random_actions: Array[Action], ordered_actions : Array[Actio
 		cardcontainer.setAction(action, true)
 		count += 1
 
+func _on_gui_input(event:InputEvent) -> void:
+	if event is InputEventMouseButton and event.is_pressed() and event.button_index == MOUSE_BUTTON_LEFT:
+		queue_free()
 
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+
+func _on_remove_screen_pressed() -> void:
+	queue_free()

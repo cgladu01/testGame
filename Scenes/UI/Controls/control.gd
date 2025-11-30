@@ -192,6 +192,12 @@ func select_character(character : Character, emit_update : bool = true):
 	if Global.selected_character != null:
 		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
 		character.clicked()
+	
+	if window == null:
+		window = scene.instantiate()
+		canvas_layer.add_child(window)
+	
+	window.set_entityDisplay(character)
 
 
 func changeOverlay(overlay: String):

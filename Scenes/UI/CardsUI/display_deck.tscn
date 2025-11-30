@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cno7rxj2r0oaw" path="res://Scenes/UI/CardsUI/deck_display.gd" id="1_4y67d"]
 
-[node name="DisplayDeckGrid" type="VBoxContainer"]
+[node name="DeckDisplay" type="PanelContainer"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -10,6 +10,18 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_4y67d")
 
-[node name="VScrollBar" type="VScrollBar" parent="."]
+[node name="DisplayDeckGrid" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="VScrollBar" type="VScrollBar" parent="DisplayDeckGrid"]
 visible = false
 layout_mode = 2
+
+[node name="RemoveScreen" type="Button" parent="."]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 4
+text = "Return"
+
+[connection signal="gui_input" from="." to="." method="_on_gui_input"]
+[connection signal="pressed" from="RemoveScreen" to="." method="_on_remove_screen_pressed"]
