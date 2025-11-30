@@ -28,19 +28,30 @@ func doPreMove():
 	action.doPreMove()
 	var damage = action.attack_values()
 	var inc_statuses = action.statuses()
-	var target = action.get_target()
 
 	if damage != -1:
 		pass
 	for status in inc_statuses:
 		pass
+	
+	show_targeting()
+
+func show_targeting(real_location: bool = true):
+	var target = action.get_target(real_location)
+
+	for child in self.node.get_children():
+		if child is Arrow:
+			child.queue_free()
+			
 	if target:
-		var arrow = Arrow.new()
-		arrow.target = target.node.global_position - self.node.global_position
-		arrow.head_length = 20
+		var arrow = Arrow.new()		
+		arrow.head_length = 8
 		arrow.stem_width = 2
-		arrow.head_width = 15
+		arrow.head_width = 10
 		arrow.corner_radius = 0
+		arrow.target = Global.selectionTile.map_to_local(
+			target.location if real_location else Global.get_mock_location(target)) - self.node.global_position
+		arrow.fill_color = Color.DARK_RED
 		self.node.add_child(arrow)
 
 func undoPreMove():

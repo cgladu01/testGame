@@ -41,7 +41,7 @@ var lastHover : Vector2i = Vector2i(0,0)
 var lastHoverSelection : Vector2i = Vector2i(3, 12)
 var click : bool = false
 
-var prevSpot : Vector2i = Vector2i(0, 0)
+var lastClicked : Vector2i = Vector2i(0, 0)
 var tileManager : TileManager = null
 var prevSelection : Vector2i = Vector2i(3, 12)
 
@@ -69,7 +69,7 @@ func _process(delta: float) -> void:
 		if not click:
 			splashAction.hover_event(lastHover, true)
 
-		if prevSpot != tile:
+		if lastClicked != tile:
 			click = false
 			lastHover = tile
 			splashAction.hover_event(tile, false)
@@ -79,15 +79,28 @@ func _process(delta: float) -> void:
 			splashAction.click_event(tile, false)
 
 	else:
+		# Reset the last hovered value to whatever it was before
 		if not click:
 			selection.set_cell(lastHover, 11, lastHoverSelection)
 		
-		if prevSpot != tile:
+		# Replace the last hovered spot whatever it was before the hover.
+		if lastClicked != tile:
 			click = false
 			lastHover = tile
 			lastHoverSelection = selection.get_cell_atlas_coords(tile)
 			selection.set_cell(tile, 11, Vector2i(3,7))
+		# If this tile is not the selection button store it to be replaced
 		elif selection.get_cell_atlas_coords(tile) != Vector2i(3, 0):
+			if Global.currentAction is Move:
+				Global.update_mock_locations()
+				var character_spot = 0
+				for character in Global.characters:
+					if character.name == Global.selected_character.name:
+						break
+					character_spot += 1
+					
+				Global.mock_locations[character_spot] = tile
+				units.display_targeting(false)
 			click = true
 			prevSelection = lastHoverSelection
 			selection.set_cell(tile, 11, Vector2i(3,0))
@@ -109,17 +122,17 @@ func _unhandled_input(event: InputEvent) -> void:
 			
 		var mouse_pos = get_global_mouse_position() + camera_2d.position
 		var tile_mouse_pos = terrain.local_to_map(mouse_pos)
-		if tile_mouse_pos != prevSpot and prevSelection != Vector2i(2,7):
+		if tile_mouse_pos != lastClicked and prevSelection != Vector2i(2,7):
 			
 			if Global.currentAction is SplashAction:
 				var splashAction = Global.currentAction as SplashAction
-				splashAction.click_event(prevSpot, true)
+				splashAction.click_event(lastClicked, true)
 			else:
-				selection.set_cell(prevSpot, 11, prevSelection)
+				selection.set_cell(lastClicked, 11, prevSelection)
 
-		if tile_mouse_pos == prevSpot and is_instance_valid(confirmWindow):
+		if tile_mouse_pos == lastClicked and is_instance_valid(confirmWindow):
 			confirmWindow._on_confirm_pressed()
-		prevSpot = tile_mouse_pos
+		lastClicked = tile_mouse_pos
 		click = true
 		var tile = tileManager.get_tile(Vector3i(tile_mouse_pos.x, tile_mouse_pos.y, 1))
 
@@ -136,7 +149,7 @@ func _unhandled_input(event: InputEvent) -> void:
 				var enemy = tile as Enemy
 				enemy.node.dispActionline()
 			else:
-				units.clearActionLine()
+				units.clear_action_line()
 
 			window.set_entityDisplay(tile as Entities)
 
@@ -179,6 +192,12 @@ func select_character(character : Character, emit_update : bool = true):
 	if Global.selected_character != null:
 		action_menu_control.on_action_update(character.hand, character.energy, character.max_energy)
 		character.clicked()
+	
+	if window == null:
+		window = scene.instantiate()
+		canvas_layer.add_child(window)
+	
+	window.set_entityDisplay(character)
 
 
 func changeOverlay(overlay: String):
@@ -272,11 +291,11 @@ func _makeConfirmationWindow():
 func _on_confirm_pressed():
 	if Global.currentAction is SplashAction:
 		var splashAction = Global.currentAction as SplashAction
-		splashAction.click_event(prevSpot, true)
+		splashAction.click_event(lastClicked, true)
 	else:
-		selection.set_cell(prevSpot, 11, prevSelection)
+		selection.set_cell(lastClicked, 11, prevSelection)
 	
-	prevSpot = Vector2i(-1,-1)
+	lastClicked = Vector2i(-1,-1)
 
 
 func _on_view_discard_pressed() -> void:

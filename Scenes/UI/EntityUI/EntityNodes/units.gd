@@ -5,7 +5,7 @@ extends Node2D
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	$"../CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EndTurn".EndTurnPlayerTurn.connect(_onEndTurn)
+	$"../CanvasLayer/Control/PanelContainer/HBoxContainer/VBoxContainer/EndTurn".EndTurnPlayerTurn.connect(_on_end_turn)
 	Global.entityDeath.connect(_on_entity_death)
 	Global.characterDeath.connect(_on_character_death)
 	Global.entityMoved.connect(_on_entity_moved)
@@ -15,7 +15,7 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	pass
 
-func turnOne():
+func turn_one():
 	Global.combatStart.emit()
 	Global.hapFactory.createStartOfRoundHap(1)
 	for character in Global.characters:
@@ -34,7 +34,7 @@ func turnOne():
 	for enemy in Global.enemies:
 		enemy.setup_turn()
 
-func _onEndTurn():
+func _on_end_turn():
 	for character in Global.characters:
 		character.roundEnd()
 
@@ -58,23 +58,28 @@ func _onEndTurn():
 		character.roundStart()
 	Global.roundStart.emit()
 
-func clearActionLine():
+func clear_action_line():
 	for x in enemyUnits.get_children():
 		if x is EntitiyNode:
-			x.clearActionLine()
+			x.clear_action_line()
 
-func displayAllActionLine():
+func display_all_actions_lines():
 	for x in enemyUnits.get_children():
 		if x is EntitiyNode:
 			x.show_targeting()
 			x.dispActionline()
 
 func _on_enemy_foresight_button_down() -> void:
-	displayAllActionLine()
+	display_all_actions_lines()
 
 func _on_enemy_foresight_button_up() -> void:
 	# Global.end_preview.emit()
-	clearActionLine()
+	clear_action_line()
+
+func display_targeting(real_location: bool = true):
+	for x in enemyUnits.get_children():
+		if x is EntitiyNode:
+			x.show_targeting(real_location)
 
 func _on_entity_death():
 	for i in range(0, Global.enemies.size()):

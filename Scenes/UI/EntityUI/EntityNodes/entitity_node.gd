@@ -42,11 +42,12 @@ func dispActionline():
 		if actionLine == null:
 			actionLine = scene.instantiate()
 			actionLine.set_enemy(entities as Enemy)
+			actionLine.update_actions()
 			self.add_child(actionLine)
-			actionLine.position = actionLine.position - Vector2(15, 25)
+
 		actionLine.update_actions()
 
-func clearActionLine():
+func clear_action_line():
 	end_preview()
 	if actionLine != null:
 		actionLine.queue_free()
@@ -58,6 +59,6 @@ func end_preview():
 	entities.undoPreMove()
 
 
-func show_targeting():
+func show_targeting(real_location: bool = true):
 	if entities is Enemy and not Global.selection:
-		entities.doPreMove()
+		entities.show_targeting(real_location)

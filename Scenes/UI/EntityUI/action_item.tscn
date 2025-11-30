@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://bv36smocbu2m2"]
+
+[ext_resource type="Script" uid="uid://bmfhaf0cftt4c" path="res://Scenes/UI/EntityUI/action_item.gd" id="1_kp6tm"]
+
+[node name="ActionItem" type="PanelContainer"]
+script = ExtResource("1_kp6tm")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="Value" type="RichTextLabel" parent="VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 6
+theme_override_font_sizes/normal_font_size = 10
+fit_content = true
+autowrap_mode = 0
+horizontal_alignment = 1
+
+[node name="Image" type="TextureRect" parent="VBoxContainer"]
+custom_minimum_size = Vector2(15, 15)
+layout_mode = 2

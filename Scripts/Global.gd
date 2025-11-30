@@ -130,3 +130,14 @@ signal end_preview
 
 # EnemyMoveEngine
 var enemyMoveEngine: EnemyMoveEngine = EnemyMoveEngine.new()
+
+#Mock Locations to show movement
+var mock_locations : Array = []
+func update_mock_locations():
+	mock_locations = Global.characters.map(func(character) -> Vector2i: return character.location)
+func get_mock_location(character : Character) -> Vector2i:
+	for x in range(0, Global.characters.size()):
+		if character.name == Global.characters[x].name:
+			return mock_locations[x]
+	
+	return Vector2i(-1, -1)

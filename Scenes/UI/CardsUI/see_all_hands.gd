@@ -11,7 +11,15 @@ func displayAllHands():
 		var character_hand_info_scene = character_hand_info_load.instantiate()
 		add_child(character_hand_info_scene)
 		character_hand_info_scene.set_character(character)
+		move_child(character_hand_info_scene, 0)
 
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	pass
+
+func _on_gui_input(event:InputEvent) -> void:
+	if event is InputEventMouse and event.is_pressed():
+		queue_free()
+
+func _on_button_pressed() -> void:
+	queue_free()

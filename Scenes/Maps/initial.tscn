@@ -5,11 +5,11 @@
 [ext_resource type="Script" uid="uid://bapdojbfs38d0" path="res://Scenes/Maps/layer_holder.gd" id="2_vqw1s"]
 [ext_resource type="Script" uid="uid://y4bgq0oj611h" path="res://Scenes/Maps/selection.gd" id="3_5resf"]
 [ext_resource type="Script" uid="uid://dulwvofohey24" path="res://Scenes/UI/Controls/control.gd" id="3_xrpyk"]
-[ext_resource type="Script" uid="uid://40ohoph0e4bp" path="res://Scenes/UI/EntityUI/EntityNodes/Units.gd" id="4_hnyq6"]
+[ext_resource type="Script" uid="uid://40ohoph0e4bp" path="res://Scenes/UI/EntityUI/EntityNodes/units.gd" id="4_hnyq6"]
 [ext_resource type="Script" uid="uid://cwb8047jdshfq" path="res://Scenes/UI/Controls/button.gd" id="4_j5xhu"]
 [ext_resource type="PackedScene" uid="uid://c3fxgtfgclo04" path="res://Scenes/UI/ActionMenu/action_menu.tscn" id="5_ymabw"]
 [ext_resource type="PackedScene" uid="uid://dujclmvvguvt6" path="res://Astar2Grid.tscn" id="8_hqvw0"]
-[ext_resource type="PackedScene" uid="uid://m7vfqn5u4rwb" path="res://Scenes/UI/Logs/LogContainer.tscn" id="9_yj4n1"]
+[ext_resource type="PackedScene" uid="uid://m7vfqn5u4rwb" path="res://Scenes/UI/Logs/log_container.tscn" id="9_yj4n1"]
 [ext_resource type="PackedScene" uid="uid://dbbaa0vkp2bc2" path="res://Scenes/ActLayout/layout_map.tscn" id="11_0u0od"]
 [ext_resource type="PackedScene" uid="uid://bgnu3tvnrwg7r" path="res://Scenes/UI/Controls/top_bar.tscn" id="11_d2sgt"]
 
@@ -95,7 +95,7 @@ Deck"
 [node name="ViewDiscard" type="Button" parent="CanvasLayer/Control/PanelContainer/HBoxContainer/ViewDeckSection"]
 layout_mode = 2
 size_flags_vertical = 3
-text = "View Discard
+text = "View Combat
 Deck"
 
 [node name="ActionMenu" parent="CanvasLayer/Control/PanelContainer/HBoxContainer" instance=ExtResource("5_ymabw")]
