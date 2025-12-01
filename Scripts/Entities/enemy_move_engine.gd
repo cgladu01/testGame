@@ -9,6 +9,8 @@ func find_closest_player(enemy : Enemy, real_location : bool = true, type: Enemy
 	var target = null
 	var locations = Global.characters.map(func(character) -> Vector2i: return character.location) if (real_location) else Global.mock_locations
 	for x in range(0, locations.size()):
+		if not Global.tileManager.isOnboard(locations[x]):
+			continue
 		match type:
 			ACTION_TYPE.MELEE:
 				if Global.tileManager.distance(locations[x] as Vector2i,enemy.location) == 1:

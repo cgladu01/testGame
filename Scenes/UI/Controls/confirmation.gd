@@ -29,4 +29,5 @@ func end():
 	Global.selection = false
 	Global.selectionTile.clear()
 	Global.select_mode = null
+	Global.unitsNode.clear_action_line()
 	queue_free()
