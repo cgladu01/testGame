@@ -200,6 +200,13 @@ func get_entities_within(location: Vector2i, max_dist : int, enemy: int = 1) -> 
 
 	return returner
 
+func isOnboard(location: Vector2i) -> bool:
+
+	if location.x < 0 or location.x >= height:
+		return false
+	if location.y < 0 or location.y >= width:
+		return false
+	return true if get_tile_entity(location) != Obstacle else false
 
 func _init():
 	pass

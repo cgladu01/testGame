@@ -255,6 +255,7 @@ func changeOverlay(overlay: String):
 				discardDeckscene = null
 
 func _onEndTurn():
+	units.clear_action_line()
 	if is_instance_valid(confirmWindow):
 		confirmWindow.queue_free()
 
