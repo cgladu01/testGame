@@ -10,6 +10,9 @@ var event_rooms = 0
 var elite_rooms = 0
 var shop_rooms = 0
 var boss_rooms = 0
+var possible_branches: Array[RoomIcon] = []
+var max_subpaths = 0
+var subpath = 0
 
 enum pathType {MAINPATH, SUBPATH, SIDEROOM}
 
@@ -18,51 +21,72 @@ func generateLayout(act_number: int):
 	if act_number == 4:
 		print("Not made yet")
 		pass
-	if rooms.size() == 20:
-		for x in range(0, 20):
-			rooms[x] = []
-			rooms[x].resize(20)
-		
-		total_rooms = 0
-		combat_rooms = 0
-		elite_rooms = 0
-		shop_rooms = 0
-		boss_rooms = 0
-	else:
-		rooms.resize(20)
-		for x in range(0, 20):
-			rooms[x] = []
-			rooms[x].resize(20)
-	initialRoomsSetup()
-	for room in rooms[9][9].connected_rooms():
 
-		if mainPath(room):
-			print("Main Path generated error")
-			return
+	total_rooms = 0
+	combat_rooms = 0
+	elite_rooms = 0
+	shop_rooms = 0
+	boss_rooms = 0
+	subpath = 0
+	max_subpaths = 3
+
 	
-	for room in sidePaths:
-		return
-		if sidePath(rooms[room.x][room.y]):
-			print("Side Path generated error")
-			return
+	initialRoomsSetup()
+	generatePath(initial_room, pathType.MAINPATH, 6)
+	for branch_starter in possible_branches:
+		if Global.rng.randi_range(0, 1) == 1 and subpath < max_subpaths:
+			generatePath(branch_starter, pathType.SUBPATH, Global.rng.randi_range(2, 4))
 
-#Makes a plus sign for the inital setup after that it becomes more random.
+#Make initial room
 func initialRoomsSetup():
-	makeRoomTypeAt(Vector2i(9, 9), Global.roomType.INITIAL)
+	initial_room = makeRoom(Global.roomType.INITIAL)
 	total_rooms += 1
 
-	var current_room = Vector2i(9, 9)
-	var basic_room = findAvailable(Vector2i(9,9))
-	basic_room.shuffle()
-	var initial_rooms = basic_room.slice(0, 2)
-	for initial_room in initial_rooms:
-		if event_rooms < 0:
-			makeRoomTypeAt(initial_room, Global.roomType.UNKNOWN)
-		else:
-			makeRoomTypeAt(initial_room, Global.roomType.COMBAT)
-		addConnection(current_room, initial_room)
-		rooms[initial_room.x][initial_room.y].distance_from_initial = 1
-		rooms[initial_room.x][initial_room.y].set_discovered()
+func generatePath(starting_room: RoomIcon, pt: pathType,  length: int) -> int:
+	var current_room = starting_room
+	for i in range(length - 1):
+		var new_room = makeRoom(Global.roomType.COMBAT)
+		current_room.add_adajacent_room(findAvailableDirections(current_room, pt)[0], new_room)
+		
+		if pt == pathType.MAINPATH:
+			possible_branches.append(new_room)
+		current_room = new_room
+	
+	match pt:
+		pathType.MAINPATH:
+			current_room.add_adajacent_room(findAvailableDirections(current_room, pt)[0], makeRoom(Global.roomType.BOSS))
+		pathType.SUBPATH:
+			current_room.add_adajacent_room(findAvailableDirections(current_room, pt)[0], makeRoom(Global.roomType.ELITE))
+			subpath += 1
+		pathType.SIDEROOM:
+			current_room.add_adajacent_room(findAvailableDirections(current_room, pt)[0], makeRoom(Global.roomType.UNKNOWN))
+
+	return 0
+
+func findAvailableDirections(room: RoomIcon, pt: pathType) -> Array[Global.direction]:
+	var available_directions : Array[Global.direction] = []
+	
+	for i in range(0, 4):
+		match i:
+			0:
+				if room.up == null:
+					available_directions.append(Global.direction.UP)
+			1:
+				if room.right == null:
+					available_directions.append(Global.direction.RIGHT)
+			2:
+				if room.down == null:
+					available_directions.append(Global.direction.DOWN)
+			3:
+				if room.left == null:
+					available_directions.append(Global.direction.LEFT)
+
+	if pt == pathType.MAINPATH:
+		print(room.type)
+		return [Global.direction.DOWN]
+	if pt == pathType.SUBPATH:
+		return [Global.direction.LEFT]
+	return available_directions
 	
 func mainPath(room : RoomIcon) -> int:
 	var length = Global.rng.randi_range(5, 7)
@@ -120,9 +144,6 @@ func sidePath(room : RoomIcon) -> int:
 		room = get_tile_at_location(move_up_the_chain(room.tile_location, func (anything): return true))
 		if room == null:
 			return 0
-
-
-	
 	return 0
 
 func sideRoom(room: RoomIcon):
@@ -168,6 +189,27 @@ func makeRoomTypeAt(location : Vector2i, type : Global.roomType):
 			rooms[location.x][location.y].behavior = generate_behavior(Global.roomType.BOSS)
 	
 	rooms[location.x][location.y].tile_location = location
+
+func makeRoom(type : Global.roomType = Global.roomType.COMBAT) -> RoomIcon:
+	var room = room_load.instantiate()
+	match type:
+		Global.roomType.INITIAL:
+			room.setup(Global.roomType.INITIAL, null, null)
+			room.set_discovered()
+		Global.roomType.COMBAT:
+			combat_rooms += 1
+			room.setup(Global.roomType.COMBAT, null, null)
+			room.behavior = generate_behavior(Global.roomType.COMBAT)
+		Global.roomType.UNKNOWN:
+			event_rooms += 1
+			room.setup(Global.roomType.UNKNOWN, null, null)
+			room.behavior = generate_behavior(Global.roomType.UNKNOWN)
+		Global.roomType.BOSS:
+			boss_rooms += 1
+			room.setup(Global.roomType.BOSS, null, null)
+			room.behavior = generate_behavior(Global.roomType.BOSS)
+	
+	return room
 	
 func generate_random_room(distance_from_initial: int, n_path_type : ActLayoutFactory.pathType = ActLayoutFactory.pathType.MAINPATH)-> Global.roomType:
 	match n_path_type:
