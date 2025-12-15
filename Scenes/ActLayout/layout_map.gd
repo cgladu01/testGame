@@ -9,8 +9,8 @@ var room_load = preload("res://Scenes/ActLayout/room_icon.tscn")
 func generateMap():
 	Global.toggle_map.connect(_on_toggle_map)
 	Global.actLaytoutFactory.generateLayout(1)
-	Global.actLaytoutFactory.rooms[9][9].bfsAddTo(container)
-	Global.currentRoom = Global.actLaytoutFactory.rooms[9][9]
+	Global.actLaytoutFactory.initial_room.bfsAddTo(container)
+	Global.currentRoom = Global.actLaytoutFactory.initial_room
 	Global.level_changed.connect(_on_level_changed)
 		
 func _on_level_changed():
