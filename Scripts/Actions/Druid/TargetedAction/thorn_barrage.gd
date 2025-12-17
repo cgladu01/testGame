@@ -1,8 +1,7 @@
 class_name ThornBarrage extends SplashAction
 
 func setup(owner: Character):
-    name = "Thorn Barrage"
-    description = "Attack 6, Inflict 2 [url=Bleed]Bleed[/url] twice in a wall pattern within range 3."
+    actionAttributes = load("res://Resources/Actions/Druid/TargetedAction/thorn_barrage.tres")
     cost = 2
     var behavior = func (endTile : Tile) : 
         if endTile is Enemy:

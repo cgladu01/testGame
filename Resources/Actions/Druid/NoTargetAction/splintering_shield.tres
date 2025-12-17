@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionAttributes" load_steps=2 format=3 uid="uid://cbgirivp37egl"]
+
+[ext_resource type="Script" uid="uid://cdpm6urumcgj6" path="res://Resources/Actions/action_attributes.gd" id="1_e1ycb"]
+
+[resource]
+script = ExtResource("1_e1ycb")
+name = "Splintering Shield"
+description = "Gain 10 block. If an attacks breaks your block, deal 6 damage to all adjacent enemies."
+image_path = ""
+type = 1
+metadata/_custom_type_script = "uid://cdpm6urumcgj6"

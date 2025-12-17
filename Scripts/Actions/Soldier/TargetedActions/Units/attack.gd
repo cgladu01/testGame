@@ -3,8 +3,7 @@ class_name Attack extends TargetedAction
 var tileManager: TileManager = null
 
 func setup(owner: Character):
-	name = "Attack"
-	description = "Attack 6"
+	actionAttributes = load("res://Resources/Actions/Soldier/TargetedAction/Units/attack.tres")
 	super(owner)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:

@@ -1,8 +1,7 @@
 class_name Bash extends TargetedAction
 
 func setup(owner: Character):
-	name = "Bash"
-	description = "Attack 4. Inflict 3 [url=Daze]Daze[/url]."
+	actionAttributes = load("res://Resources/Actions/Soldier/TargetedAction/Units/bash.tres")
 	super(owner)
 
 func validTarget(starttile: Tile, endtile: Tile, tileManager: TileManager) -> bool:

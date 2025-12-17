@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="ActionAttributes" load_steps=2 format=3 uid="uid://30x423rcf6vy"]
+
+[ext_resource type="Script" uid="uid://cdpm6urumcgj6" path="res://Scripts/Actions/action_attributes.gd" id="1_kgs5v"]
+
+[resource]
+script = ExtResource("1_kgs5v")
+name = "Silent Protector"
+cost = 1
+description = "\"Gain 30 Block. Gain Silenced 2. Gain Sanctuary 3.\""
+image_path = ""
+type = 1
+upgraded = 0
+metadata/_custom_type_script = "uid://cdpm6urumcgj6"

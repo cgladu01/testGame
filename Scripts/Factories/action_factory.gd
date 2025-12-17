@@ -36,7 +36,6 @@ func createAction(name : String, owner : Entities) -> Action:
 		_:
 			action= Action.new()
 			action.setup_placeholder(name, owner)
-
 	return action
 
 

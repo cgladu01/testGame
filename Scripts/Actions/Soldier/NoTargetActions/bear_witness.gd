@@ -1,9 +1,8 @@
 class_name BearWitness extends Action
 
 func setup(owner: Character):
-    name = "Bear Witness"
-    description = "Inflict Call of the Abyss 4 on all enemies withing Range 3. Gain Call of the Abyss 5 if you do not have it, else decelerate it by 2."
-    type = Global.card_type.SKILL
+    actionAttributes = load("res://Resources/Actions/Soldier/NoTargetAction/bear_witness.tres")
+    cost = 2
     super(owner)
 
 func button_pressed():

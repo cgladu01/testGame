@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionAttributes" load_steps=2 format=3 uid="uid://bk7co7uqbq7xq"]
+
+[ext_resource type="Script" uid="uid://cdpm6urumcgj6" path="res://Resources/Actions/action_attributes.gd" id="1_bpi2y"]
+
+[resource]
+script = ExtResource("1_bpi2y")
+name = "Bear Witness"
+description = "Inflict Call of the Abyss 4 on all enemies withing Range 3. Gain Call of the Abyss 5 if you do not have it, else decelerate it by 2."
+image_path = ""
+type = 1
+metadata/_custom_type_script = "uid://cdpm6urumcgj6"
