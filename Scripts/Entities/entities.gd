@@ -4,11 +4,9 @@ extends "../tile.gd"
 
 var health : int = 40
 var statuses : Array[Status] = []
-var name : String = ""
 
 var node : EntitiyNode = null
-var miniPortaitPath : String = ""
-var spritePath : String = "res://icon.svg"
+var entityAttributes : EntityAttributes = null
 var tot_health : int = 100
 var block : int = 0
 signal entityUpdate
@@ -29,6 +27,13 @@ var onDefendStatuses : Array[Status] = []
 
 func get_health() -> int:
 	return health
+
+func _get(property: StringName) -> Variant:
+	if property in entityAttributes:
+		return entityAttributes.get(property)
+	else:
+		return get(property)
+
 	
 func set_health(health : int):
 	self.health = health
@@ -50,13 +55,16 @@ func change_health(difference : int):
 		
 	entityUpdate.emit()
 
-func setup_entity(start_health : int, start_location : Vector2i, name : String, start_node : EntitiyNode) -> void:
+func setup_entity(start_health : int, start_location : Vector2i, start_node : EntitiyNode, entityAttributes: EntityAttributes) -> void:
 	tot_health = start_health
-	self.name = name
 	if start_node != null:
 		node = start_node
 		setup(start_location)
 		node.set_entity(self)
+	
+	entityAttributes = entityAttributes
+	if entityAttributes == null:
+		entityAttributes = EntityAttributes.new()
 
 func addStatus(status: Status, sender: Entities):
 

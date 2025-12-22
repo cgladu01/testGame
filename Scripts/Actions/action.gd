@@ -31,7 +31,7 @@ func canPlay():
 
 	if owner is Character:
 		var character = owner as Character
-		return character.energy - actionAttributes.cost >= 0
+		return character.energy - cost >= 0
 
 func _get(property: StringName) -> Variant:
 	if property in actionAttributes:
@@ -44,7 +44,7 @@ func execute():
 	if canPlay():
 		if owner is Character:
 			var character = owner as Character
-			character.energy = character.energy - actionAttributes.cost
+			character.energy = character.energy - cost
 
 			Global.update_energy.emit(character.energy, character.max_energy)		
 		if container:

@@ -14,11 +14,10 @@ func setup_turn():
 		node.dispActionline()
 	pass
 
-func setup_enemy(init_name : String, start_health : int, start_location : Vector2i, start_node : EntitiyNode, mini_portrait_path : String) -> void:
-	name = init_name
+func setup_enemy(start_health : int, start_location : Vector2i, start_node : EntitiyNode, enemyAttributes : EnemyAttributes) -> void:
+	entityAttributes = enemyAttributes
 	turn_actions = []
-	miniPortaitPath = mini_portrait_path
-	setup_entity(start_health, start_location, init_name, start_node)
+	setup_entity(start_health, start_location, start_node, enemyAttributes)
 
 func do_Turn():
 	action.execute()
