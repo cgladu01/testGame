@@ -1,5 +1,5 @@
-class_name enemy_action_attributes extends Resource
+class_name EnemyActionAttributes extends Resource
 
-@export var imageIndicator: Array[String] = []
+@export_file var imageIndicator: Array[String] = []
 @export var numberIndicators: Array[int] = []
 @export var name: String = ""

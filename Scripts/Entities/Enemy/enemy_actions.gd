@@ -1,17 +1,13 @@
 class_name EnemyActions
 
-var imageIndicator: Array[String] = []
-var numberIndicators: Array[int] = []
+
+var enemy_actions_attributes: EnemyActionAttributes = null
 var owner: Enemy = null
-var name: String = ""
 
 
-func setup(owner: Enemy):
+func setup(owner: Enemy, enemy_actions_attributes: EnemyActionAttributes):
+    self.enemy_actions_attributes = enemy_actions_attributes
     self.owner = owner
-
-func add_action_pair(image_path: String, value: int):
-    imageIndicator.append(image_path)
-    numberIndicators.append(value)
 
 func execute():
     pass
@@ -27,6 +23,12 @@ func get_target(real_location: bool = true) -> Entities:
 
 func doPreMove():
     pass
+
+func _get(property: StringName) -> Variant:
+    if property in enemy_actions_attributes:
+        return enemy_actions_attributes.get(property)
+    else:
+        return get(property)
 
 func undoPreMove():
     pass

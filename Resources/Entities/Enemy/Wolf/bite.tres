@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyActionAttributes" load_steps=2 format=3 uid="uid://bxnimipcisths"]
+
+[ext_resource type="Script" uid="uid://dyneuhkobw3ry" path="res://Resources/Entities/Enemy/enemy_action_attributes.gd" id="1_1esv1"]
+
+[resource]
+script = ExtResource("1_1esv1")
+imageIndicator = Array[String](["uid://cw6bm32ht3eyw", "uid://bul2ebay3ubdp"])
+numberIndicators = Array[int]([4, 20])
+name = "Bite"
+metadata/_custom_type_script = "uid://dyneuhkobw3ry"

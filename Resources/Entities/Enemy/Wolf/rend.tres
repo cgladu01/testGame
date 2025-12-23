@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EnemyActionAttributes" load_steps=2 format=3 uid="uid://cpemw3xayt1m0"]
+
+[ext_resource type="Script" uid="uid://dyneuhkobw3ry" path="res://Resources/Entities/Enemy/enemy_action_attributes.gd" id="1_irmal"]
+
+[resource]
+script = ExtResource("1_irmal")
+imageIndicator = Array[String](["uid://cw6bm32ht3eyw", "uid://wwhprkjtbjjh"])
+numberIndicators = Array[int]([4, 10])
+name = ""
+metadata/_custom_type_script = "uid://dyneuhkobw3ry"

@@ -10,8 +10,12 @@ func setup_turn():
 func setup_enemy(start_health : int, start_location : Vector2i, start_node : EntitiyNode, enemyAttributes: EnemyAttributes) -> void:
     super(start_health, start_location, start_node, enemyAttributes)
     turn_actions = [Rend.new(), Bite.new(), Howl.new()]
-    for x in turn_actions:
-        x.setup(self)
+    var turn_attributes : Array[EnemyActionAttributes] = [
+        load("res://Resources/Entities/Enemy/Wolf/rend.tres"), 
+        load("res://Resources/Entities/Enemy/Wolf/bite.tres"),
+        load("res://Resources/Entities/Enemy/Wolf/howl.tres")]
+    for x in range(turn_actions.size()):
+        turn_actions[x].setup(self, turn_attributes[x])
 
 func _init() -> void:
     pass
