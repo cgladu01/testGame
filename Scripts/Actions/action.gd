@@ -36,8 +36,10 @@ func canPlay():
 func _get(property: StringName) -> Variant:
 	if property in actionAttributes:
 		return actionAttributes.get(property)
-	else:
+	elif property in self.get_property_list():
 		return get(property)
+	else:
+		return null
 
 func execute():
 	Global.selectionTile.clear()

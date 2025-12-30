@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://dch8yqmi5b6jv"]
+
+[ext_resource type="Script" path="res://Resources/Status/status_attributes.gd" id="1_efvqs"]
+
+[resource]
+script = ExtResource("1_efvqs")
+name = "Silence"
+spritePath = "uid://cmlwd3yy8fanx"
+description = "No description."

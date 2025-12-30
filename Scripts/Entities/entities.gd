@@ -31,8 +31,10 @@ func get_health() -> int:
 func _get(property: StringName) -> Variant:
 	if property in entityAttributes:
 		return entityAttributes.get(property)
-	else:
+	elif property in self.get_property_list():
 		return get(property)
+	else:
+		return null
 
 	
 func set_health(health : int):
@@ -116,7 +118,7 @@ func addStatusToGrouping(grouping: Array[Status], new_status: Status):
 func removeStatus(status: Status):
 	var index = 0
 	for x in statuses:
-		if x.image_path == status.image_path:
+		if x.spritPath == status.spritePath:
 			Global.hapFactory.createExpireStatusHap(status, self)
 			statuses.remove_at(index)
 			break

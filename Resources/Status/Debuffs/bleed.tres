@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://dsa5wlx4und41"]
+
+[ext_resource type="Script" path="res://Resources/Status/status_attributes.gd" id="1_3m7rn"]
+
+[resource]
+script = ExtResource("1_3m7rn")
+name = "Bleed"
+spritePath = "uid://blpn4dvdacpbd"
+description = "No description."

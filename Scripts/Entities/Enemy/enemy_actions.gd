@@ -27,8 +27,10 @@ func doPreMove():
 func _get(property: StringName) -> Variant:
     if property in enemy_actions_attributes:
         return enemy_actions_attributes.get(property)
-    else:
+    elif property in self.get_property_list():
         return get(property)
+    else:
+        return null
 
 func undoPreMove():
     pass

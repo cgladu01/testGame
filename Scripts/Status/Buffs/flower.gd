@@ -1,8 +1,7 @@
 class_name Flower extends Status
 
 func setup_Status(start_count : int, new_owner: Entities) -> Status:
-    image_path = "res://icons/789_Lorc_RPG_icons/Icon.2_52.png"
-    name = "Flower"
+    status_attributes = load(RESOURCE_PATH + "Buffs/flower.tres")
     return super(start_count, new_owner)
 
 

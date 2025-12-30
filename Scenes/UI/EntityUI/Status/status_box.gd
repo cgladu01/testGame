@@ -14,7 +14,7 @@ func _process(delta: float) -> void:
 
 func display_status(status: Status):
 	disp_status = status
-	self.texture = load(disp_status.image_path)
+	self.texture = load(disp_status.spritePath)
 	if disp_status.count != 0:
 		count.text = str(disp_status.count)
 	else:

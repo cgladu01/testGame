@@ -1,9 +1,8 @@
 class_name CallOfTheAbyss extends UnStackableStatus
 
 func setup_Status(start_count : int, new_owner: Entities) -> Status:
-    image_path = "res://icons/789_Lorc_RPG_icons/Icon.6_81.png"
-    type = 1
-    name = "Call of the Abyss"
+    status_attributes = load(RESOURCE_PATH + "Debuffs/call_of_the_abyss.tres")
+    type = StatusType.DEBUFF
     return super(start_count, new_owner)
 
 func roundStart():

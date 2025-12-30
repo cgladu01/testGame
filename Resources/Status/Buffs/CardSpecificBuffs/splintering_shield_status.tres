@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://cntpniq5mr7ty"]
+
+[ext_resource type="Script" path="res://Resources/Status/status_attributes.gd" id="1_5mgpd"]
+
+[resource]
+script = ExtResource("1_5mgpd")
+name = "Splintering Shield"
+spritePath = "uid://ou10doy4evoh"
+description = "No description."
