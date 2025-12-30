@@ -7,7 +7,9 @@ var powers: int = 0
 var curses: int = 0
 
 func setupDeck(actions : Array[Action]):
-	addActions(actions.duplicate())
+
+	for action in actions:
+		addAction(action.duplicate(true))
 
 func addAction(newAction : Action):
 	match  newAction.type:

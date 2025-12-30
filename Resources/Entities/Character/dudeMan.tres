@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CharacterAttributes" load_steps=2 format=3 uid="uid://bg8co5e72l2h2"]
+
+[ext_resource type="Script" uid="uid://dyalnmm4000ta" path="res://Resources/Entities/Character/character_attributes.gd" id="1_ntjy1"]
+
+[resource]
+script = ExtResource("1_ntjy1")
+name = "DudeMan"
+spritePath = "uid://c6ycievgykr23"
+miniPortaitPath = "uid://c0wlmdo2e5o8s"
+metadata/_custom_type_script = "uid://dyalnmm4000ta"

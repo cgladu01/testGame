@@ -1,0 +1,1 @@
+class_name EnemyAttributes extends EntityAttributes

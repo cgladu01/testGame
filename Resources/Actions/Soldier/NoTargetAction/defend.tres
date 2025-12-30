@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionAttributes" load_steps=2 format=3 uid="uid://dqlnqoa61l3gr"]
+
+[ext_resource type="Script" uid="uid://cdpm6urumcgj6" path="res://Resources/Actions/action_attributes.gd" id="1_1k23r"]
+
+[resource]
+script = ExtResource("1_1k23r")
+name = "Defend"
+description = "Gain 5 block"
+image_path = ""
+type = 1
+metadata/_custom_type_script = "uid://cdpm6urumcgj6"

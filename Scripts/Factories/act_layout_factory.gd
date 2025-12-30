@@ -82,7 +82,6 @@ func findAvailableDirections(room: RoomIcon, pt: pathType) -> Array[Global.direc
 					available_directions.append(Global.direction.LEFT)
 
 	if pt == pathType.MAINPATH:
-		print(room.type)
 		return [Global.direction.DOWN]
 	if pt == pathType.SUBPATH:
 		return [Global.direction.LEFT]

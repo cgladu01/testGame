@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="EnemyAttributes" load_steps=2 format=3 uid="uid://2xfytx5h6uhs"]
+
+[ext_resource type="Script" uid="uid://b5ggusqlriggn" path="res://Resources/Entities/Enemy/enemy_attributes.gd" id="1_qgr6g"]
+
+[resource]
+script = ExtResource("1_qgr6g")
+name = "Wolf"
+spritePath = "uid://c6ycievgykr23"
+miniPortaitPath = "uid://cygscj0s1o08s"

@@ -1,10 +1,9 @@
 class_name SplinteringShield extends Action
 
 func setup(owner: Character):
-    name = "Splintering Shield"
-    description = "Gain 10 block. If an attacks breaks your block, deal 6 damage to all adjacent enemies."
+
+    actionAttributes = load("res://Resources/Actions/Druid/NoTargetAction/splintering_shield.tres")
     cost = 2
-    type = Global.card_type.SKILL
     super(owner)
 
 

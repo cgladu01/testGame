@@ -2,8 +2,7 @@ class_name Strength extends "res://Scripts/Status/status.gd"
 
 
 func setup_Status(start_count : int, new_owner: Entities):
-    image_path = "res://icons/789_Lorc_RPG_icons/Icon.3_10.png"
-    name = "Strength"
+    status_attributes = load(RESOURCE_PATH + "Buffs/strength.tres")
     return super(start_count, new_owner)
 
 

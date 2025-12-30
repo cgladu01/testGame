@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionAttributes" load_steps=2 format=3 uid="uid://3m4yjapgspb"]
+
+[ext_resource type="Script" uid="uid://cdpm6urumcgj6" path="res://Resources/Actions/action_attributes.gd" id="1_0o0ir"]
+
+[resource]
+script = ExtResource("1_0o0ir")
+name = "Bash"
+description = "Attack 4. Inflict 3 [url=Daze]Daze[/url]."
+image_path = ""
+type = 0
+metadata/_custom_type_script = "uid://cdpm6urumcgj6"

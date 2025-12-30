@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://b1dej3g2ak2f4"]
+
+[ext_resource type="Script" path="res://Resources/Status/status_attributes.gd" id="1_ry66i"]
+
+[resource]
+script = ExtResource("1_ry66i")
+name = "Sanctuary"
+spritePath = "uid://vo56ox487np3"
+description = "No description."

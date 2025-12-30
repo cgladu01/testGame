@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionAttributes" load_steps=2 format=3 uid="uid://dfbs3ldgrmfj6"]
+
+[ext_resource type="Script" uid="uid://cdpm6urumcgj6" path="res://Resources/Actions/action_attributes.gd" id="1_n0o8j"]
+
+[resource]
+script = ExtResource("1_n0o8j")
+name = "Thorn Barrage"
+description = "Attack 6, Inflict 2 [url=Bleed]Bleed[/url] twice in a wall pattern within range 3."
+image_path = ""
+type = 1
+metadata/_custom_type_script = "uid://cdpm6urumcgj6"

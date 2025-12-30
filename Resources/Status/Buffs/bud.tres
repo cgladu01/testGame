@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://8tgkvs72h6nx"]
+
+[ext_resource type="Script" path="res://Resources/Status/status_attributes.gd" id="1_8iq1u"]
+
+[resource]
+script = ExtResource("1_8iq1u")
+name = "Bud"
+spritePath = "uid://ou10doy4evoh"
+description = "No description."

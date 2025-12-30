@@ -2,9 +2,8 @@ class_name Defend extends Action
 
 
 func setup(owner: Character):
-	name = "Defend"
-	description = "Gain 5 block"
-	type = Global.card_type.SKILL
+	actionAttributes = load("res://Resources/Actions/Soldier/NoTargetAction/defend.tres")
+	cost = 1
 	super(owner)
 
 

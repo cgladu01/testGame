@@ -2,8 +2,7 @@ class_name Bud extends UnStackableStatus
 
 
 func setup_Status(start_count : int, new_owner: Entities) -> Status:
-    image_path = "res://icons/789_Lorc_RPG_icons/Icon.2_52.png"
-    name = "Bud"
+    status_attributes = load(RESOURCE_PATH + "Buffs/bud.tres")
     return super(3, new_owner)
 
 func roundStart():

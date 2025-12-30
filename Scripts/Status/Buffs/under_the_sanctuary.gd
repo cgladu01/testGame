@@ -3,8 +3,7 @@ class_name UnderTheSanctuary extends Status
 var sanctuary_owner : Entities = null
 
 func setup_Status(start_count : int, new_owner: Entities) -> Status:
-    image_path = "res://icons/789_Lorc_RPG_icons/Icon.3_17.png"
-    name = "Under The Sanctuary"
+    status_attributes = load(RESOURCE_PATH + "Buffs/under_the_sanctuary.tres")
     return super(start_count, new_owner)
 
 func set_sanctuary_owner(n_sanctuary_owner: Entities):

@@ -9,7 +9,7 @@ func createCharacter(name: String, start_node: CharacterNode) -> Character:
 
 	var character : Character = Character.new()
 	var starter_deck : Array[Action] =  []
-	var mini_portrait : String = ""
+	var character_attributes : CharacterAttributes = CharacterAttributes.new()
 
 	for x in basic_actions:
 		for y in range(0, 4):
@@ -19,18 +19,18 @@ func createCharacter(name: String, start_node: CharacterNode) -> Character:
 	match name:
 		"DudeMan":
 			start_health = 100
-			mini_portrait = "res://icons/789_Lorc_RPG_icons/Icons8_32.png"
+			character_attributes = load("res://Resources/Entities/Character/dudeMan.tres")
 			starter_deck.append(Global.actionFactory.createAction("Bash", character))
 
 		"Druid":
 			start_health = 100
-			mini_portrait = "res://icons/789_Lorc_RPG_icons/Icons8_32.png"
+			character_attributes = load("res://Resources/Entities/Character/druid.tres")
 			starter_deck.append(Global.actionFactory.createAction("Bash", character))
 			starter_deck.append(Global.actionFactory.createAction("Thorn Barrage", character))
 		_:
 			start_health = 10
 
-	character.setup_character(name, starter_deck, start_health, Global.tile_map_layer.local_to_map(start_node.position), start_node, mini_portrait)
+	character.setup_character(starter_deck, start_health, Global.tile_map_layer.local_to_map(start_node.position), start_node, character_attributes)
 	Global.tileManager.change_tile_entity(character, character.location)
 	Global.characters.append(character)
 	return character

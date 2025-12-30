@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://oksm0b8hpwkp"]
+
+[ext_resource type="Script" path="res://Resources/Status/status_attributes.gd" id="1_6wi7i"]
+
+[resource]
+script = ExtResource("1_6wi7i")
+name = "Evasion"
+spritePath = "uid://cw6bm32ht3eyw"
+description = "No description."

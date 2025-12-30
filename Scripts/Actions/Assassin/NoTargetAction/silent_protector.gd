@@ -1,9 +1,7 @@
 class_name SilentProtector extends Action
 
 func setup(owner: Character):
-    name = "Silent Protector"
-    description = "Gain 30 Block. Gain Silenced 2. Gain Santuary 3."
-    type = Global.card_type.SKILL
+    actionAttributes = load("res://Resources/Actions/Assassin/NoTargetAction/silent_protector.tres")
     cost = 2
     super(owner)
 

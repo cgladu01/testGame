@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://doapufedha8wa"]
+
+[ext_resource type="Script" path="res://Resources/Status/status_attributes.gd" id="1_mw3xj"]
+
+[resource]
+script = ExtResource("1_mw3xj")
+name = "Call of the Abyss"
+spritePath = "uid://bmxdhmcfnid6a"
+description = "No description."

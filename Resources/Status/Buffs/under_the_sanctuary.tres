@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://rkot1t5sb1gt"]
+
+[ext_resource type="Script" path="res://Resources/Status/status_attributes.gd" id="1_vg3wt"]
+
+[resource]
+script = ExtResource("1_vg3wt")
+name = "Under The Sanctuary"
+spritePath = "res://icons/789_Lorc_RPG_icons/Icon.3_17.png"
+description = "No description."

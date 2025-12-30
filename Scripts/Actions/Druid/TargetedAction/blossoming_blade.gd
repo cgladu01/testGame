@@ -2,10 +2,8 @@ class_name BlossomingBlade extends TargetedAction
 var tileManager: TileManager = null
 
 func setup(owner: Character):
-	name = "Blossoming Blade"
-	description = "Attack 8, Gain 1 [url=Bud]Bud[/url]."
+	actionAttributes = load("res://Resources/Actions/Druid/TargetedAction/blossoming_blade.tres")
 	cost = 1
-
 	super(owner)
 
 func button_pressed():

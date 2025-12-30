@@ -1,8 +1,7 @@
 class_name SplinteringShieldStatus extends Status
 
 func setup_Status(start_count : int, new_owner: Entities) -> Status:
-    image_path = "res://icons/789_Lorc_RPG_icons/Icon.2_52.png"
-    name = "Splintering Shield"
+    status_attributes = load(RESOURCE_PATH + "Buffs/CardSpecficBuffs/splintering_shield_status.tres")
     return super(start_count, new_owner)
 
 func roundStart():
