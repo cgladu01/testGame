@@ -36,6 +36,9 @@ func createAction(name : String, owner : Entities) -> Action:
 		"Inevitable End":
 			action= InevitableEnd.new()
 			action.setup(owner)
+		"Growth and Decay":
+			action= GrowthAndDecay.new()
+			action.setup(owner)
 		_:
 			action= Action.new()
 			action.setup_placeholder(name, owner)

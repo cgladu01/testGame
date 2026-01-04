@@ -6,5 +6,5 @@
 script = ExtResource("1_irmal")
 imageIndicator = Array[String](["uid://cw6bm32ht3eyw", "uid://wwhprkjtbjjh"])
 numberIndicators = Array[int]([4, 10])
-name = ""
+name = "Rend"
 metadata/_custom_type_script = "uid://dyneuhkobw3ry"

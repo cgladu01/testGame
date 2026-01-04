@@ -9,7 +9,6 @@ func button_pressed():
 	Global.actionSelection(self)
 
 func execute():
-	print(canPlay())
 	if canPlay():
 		owner.addStatus(InevitableEndStatus.new().setup_Status(1, owner), owner)
 		super()

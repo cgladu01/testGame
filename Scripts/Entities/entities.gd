@@ -128,7 +128,8 @@ func removeStatus(status: Status):
 
 func attack(incomming : int, target: Entities):
 	for x in onAttackStatusesAdd:
-		incomming = x.attackEffectAdd(incomming, self, target)
+		print("Applying onAttackStatusesAdd:", x.name)
+		incomming = x.attackAddEffect(incomming, self, target)
 	for x in onAttackStatusesMult:
 		incomming = x.attackMultEffect(incomming, self, target)
 	Global.hapFactory.createAttackHap(incomming, target, self)

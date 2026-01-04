@@ -5,7 +5,7 @@ enum ACTION_TYPE {RANGED, MELEE, FLEEING}
 
 
 func find_closest_player(enemy : Enemy, real_location : bool = true, type: EnemyMoveEngine.ACTION_TYPE = ACTION_TYPE.MELEE, range: int = 0) -> Dictionary:
-	var path = []
+	var path : Array[Vector2i] = []
 	var target = null
 	var locations = Global.characters.map(func(character) -> Vector2i: return character.location) if (real_location) else Global.mock_locations
 	for x in range(0, locations.size()):

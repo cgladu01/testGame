@@ -55,6 +55,7 @@ func give_character_action(actionName: String, ownerName: String):
             break
 
 func give_entity_status(statusName: String, ownerName: String, count: int):
+    print("Giving Status:", statusName, "to", ownerName, "count:", count)
     for entity in Global.characters + Global.enemies:
         if entity.name == ownerName:
             entity.addStatus(Global.statusFactory.createStatus(statusName, count), entity)
