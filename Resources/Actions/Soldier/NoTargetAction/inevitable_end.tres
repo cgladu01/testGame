@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionAttributes" load_steps=2 format=3 uid="uid://beabwh35fj0hc"]
+
+[ext_resource type="Script" uid="uid://cdpm6urumcgj6" path="res://Resources/Actions/action_attributes.gd" id="1_ilolh"]
+
+[resource]
+script = ExtResource("1_ilolh")
+name = "Inevitable End"
+description = "Accelerate debuffs on enimies within 2 tiles at round start. If you have COTV do it again. "
+image_path = ""
+type = 2
+metadata/_custom_type_script = "uid://cdpm6urumcgj6"

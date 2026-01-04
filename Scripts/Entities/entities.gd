@@ -233,6 +233,11 @@ func clearAllStatuses():
 	onMovementStatuses.clear()
 	onUnblockedStatus.clear()
 
+func accelerateAllStatuses(statustype: Status.StatusType = Status.StatusType.DEBUFF, amount: int = 1):
+	for i in range(amount):
+		for status in statuses:
+			if status.type == statustype:
+				status.roundStart()
 
 func roundEnd():
 	for status in statuses:

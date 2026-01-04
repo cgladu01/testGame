@@ -8,7 +8,7 @@ func createAction(name : String, owner : Entities) -> Action:
 		"Move":
 			action = Move.new()
 			action.setup(owner)
-		
+
 		"Attack":
 			action = Attack.new()
 			action.setup(owner)
@@ -32,6 +32,9 @@ func createAction(name : String, owner : Entities) -> Action:
 			action.setup(owner)
 		"Blossoming Blade":
 			action = BlossomingBlade.new()
+			action.setup(owner)
+		"Inevitable End":
+			action= InevitableEnd.new()
 			action.setup(owner)
 		_:
 			action= Action.new()
