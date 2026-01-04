@@ -118,7 +118,7 @@ func addStatusToGrouping(grouping: Array[Status], new_status: Status):
 func removeStatus(status: Status):
 	var index = 0
 	for x in statuses:
-		if x.spritPath == status.spritePath:
+		if x == status:
 			Global.hapFactory.createExpireStatusHap(status, self)
 			statuses.remove_at(index)
 			break

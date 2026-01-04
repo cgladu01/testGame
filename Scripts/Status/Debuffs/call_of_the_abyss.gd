@@ -12,3 +12,4 @@ func decrementCount(times : int = 1):
     super(times)
     if count <= 0:
         owner.change_health(-50)
+        owner.removeStatus(self)
