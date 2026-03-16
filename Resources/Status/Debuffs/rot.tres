@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="StatusAttributes" load_steps=2 format=3 uid="uid://cmufdsplc330l"]
+
+[ext_resource type="Script" uid="uid://bqw55wfn8c6sq" path="res://Resources/Status/status_attributes.gd" id="1_aehqo"]
+
+[resource]
+script = ExtResource("1_aehqo")
+name = "Rot"
+spritePath = "uid://bc87bjvvbyxq5"
+description = "Reduce Attack by count. Round End: Decrement"
+metadata/_custom_type_script = "uid://bqw55wfn8c6sq"

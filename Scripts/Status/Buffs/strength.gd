@@ -6,6 +6,6 @@ func setup_Status(start_count : int, new_owner: Entities):
     return super(start_count, new_owner)
 
 
-func attackEffectAdd(incoming: int, attacker: Entities, target: Entities) -> int:
+func attackAddEffect(incoming: int, attacker: Entities, target: Entities) -> int:
     incoming += count
     return incoming 

@@ -47,10 +47,23 @@ func execute():
 		if owner is Character:
 			var character = owner as Character
 			character.energy = character.energy - cost
-
 			Global.update_energy.emit(character.energy, character.max_energy)		
 		if container:
 			container.onPlay()
+
+func put_self_into_discard(remove_from_hand: bool = true):
+	if owner is Character:
+		var character = owner as Character
+		character.discardDeck.addAction(self)
+		if remove_from_hand:
+			character.hand.removeAction(self)
+
+func put_self_into_lost(remove_from_hand: bool = true):
+	if owner is Character:
+		var character = owner as Character
+		character.exhaustDeck.addAction(self)
+		if remove_from_hand:
+			character.hand.removeAction(self)
 
 func duplicate(deep: bool = false) -> Action:
 	var new_action: Action = Global.actionFactory.createAction(actionAttributes.name, owner)

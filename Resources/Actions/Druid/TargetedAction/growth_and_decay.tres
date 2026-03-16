@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="ActionAttributes" load_steps=2 format=3 uid="uid://v1o7ckq583c8"]
+
+[ext_resource type="Script" uid="uid://cdpm6urumcgj6" path="res://Resources/Actions/action_attributes.gd" id="1_vfblq"]
+
+[resource]
+script = ExtResource("1_vfblq")
+name = "Growth and Decay"
+description = "Inflict 3 Rot and Accelerate 1 all buffs. Lost"
+image_path = ""
+type = 1
+metadata/_custom_type_script = "uid://cdpm6urumcgj6"

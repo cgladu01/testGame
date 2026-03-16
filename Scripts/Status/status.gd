@@ -7,9 +7,8 @@ var type : StatusType = StatusType.BUFF
 enum StatusType {
 	BUFF,
 	DEBUFF
-}
+} 
 
-var name : String = ""
 var owner : Entities = null
 var RESOURCE_PATH : String  = "res://Resources/Status/"
 
@@ -27,7 +26,6 @@ func _get(property: StringName) -> Variant:
 		return get(property)
 	else:
 		return null
-
 
 func roundStart():
 	pass

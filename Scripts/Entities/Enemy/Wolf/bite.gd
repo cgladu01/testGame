@@ -2,8 +2,6 @@ class_name Bite extends EnemyActions
 const BASE_ATTACK_VALUE = 1
 const BASE_MOVE_VALUE = 0
 
-func setup(owner: Enemy, enemy_actions_attributes: EnemyActionAttributes):
-	super(owner, enemy_actions_attributes)
 
 func execute():
 	var result = Global.enemyMoveEngine.find_closest_player(owner)

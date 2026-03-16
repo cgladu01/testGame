@@ -118,7 +118,7 @@ func addStatusToGrouping(grouping: Array[Status], new_status: Status):
 func removeStatus(status: Status):
 	var index = 0
 	for x in statuses:
-		if x.spritPath == status.spritePath:
+		if x == status:
 			Global.hapFactory.createExpireStatusHap(status, self)
 			statuses.remove_at(index)
 			break
@@ -128,7 +128,8 @@ func removeStatus(status: Status):
 
 func attack(incomming : int, target: Entities):
 	for x in onAttackStatusesAdd:
-		incomming = x.attackEffectAdd(incomming, self, target)
+		print("Applying onAttackStatusesAdd:", x.name)
+		incomming = x.attackAddEffect(incomming, self, target)
 	for x in onAttackStatusesMult:
 		incomming = x.attackMultEffect(incomming, self, target)
 	Global.hapFactory.createAttackHap(incomming, target, self)
@@ -233,6 +234,11 @@ func clearAllStatuses():
 	onMovementStatuses.clear()
 	onUnblockedStatus.clear()
 
+func accelerateAllStatuses(statustype: Status.StatusType = Status.StatusType.DEBUFF, amount: int = 1):
+	for i in range(amount):
+		for status in statuses:
+			if status.type == statustype:
+				status.roundStart()
 
 func roundEnd():
 	for status in statuses:
