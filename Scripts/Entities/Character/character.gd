@@ -13,6 +13,8 @@ var round_start_draw : int = 5
 var movement = Global.actionFactory.createAction("Move", self)
 var moved = false
 var pitched = false
+var ancient_coins : int = 0
+var darksteel_flakes : int = 0
 
 func setup_character(starting_actions : Array[Action], start_health : int, start_location : Vector2i, start_node : CharacterNode, character_attributes : CharacterAttributes) -> void:
 
