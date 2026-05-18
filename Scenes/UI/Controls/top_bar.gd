@@ -1,7 +1,13 @@
 class_name Topbar extends PanelContainer
 
+@onready var darksteel_count = $"HBoxContainer/GoldCount/RichTextLabel"
+@onready var gold_count = $"HBoxContainer/DarkSteelCount/RichTextLabel"
 var party_view_load = preload("res://Scenes/Menu/party_menu.tscn")
 var party_view = null
+
+func _ready() -> void:
+	Global.rewardItemTaken.connect(_on_darksteel_update)
+	Global.rewardItemTaken.connect(_on_gold_update)
 
 
 func _on_map_pressed() -> void:
@@ -21,3 +27,11 @@ func _on_button_pressed() -> void:
 		Global.canvas_layer.add_child(party_view)
 	else:
 		Global.fadeAwayToolTip("Current Room Not Completed")
+
+func _on_gold_update():
+	gold_count.clear()
+	gold_count.add_text(str(Global.gold_count))
+
+func _on_darksteel_update():
+	darksteel_count.clear()
+	darksteel_count.add_text(str(Global.darksteel_flakes))
