@@ -8,7 +8,6 @@ var rewardItem: RewardItem = null
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-    Global.rewardTaken.connect(_on_rewardTaken)
     for character in Global.characters:
         var character_screen = character_load.instantiate()
         character_screen.set_Character(character)

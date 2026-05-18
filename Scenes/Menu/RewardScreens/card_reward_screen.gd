@@ -9,7 +9,7 @@ var card_container_scene = preload("res://Scenes/UI/CardsUI/CardContainer/card_c
 func _ready() -> void:
 	pass # Replace with function body.
 
-func displayActions(disp_actions: Array[Action]):
+func displayActions(disp_actions: Array[Action], reward_item: RewardItem):
 	actions = disp_actions
 	for action in actions:
 		var cardcontainer = card_container_scene.instantiate()
@@ -17,8 +17,9 @@ func displayActions(disp_actions: Array[Action]):
 		cardcontainer.setAction(action, true)
 		cardcontainer.setBehavior(func (): 
 			Global.selected_character.deck.insertAtBack(action)
-			Global.rewardTaken.emit()
-			queue_free())
+			reward_item.queue_free()
+			queue_free()
+			Global.rewardItemTaken.emit())
 
 		cardcontainer.size_flags_horizontal = Control.SIZE_SHRINK_CENTER + Control.SIZE_EXPAND
 		

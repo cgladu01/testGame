@@ -55,6 +55,10 @@ var characterNames : Array[String] = ["DudeMan", "Druid", ""]
 var selected_character : Character = null
 signal selected_character_update
 
+# Party Info
+var gold_count : int = 0
+var darksteel_flakes : int = 0
+
 # Updates the energy shown in the bottom left
 signal update_energy
 
