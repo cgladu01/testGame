@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EquipmentAttributes" load_steps=2 format=3 uid="uid://badlllao3m40h"]
+
+[ext_resource type="Script" uid="uid://cs2regveupwoy" path="res://Resources/Equipment/equipment_attributes.gd" id="1_c3tbl"]
+
+[resource]
+script = ExtResource("1_c3tbl")
+name = "Unknown"
+spritePath = "res://icon.svg"
+miniPortaitPath = ""
+metadata/_custom_type_script = "uid://cs2regveupwoy"

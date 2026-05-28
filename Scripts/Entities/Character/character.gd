@@ -4,24 +4,37 @@ extends Entities
 # Character class
 var energy : int = 3
 var max_energy : int = 3
+
+# Decks and Cards
 var deck: Deck = Deck.new()
 var combatDeck : CombatDeck = null
 var discardDeck : CombatDeck = null
 var exhaustDeck : CombatDeck = null
 var hand : CombatDeck = null
+
+# In Battle Effects
 var round_start_draw : int = 5
 var movement = Global.actionFactory.createAction("Move", self)
+
 var moved = false
 var pitched = false
+
+# Persistents
 var ancient_coins : int = 0
 var darksteel_flakes : int = 0
+var equipment: Array[Equipment] = []
 
-func setup_character(starting_actions : Array[Action], start_health : int, start_location : Vector2i, start_node : CharacterNode, character_attributes : CharacterAttributes) -> void:
+# Constants
+var MAX_EQUIPMENT = 4
+
+func setup_character(starting_actions : Array[Action], start_health : int, start_location : Vector2i,
+	start_node : CharacterNode, character_attributes : CharacterAttributes, start_equipment : Array[Equipment]) -> void:
 
 	entityAttributes = character_attributes
 	deck.setupDeck(starting_actions)
 	start_node.set_character(self)
 	setup_entity(start_health, start_location, start_node, character_attributes)
+	equipment = start_equipment
 
 func change_characterNode(new_node : CharacterNode):
 	node.queue_free()
@@ -74,3 +87,14 @@ func _init() -> void:
 
 func perform_rest():
 	health = min(health + tot_health * 0.3, tot_health)
+
+func add_equipment(new_equipment : Equipment):
+	if equipment.size() < MAX_EQUIPMENT:
+		equipment.append(new_equipment)
+		return true
+	else:
+		return false
+
+func remove_equipment(i : int):
+	if i in range(0, equipment.size()):
+		equipment.remove_at(i)

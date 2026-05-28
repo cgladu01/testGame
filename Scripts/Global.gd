@@ -35,6 +35,7 @@ var actionFactory: ActionFactory = ActionFactory.new()
 var enemyFactory : EnemyFactory = EnemyFactory.new()
 var hapFactory : HapFactory = HapFactory.new()
 var actLaytoutFactory : ActLayoutFactory = ActLayoutFactory.new()
+var equipmentFactory : EquipmentFactory = EquipmentFactory.new()
 
 # Act Related Stuff
 var rests_available = 2
