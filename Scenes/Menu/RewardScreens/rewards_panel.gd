@@ -1,4 +1,4 @@
-class_name RewardScreen extends PanelContainer
+class_name RewardPanels extends PanelContainer
 
 @onready var rewardHolder = $"VBoxContainer/ScrollContainer/RewardsHolder"
 var make_invisible = false

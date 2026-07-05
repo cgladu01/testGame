@@ -1,6 +1,6 @@
 [gd_scene load_steps=3 format=3 uid="uid://c7rp4uh78vcce"]
 
-[ext_resource type="Script" uid="uid://cib77vyucvoq" path="res://Scenes/Menu/RewardScreens/rewards_screen.gd" id="1_4myur"]
+[ext_resource type="Script" uid="uid://cib77vyucvoq" path="res://Scenes/Menu/RewardScreens/rewards_panel.gd" id="1_4myur"]
 
 [sub_resource type="Theme" id="Theme_l7qit"]
 default_font_size = 40
@@ -12,9 +12,9 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -329.5
+offset_left = -250.0
 offset_top = -469.5
-offset_right = 329.5
+offset_right = 250.0
 offset_bottom = 469.5
 grow_horizontal = 2
 grow_vertical = 2

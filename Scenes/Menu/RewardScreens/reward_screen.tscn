@@ -1,0 +1,19 @@
+[gd_scene load_steps=3 format=3 uid="uid://cul6hybi62017"]
+
+[ext_resource type="PackedScene" uid="uid://c7rp4uh78vcce" path="res://Scenes/Menu/RewardScreens/rewards_panel.tscn" id="2_jjh21"]
+[ext_resource type="Script" uid="uid://dkqtn1oyqqdpt" path="res://Scenes/Menu/RewardScreens/reward_screen.gd" id="goop"]
+
+[node name="RewardScreen" type="HBoxContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("goop")
+
+[node name="Characters" type="VBoxContainer" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="RewardPanel" parent="." instance=ExtResource("2_jjh21")]
+layout_mode = 2

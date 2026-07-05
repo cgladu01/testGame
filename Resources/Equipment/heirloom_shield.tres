@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_c3tbl")
-name = "Unknown"
-spritePath = "res://icon.svg"
+name = "Heirloom Shield"
+spritePath = "uid://sbyultjr62ca"
 miniPortaitPath = ""
 metadata/_custom_type_script = "uid://cs2regveupwoy"

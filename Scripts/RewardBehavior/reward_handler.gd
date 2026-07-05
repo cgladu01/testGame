@@ -1,6 +1,6 @@
 class_name RewardHandler
 
-var rewardScreenScene = preload("res://Scenes/Menu/RewardScreens/rewards_screen.tscn")
+var rewardScreenScene = preload("res://Scenes/Menu/RewardScreens/reward_screen.tscn")
 var rewardItemScene = preload("res://Scenes/Menu/RewardScreens/reward_item.tscn")
 var characterSelectload = preload("res://Scenes/Menu/pick_character.tscn")
 

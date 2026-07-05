@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://yvx8rrc8x4yu"]
+
+[ext_resource type="Script" uid="uid://cskwyq261e0wj" path="res://Scenes/UI/Equipment/equipment_panel_container.gd" id="1_1sr50"]
+
+[node name="Equipment" type="PanelContainer"]
+script = ExtResource("1_1sr50")
+
+[node name="TextureRect" type="TextureRect" parent="."]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
