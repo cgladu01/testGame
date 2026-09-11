@@ -19,9 +19,12 @@ layout_mode = 2
 custom_minimum_size = Vector2(100, 0)
 layout_mode = 2
 
-[node name="Sprite2D" type="Sprite2D" parent="HBoxContainer/VBoxContainer"]
+[node name="MiniPortrait" type="TextureRect" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(70, 70)
+layout_mode = 2
 
 [node name="Name" type="RichTextLabel" parent="HBoxContainer/VBoxContainer"]
+custom_minimum_size = Vector2(70, 0)
 layout_mode = 2
 size_flags_vertical = 3
 text = "Place Holder"

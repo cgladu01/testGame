@@ -8,5 +8,6 @@ func _ready() -> void:
 
 func setup(set_equipment: Equipment):
 	equipment = set_equipment
-	textureRect.ready.connect( func (): textureRect.load(equipment.equipment_attributes.spritePath))
+	textureRect.texture = load(equipment.equipment_attributes.spritePath)
+	textureRect.size = Vector2i(30,30)
  
