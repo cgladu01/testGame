@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="EquipmentAttributes" load_steps=2 format=3 uid="uid://cd2u7pa03o8pv"]
+
+[ext_resource type="Script" uid="uid://cs2regveupwoy" path="res://Resources/Equipment/equipment_attributes.gd" id="1_bxhnf"]
+
+[resource]
+script = ExtResource("1_bxhnf")
+name = "Cracked Pendant"
+spritePath = "uid://dj0bskdalbppj"
+miniPortaitPath = ""
+metadata/_custom_type_script = "uid://cs2regveupwoy"

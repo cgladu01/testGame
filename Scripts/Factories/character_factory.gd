@@ -31,7 +31,7 @@ func createCharacter(name: String, start_node: CharacterNode) -> Character:
 			start_health = 10
 
 	character.setup_character(starter_deck, start_health, Global.tile_map_layer.local_to_map(start_node.position),
-	 start_node, character_attributes, [Global.equipmentFactory.createEquipment("Item")])
+	 start_node, character_attributes, [Global.equipmentFactory.createEquipment("Heirloom Shield")])
 	Global.tileManager.change_tile_entity(character, character.location)
 	Global.characters.append(character)
 	return character

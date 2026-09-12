@@ -7,7 +7,7 @@ var characterSelectload = preload("res://Scenes/Menu/pick_character.tscn")
 var card_reward_scene = preload("res://Scenes/Menu/RewardScreens/card_reward_screen.tscn")
 var canvas = null
 var rewardScreen = null
-enum reward_type {card_reward, gold_reward, darksteel_flakes_reward}
+enum reward_type {card_reward, gold_reward, darksteel_flakes_reward, equipment_reward, artifact_reward}
 
 func setup(s_canvas : CanvasLayer):
 	canvas = s_canvas
@@ -19,6 +19,7 @@ func generateRewards() -> RewardScreen:
 	addReward(reward_type.gold_reward)
 	addReward(reward_type.darksteel_flakes_reward)
 	addReward(reward_type.card_reward)
+	addReward(reward_type.equipment_reward)
 	return rewardScreen
 
 
@@ -34,18 +35,17 @@ func addReward(reward : reward_type):
 				func (): 
 					Global.gold_count += amount
 					rewardItem.queue_free()
-					Global.rewardItemTaken.emit()
-					print(Global.gold_count)
-					, str(amount, " Gold"))
+					Global.rewardItemTaken.emit(), str(amount, " Gold"))
 		reward_type.darksteel_flakes_reward:
 			var amount = Global.rng.randi_range(5, 8)
 			rewardItem.setup(
 				func (): 
 					Global.darksteel_flakes += amount
 					rewardItem.queue_free()
-					Global.rewardItemTaken.emit()
-					print(Global.darksteel_flakes)
-					, str(amount, " Darksteel Flakes"))
+					Global.rewardItemTaken.emit(), str(amount, " Darksteel Flakes"))
+		reward_type.equipment_reward:
+			var equipment = generateEquipmentReward()
+			rewardItem.setup(generateEquipmentRewardBehavior(rewardItem, equipment), equipment.equipment_attributes.name) 
 		
 
 func generatePickCardRewardForCharactersBehavior(reward_item: RewardItem) -> Callable:
@@ -66,3 +66,14 @@ func generateCardRewardBehavior(rewardItem: RewardItem) -> Callable:
 		var card_reward = card_reward_scene.instantiate()
 		canvas.add_child(card_reward)
 		card_reward.displayActions(actions, rewardItem)
+
+func generateEquipmentRewardBehavior(rewardItem: RewardItem, equipment: Equipment) -> Callable:
+	return func():
+		Global.characters.get(1).add_equipment(equipment)
+		rewardItem.queue_free()
+		Global.rewardItemTaken.emit()
+
+
+func generateEquipmentReward() -> Equipment:
+	return Global.equipmentFactory.createEquipment("Cracked Pendant")
+	
